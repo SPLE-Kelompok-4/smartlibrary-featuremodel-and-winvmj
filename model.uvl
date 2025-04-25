@@ -1,0 +1,32 @@
+namespace SmartLibrary
+
+features
+	SmartLibrary {abstract true}
+		mandatory
+			EBookDisplay {abstract true}
+				or
+					DisplayPrice
+					DisplayImage
+			CommunityContent {abstract true}
+				or
+					Article
+					ForumThread
+			SearchFilter {abstract true}
+				or
+					Search
+						optional
+							SearchByTitle
+							SearchByAuthor
+					Filter
+						optional
+							FilterByCategory
+							FilterByReleaseDate
+			ReviewManagement
+		optional
+			WishlistManagement
+			EBookAccess {abstract true}
+				or
+					FreeAccess
+					Subscription
+					PayPerBook
+
