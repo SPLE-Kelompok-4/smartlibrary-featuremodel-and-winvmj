@@ -13,11 +13,11 @@ features
 					ForumThread
 			SearchFilter {abstract true}
 				or
-					Search
+					Search {abstract true}
 						optional
 							SearchByTitle
 							SearchByAuthor
-					Filter
+					Filter {abstract true}
 						optional
 							FilterByCategory
 							FilterByReleaseDate
