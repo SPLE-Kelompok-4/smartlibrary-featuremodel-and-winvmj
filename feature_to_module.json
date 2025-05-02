@@ -1,1 +1,19 @@
-{}
+{
+    "EBookDisplay":["SmartLibrary.ebookaccess.core"],
+    "DisplayPrice":["SmartLibrary.ebookaccess.displaywithprice"],
+    "DisplayImage":["SmartLibrary.ebookaccess.displaywithimage"],
+    "CommunityContent":["SmartLibrary.communitycontent.core"],
+    "Article":["SmartLibrary.communitycontent.article"],
+    "ForumThread":["SmartLibrary.communitycontent.forumthread"],
+    "ReviewManagement":["SmartLibrary.reviewmanagement.core"],
+    "SearchFilter":["SmartLibrary.searchfilter.core"],
+    "SearchByTitle":["SmartLibrary.searchfilter.searchbytitle"],
+    "SearchByAuthor":["SmartLibrary.searchfilter.searchbyauthor"],
+    "FilterByCategory":["SmartLibrary.searchfilter.filterbycategory"],
+    "FilterByReleaseDate":["SmartLibrary.searchfilter.filterbyreleasedate"],
+    "WishlishManagement":["SmartLibrary.wishlishmanagement.core"],
+    "EBookAccess":["SmartLibrary.ebookaccess.core"],
+    "FreeAccess":["SmartLibrary.ebookaccess.freeaccess"],
+    "Subscription":["SmartLibrary.ebookaccess.subscription"],
+    "PayPerBook":["SmartLibrary.ebookaccess.payperbook"]
+}
