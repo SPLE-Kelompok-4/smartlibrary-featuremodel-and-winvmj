@@ -22,6 +22,6 @@ public interface EBook {
 	public void setEbookaccessimpl(EBookAccessImpl ebookaccessimpl);
 	public EDate getCreatedAt();
 	public void setCreatedAt(EDate createdAt);
-	org.eclipse.uml2.uml.internal.impl.ClassImpl@9b3ee40 (name: EBookImpl, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
+	org.eclipse.uml2.uml.internal.impl.ClassImpl@1b636093 (name: EBookImpl, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
 	HashMap<String, Object> toHashMap();
 }
