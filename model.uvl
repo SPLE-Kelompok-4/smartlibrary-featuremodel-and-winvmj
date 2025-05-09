@@ -23,7 +23,10 @@ features
 							FilterByReleaseDate
 			ReviewManagement
 		optional
-			WishlistManagement
+			WishlistManagement {abstract true}
+				or
+					RenameWishlist
+					DeleteWishlist
 			EBookAccess {abstract true}
 				or
 					FreeAccess
