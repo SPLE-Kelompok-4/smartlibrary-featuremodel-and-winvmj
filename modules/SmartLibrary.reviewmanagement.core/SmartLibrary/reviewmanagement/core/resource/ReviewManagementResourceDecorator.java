@@ -39,7 +39,7 @@ public abstract class ReviewManagementResourceDecorator extends ReviewManagement
 		return record.deleteReviewManagement(vmjExchange);
 	}
 
-	public void addReview(Item ) {
+	public void addReview(Item item) {
 		return record.addReview();
 	}
 

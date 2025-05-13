@@ -83,7 +83,7 @@ public class WishlistManagementServiceImpl extends WishlistManagementServiceComp
 
 	public HashMap<String, Object> getWishlishManagementById(int id){
 		String idStr = vmjExchange.getGETParam("wishlistIduserId"); 
-		int id = Integer.parseInt(idStr);
+		id = Integer.parseInt(idStr);
 		WishlishManagement wishlishmanagement = wishlishmanagementRepository.getObject(id);
 		return wishlishmanagement.toHashMap();
 	}
@@ -110,7 +110,7 @@ public class WishlistManagementServiceImpl extends WishlistManagementServiceComp
 		return getAllWishlishManagement(requestBody);
 	}
 
-	public void addItem(Item ) {
+	public void addItem(Item item) {
 		// TODO: implement this method
 	}
 

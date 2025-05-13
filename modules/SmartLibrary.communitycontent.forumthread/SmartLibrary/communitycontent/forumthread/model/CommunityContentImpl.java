@@ -19,7 +19,7 @@ public class CommunityContentImpl extends CommunityContentDecorator {
 	protected String topic;
 	protected String initialPost;
 	protected EEList replies;
-	public CommunityContentImpl(
+	public CommunityContentImpl() {
         super();
         this.objectName = CommunityContentImpl.class.getName();
     }

@@ -29,7 +29,7 @@ public class EBookResourceImpl extends EBookResourceDecorator {
 		int price = Integer.parseInt(priceStr);
 		
 		EBookDisplayDisplayWithPrice ebookdisplaydisplaywithprice = record.createEBookDisplayDisplayWithPrice(vmjExchange);
-		EBookDisplayDisplayWithPrice ebookdisplaydisplaywithpricedeco = EBookDisplayDisplayWithPriceFactory.createEBookDisplayDisplayWithPrice("SmartLibrary.displaywithprice.core.EBookImpl", ebookdisplaydisplaywithprice, releaseDate, description, eBookTitle, eBookAuthor, bookID, ISBN, categories, ebookaccessimpl, createdAt
+		EBookDisplayDisplayWithPrice ebookdisplaydisplaywithpricedeco = EBookDisplayDisplayWithPriceFactory.createEBookDisplayDisplayWithPrice("SmartLibrary.displaywithprice.core.EBookImpl", ebookdisplaydisplaywithprice, releaseDate, description, eBookTitle, eBookAuthor, bookID, ISBN, categories, ebookaccessimpl, createdAt,
 		price
 		);
 			return ebookdisplaydisplaywithpricedeco;
@@ -40,10 +40,10 @@ public class EBookResourceImpl extends EBookResourceDecorator {
 		String priceStr = (String) vmjExchange.getRequestBodyForm("price");
 		int price = Integer.parseInt(priceStr);
 		EBookDisplayDisplayWithPrice ebookdisplaydisplaywithprice = ebookdisplaydisplaywithpriceRepository.getObject(id);
-		int recordEBookDisplayDisplayWithPriceId = (((EBookDisplayDisplayWithPriceDecorator) savedEBookDisplayDisplayWithPrice.getRecord()).getId();
+		int recordEBookDisplayDisplayWithPriceId = ((EBookDisplayDisplayWithPriceDecorator) savedEBookDisplayDisplayWithPrice.getRecord()).getId();
 		
-		EBookDisplayDisplayWithPrice ebookdisplaydisplaywithprice = record.createEBookDisplayDisplayWithPrice(vmjExchange);
-		EBookDisplayDisplayWithPrice ebookdisplaydisplaywithpricedeco = EBookDisplayDisplayWithPriceFactory.createEBookDisplayDisplayWithPrice("SmartLibrary.displaywithprice.core.EBookImpl", id, ebookdisplaydisplaywithprice, releaseDate, description, eBookTitle, eBookAuthor, bookID, ISBN, categories, ebookaccessimpl, createdAt
+		ebookdisplaydisplaywithprice = record.createEBookDisplayDisplayWithPrice(vmjExchange);
+		EBookDisplayDisplayWithPrice ebookdisplaydisplaywithpricedeco = EBookDisplayDisplayWithPriceFactory.createEBookDisplayDisplayWithPrice("SmartLibrary.displaywithprice.core.EBookImpl", id, ebookdisplaydisplaywithprice, releaseDate, description, eBookTitle, eBookAuthor, bookID, ISBN, categories, ebookaccessimpl, createdAt,
 		price
 		);
 			return ebookdisplaydisplaywithpricedeco;

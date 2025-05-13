@@ -78,7 +78,7 @@ public class ReviewItemServiceImpl extends ReviewItemServiceComponent{
 
 	public HashMap<String, Object> getReviewItemImplById(int id){
 		String idStr = vmjExchange.getGETParam("reviewItemIdreviewIditemId"); 
-		int id = Integer.parseInt(idStr);
+		id = Integer.parseInt(idStr);
 		ReviewItemImpl reviewitemimpl = reviewitemimplRepository.getObject(id);
 		return reviewitemimpl.toHashMap();
 	}

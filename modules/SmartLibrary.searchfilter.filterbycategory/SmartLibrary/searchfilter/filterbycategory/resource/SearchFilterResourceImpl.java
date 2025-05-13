@@ -28,7 +28,7 @@ public class SearchFilterResourceImpl extends SearchFilterResourceDecorator {
 		String category = (String) vmjExchange.getRequestBodyForm("category");
 		
 		SearchFilterFilterByCategory searchfilterfilterbycategory = record.createSearchFilterFilterByCategory(vmjExchange);
-		SearchFilterFilterByCategory searchfilterfilterbycategorydeco = SearchFilterFilterByCategoryFactory.createSearchFilterFilterByCategory("SmartLibrary.filterbycategory.core.SearchFilterImpl", searchfilterfilterbycategory, ebookimpl
+		SearchFilterFilterByCategory searchfilterfilterbycategorydeco = SearchFilterFilterByCategoryFactory.createSearchFilterFilterByCategory("SmartLibrary.filterbycategory.core.SearchFilterImpl", searchfilterfilterbycategory, ebookimpl,
 		category
 		);
 			return searchfilterfilterbycategorydeco;
@@ -38,10 +38,10 @@ public class SearchFilterResourceImpl extends SearchFilterResourceDecorator {
     public SearchFilter createSearchFilterFilterByCategory(VMJExchange vmjExchange, int id){
 		String category = (String) vmjExchange.getRequestBodyForm("category");
 		SearchFilterFilterByCategory searchfilterfilterbycategory = searchfilterfilterbycategoryRepository.getObject(id);
-		int recordSearchFilterFilterByCategoryId = (((SearchFilterFilterByCategoryDecorator) savedSearchFilterFilterByCategory.getRecord()).getId();
+		int recordSearchFilterFilterByCategoryId = ((SearchFilterFilterByCategoryDecorator) savedSearchFilterFilterByCategory.getRecord()).getId();
 		
-		SearchFilterFilterByCategory searchfilterfilterbycategory = record.createSearchFilterFilterByCategory(vmjExchange);
-		SearchFilterFilterByCategory searchfilterfilterbycategorydeco = SearchFilterFilterByCategoryFactory.createSearchFilterFilterByCategory("SmartLibrary.filterbycategory.core.SearchFilterImpl", id, searchfilterfilterbycategory, ebookimpl
+		searchfilterfilterbycategory = record.createSearchFilterFilterByCategory(vmjExchange);
+		SearchFilterFilterByCategory searchfilterfilterbycategorydeco = SearchFilterFilterByCategoryFactory.createSearchFilterFilterByCategory("SmartLibrary.filterbycategory.core.SearchFilterImpl", id, searchfilterfilterbycategory, ebookimpl,
 		category
 		);
 			return searchfilterfilterbycategorydeco;

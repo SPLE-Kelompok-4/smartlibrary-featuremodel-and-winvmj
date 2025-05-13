@@ -28,7 +28,7 @@ public class EBookResourceImpl extends EBookResourceDecorator {
 		String image = (String) vmjExchange.getRequestBodyForm("image");
 		
 		EBookDisplayDisplayWithImage ebookdisplaydisplaywithimage = record.createEBookDisplayDisplayWithImage(vmjExchange);
-		EBookDisplayDisplayWithImage ebookdisplaydisplaywithimagedeco = EBookDisplayDisplayWithImageFactory.createEBookDisplayDisplayWithImage("SmartLibrary.displaywithimage.core.EBookImpl", ebookdisplaydisplaywithimage, releaseDate, description, eBookTitle, eBookAuthor, bookID, ISBN, categories, ebookaccessimpl, createdAt
+		EBookDisplayDisplayWithImage ebookdisplaydisplaywithimagedeco = EBookDisplayDisplayWithImageFactory.createEBookDisplayDisplayWithImage("SmartLibrary.displaywithimage.core.EBookImpl", ebookdisplaydisplaywithimage, releaseDate, description, eBookTitle, eBookAuthor, bookID, ISBN, categories, ebookaccessimpl, createdAt,
 		image
 		);
 			return ebookdisplaydisplaywithimagedeco;
@@ -38,10 +38,10 @@ public class EBookResourceImpl extends EBookResourceDecorator {
     public EBookDisplay createEBookDisplayDisplayWithImage(VMJExchange vmjExchange, int id){
 		String image = (String) vmjExchange.getRequestBodyForm("image");
 		EBookDisplayDisplayWithImage ebookdisplaydisplaywithimage = ebookdisplaydisplaywithimageRepository.getObject(id);
-		int recordEBookDisplayDisplayWithImageId = (((EBookDisplayDisplayWithImageDecorator) savedEBookDisplayDisplayWithImage.getRecord()).getId();
+		int recordEBookDisplayDisplayWithImageId = ((EBookDisplayDisplayWithImageDecorator) savedEBookDisplayDisplayWithImage.getRecord()).getId();
 		
-		EBookDisplayDisplayWithImage ebookdisplaydisplaywithimage = record.createEBookDisplayDisplayWithImage(vmjExchange);
-		EBookDisplayDisplayWithImage ebookdisplaydisplaywithimagedeco = EBookDisplayDisplayWithImageFactory.createEBookDisplayDisplayWithImage("SmartLibrary.displaywithimage.core.EBookImpl", id, ebookdisplaydisplaywithimage, releaseDate, description, eBookTitle, eBookAuthor, bookID, ISBN, categories, ebookaccessimpl, createdAt
+		ebookdisplaydisplaywithimage = record.createEBookDisplayDisplayWithImage(vmjExchange);
+		EBookDisplayDisplayWithImage ebookdisplaydisplaywithimagedeco = EBookDisplayDisplayWithImageFactory.createEBookDisplayDisplayWithImage("SmartLibrary.displaywithimage.core.EBookImpl", id, ebookdisplaydisplaywithimage, releaseDate, description, eBookTitle, eBookAuthor, bookID, ISBN, categories, ebookaccessimpl, createdAt,
 		image
 		);
 			return ebookdisplaydisplaywithimagedeco;

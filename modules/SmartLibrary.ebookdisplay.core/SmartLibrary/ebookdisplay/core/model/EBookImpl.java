@@ -32,7 +32,7 @@ public class EBookImpl extends EBookComponent {
 	}
 
 	public EBookImpl(EDate releaseDate, String description, String eBookTitle, String eBookAuthor, UUID bookID, String ISBN, EEList categories, EBookAccessImpl ebookaccessimpl, EDate createdAt) {
-		this. =  .randomUUID();;
+		this.bookID =  UUID.randomUUID();;
 		this.releaseDate = releaseDate;
 		this.description = description;
 		this.eBookTitle = eBookTitle;

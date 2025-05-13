@@ -17,7 +17,7 @@ import SmartLibrary.ebookdisplay.core.EBookComponent;
 public class EBookImpl extends EBookDecorator {
 
 	protected String image;
-	public EBookImpl(
+	public EBookImpl(){
         super();
         this.objectName = EBookImpl.class.getName();
     }

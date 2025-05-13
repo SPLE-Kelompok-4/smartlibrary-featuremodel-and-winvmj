@@ -41,7 +41,7 @@ public class ReviewManagementImpl extends ReviewManagementComponent {
 	public ReviewManagementImpl() { }
 
 
-	public void addReview(Item ) {
+	public void addReview(Item item) {
 		// TODO: implement this method
 	}
 

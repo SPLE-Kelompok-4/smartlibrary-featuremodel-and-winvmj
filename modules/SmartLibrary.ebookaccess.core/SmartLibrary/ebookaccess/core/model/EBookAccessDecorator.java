@@ -14,28 +14,29 @@ public abstract class EBookAccessDecorator extends EBookAccessComponent{
     @OneToOne(cascade=CascadeType.ALL)
 	protected EBookAccessComponent record;
 
-	public EBookAccessDecorator () {
-		super();
-		this.record = record;
-		this. =  .randomUUID();
-		
-	public EBookAccessDecorator (EBookAccessComponent record) {
-		this. =  .randomUUID();
-		this.record = record;
-	}
+	public EBookAccessDecorator() {
+        super();
+        this.id = UUID.randomUUID();
+    }
+    
+    public EBookAccessDecorator(EBookAccessComponent record) {
+        super();
+        this.id = UUID.randomUUID();
+        this.record = record;
+    }
 
-	public EBookAccessDecorator (, EBookAccessComponent record) {
-		this. =  ;
-		this.record = record;
-	}
-	
-	public EBookAccessDecorator (EBookAccessComponent record, String objectName) {
-		this. =  .randomUUID();
-		this.record = record;	
-		this.objectName=objectName;
-	}
-
-	public EBookAccessDecorator() { }
+    public EBookAccessDecorator(UUID id, EBookAccessComponent record) {
+        super();
+        this.id = id;
+        this.record = record;
+    }
+    
+    public EBookAccessDecorator(EBookAccessComponent record, String objectName) {
+        super();
+        this.id = UUID.randomUUID();
+        this.record = record;
+        this.objectName = objectName;
+    }
 
 
 	public void createAccess() {

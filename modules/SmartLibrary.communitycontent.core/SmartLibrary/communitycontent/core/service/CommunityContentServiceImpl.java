@@ -81,7 +81,7 @@ public class CommunityContentServiceImpl extends CommunityContentServiceComponen
 
 	public HashMap<String, Object> getCommunityContentById(int id){
 		String idStr = vmjExchange.getGETParam(""); 
-		int id = Integer.parseInt(idStr);
+		id = Integer.parseInt(idStr);
 		CommunityContent communitycontent = communitycontentRepository.getObject(id);
 		return communitycontent.toHashMap();
 	}

@@ -17,7 +17,7 @@ import SmartLibrary.ebookaccess.core.EBookAccessComponent;
 public class EBookAccessImpl extends EBookAccessDecorator {
 
 	public EBook book;
-	public EBookAccessImpl(
+	public EBookAccessImpl() {
         super();
         this.objectName = EBookAccessImpl.class.getName();
     }
@@ -35,8 +35,8 @@ public class EBookAccessImpl extends EBookAccessDecorator {
 	}
 
 
-	public void createAccess(EBook ) {
-		// TODO: implement this method
-	}
+	 public void createAccess(EBook book) {
+        this.book = book;
+    }
 
 }

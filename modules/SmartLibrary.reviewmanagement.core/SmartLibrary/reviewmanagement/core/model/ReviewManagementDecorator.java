@@ -14,31 +14,31 @@ public abstract class ReviewManagementDecorator extends ReviewManagementComponen
     @OneToOne(cascade=CascadeType.ALL)
 	protected ReviewManagementComponent record;
 
-	public ReviewManagementDecorator () {
-		super();
-		this.record = record;
-		this.reviewIduserId =  reviewIduserId.randomUUID();
-		
-	public ReviewManagementDecorator (ReviewManagementComponent record) {
-		this.reviewIduserId =  reviewIduserId.randomUUID();
-		this.record = record;
-	}
+	public ReviewManagementDecorator() {
+        super();
+    }
+    
+    public ReviewManagementDecorator(ReviewManagementComponent record) {
+        super();
+        this.record = record;
+        this.reviewId = UUID.randomUUID();
+    }
 
-	public ReviewManagementDecorator (UUID reviewIdUUID userId, ReviewManagementComponent record) {
-		this.reviewIduserId =  reviewIduserId;
-		this.record = record;
-	}
-	
-	public ReviewManagementDecorator (ReviewManagementComponent record, String objectName) {
-		this.reviewIduserId =  reviewIduserId.randomUUID();
-		this.record = record;	
-		this.objectName=objectName;
-	}
+    public ReviewManagementDecorator(UUID reviewId, UUID userId, ReviewManagementComponent record) {
+        super();
+        this.reviewId = reviewId;
+        this.userId = userId;
+        this.record = record;
+    }
+    
+    public ReviewManagementDecorator(ReviewManagementComponent record, String objectName) {
+        super();
+        this.record = record;
+        this.reviewId = UUID.randomUUID();
+        this.objectName = objectName;
+    }
 
-	public ReviewManagementDecorator() { }
-
-
-	public void addReview(Item ) {
+	public void addReview(Item item) {
 		return record.addReview();
 	}
 

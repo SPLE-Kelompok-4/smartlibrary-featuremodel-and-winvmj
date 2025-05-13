@@ -16,30 +16,33 @@ import SmartLibrary.ebookaccess.core.EBookAccessComponent;
 @Table(name="ebookaccess_payperbook")
 public class EBookAccessImpl extends EBookAccessDecorator {
 
-	public EBook book;
-	public EDate accessStamp;
-	public EBookAccessImpl(
+    @Column
+    public EBook book;
+    
+    @Column
+    public EDate accessStamp;
+    
+    public EBookAccessImpl() {
         super();
         this.objectName = EBookAccessImpl.class.getName();
     }
     
     public EBookAccessImpl(EBook book, EDate accessStamp) {
-    	super();
-		this.book = book;
-		this.accessStamp = accessStamp;
-		this.objectName = EBookAccessImpl.class.getName();
+        super();
+        this.book = book;
+        this.accessStamp = accessStamp;
+        this.objectName = EBookAccessImpl.class.getName();
     }
-	
-	public EBookAccessImpl(EBookAccessComponent record, EBook book, EDate accessStamp) {
-		super(record);
-		this.book = book;
-		this.accessStamp = accessStamp;
-		this.objectName = EBookAccessImpl.class.getName();
-	}
+    
+    public EBookAccessImpl(EBookAccessComponent record, EBook book, EDate accessStamp) {
+        super(record);
+        this.book = book;
+        this.accessStamp = accessStamp;
+        this.objectName = EBookAccessImpl.class.getName();
+    }
 
-
-	public void createAccess(EBook ) {
-		// TODO: implement this method
-	}
-
+    @Override
+    public void createAccess(EBook book) {
+        // TODO: implement this method
+    }
 }

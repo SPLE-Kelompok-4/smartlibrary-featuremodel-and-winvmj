@@ -17,7 +17,7 @@ public abstract class ReviewManagementResourceComponent implements ReviewManagem
     public abstract List<HashMap<String,Object>> getAllReviewManagement(VMJExchange vmjExchange);
     public abstract List<HashMap<String,Object>> deleteReviewManagement(VMJExchange vmjExchange);
 
-	public abstract void addReview(Item );
+	public abstract void addReview(Item item);
 
 	public abstract void removeReview(UUID itemId);
 

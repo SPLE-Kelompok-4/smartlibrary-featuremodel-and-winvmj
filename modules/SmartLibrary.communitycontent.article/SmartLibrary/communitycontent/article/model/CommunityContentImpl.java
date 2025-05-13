@@ -18,7 +18,7 @@ public class CommunityContentImpl extends CommunityContentDecorator {
 
 	protected String articleTitle;
 	protected String body;
-	public CommunityContentImpl(
+	public CommunityContentImpl{
         super();
         this.objectName = CommunityContentImpl.class.getName();
     }

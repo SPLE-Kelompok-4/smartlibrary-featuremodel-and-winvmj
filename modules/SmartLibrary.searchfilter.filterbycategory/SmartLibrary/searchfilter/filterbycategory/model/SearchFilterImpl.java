@@ -17,7 +17,7 @@ import SmartLibrary.searchfilter.core.SearchFilterComponent;
 public class SearchFilterImpl extends SearchFilterDecorator {
 
 	protected String category;
-	public SearchFilterImpl(
+	public SearchFilterImpl(){
         super();
         this.objectName = SearchFilterImpl.class.getName();
     }

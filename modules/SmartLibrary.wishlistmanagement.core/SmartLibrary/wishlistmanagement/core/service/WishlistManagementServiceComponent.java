@@ -22,7 +22,7 @@ public abstract class WishlistManagementServiceComponent implements WishlishMana
     public abstract List<HashMap<String,Object>> deleteWishlishManagement(Map<String, Object> requestBody);
 	public abstract HashMap<String, Object> getWishlishManagementById(int id);
 
-	public abstract void addItem(Item );
+	public abstract void addItem(Item item);
 
 	public abstract void removeItem(UUID itemId);
 

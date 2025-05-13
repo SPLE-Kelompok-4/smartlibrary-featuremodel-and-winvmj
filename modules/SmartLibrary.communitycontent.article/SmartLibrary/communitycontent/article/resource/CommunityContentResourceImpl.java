@@ -29,7 +29,7 @@ public class CommunityContentResourceImpl extends CommunityContentResourceDecora
 		String body = (String) vmjExchange.getRequestBodyForm("body");
 		
 		CommunityContentArticle communitycontentarticle = record.createCommunityContentArticle(vmjExchange);
-		CommunityContentArticle communitycontentarticledeco = CommunityContentArticleFactory.createCommunityContentArticle("SmartLibrary.article.core.CommunityContentImpl", communitycontentarticle, contentAuthor, contentID, createdAt, updatedAt
+		CommunityContentArticle communitycontentarticledeco = CommunityContentArticleFactory.createCommunityContentArticle("SmartLibrary.article.core.CommunityContentImpl", communitycontentarticle, contentAuthor, contentID, createdAt, updatedAt,
 		articleTitle, body
 		);
 			return communitycontentarticledeco;
@@ -40,10 +40,10 @@ public class CommunityContentResourceImpl extends CommunityContentResourceDecora
 		String articleTitle = (String) vmjExchange.getRequestBodyForm("articleTitle");
 		String body = (String) vmjExchange.getRequestBodyForm("body");
 		CommunityContentArticle communitycontentarticle = communitycontentarticleRepository.getObject(id);
-		int recordCommunityContentArticleId = (((CommunityContentArticleDecorator) savedCommunityContentArticle.getRecord()).getId();
+		int recordCommunityContentArticleId = ((CommunityContentArticleDecorator) savedCommunityContentArticle.getRecord()).getId();
 		
-		CommunityContentArticle communitycontentarticle = record.createCommunityContentArticle(vmjExchange);
-		CommunityContentArticle communitycontentarticledeco = CommunityContentArticleFactory.createCommunityContentArticle("SmartLibrary.article.core.CommunityContentImpl", id, communitycontentarticle, contentAuthor, contentID, createdAt, updatedAt
+		communitycontentarticle = record.createCommunityContentArticle(vmjExchange);
+		CommunityContentArticle communitycontentarticledeco = CommunityContentArticleFactory.createCommunityContentArticle("SmartLibrary.article.core.CommunityContentImpl", id, communitycontentarticle, contentAuthor, contentID, createdAt, updatedAt,
 		articleTitle, body
 		);
 			return communitycontentarticledeco;

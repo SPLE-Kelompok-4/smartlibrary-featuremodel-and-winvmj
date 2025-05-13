@@ -15,7 +15,6 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class ReviewItemComponent implements ReviewItemImpl{
 	@Id
-	public UUID reviewItemId; public UUID reviewId; public UUID itemId; 
 	public UUID reviewItemId;
 	public UUID reviewId;
 	public UUID itemId;

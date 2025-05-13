@@ -12,6 +12,5 @@ public interface CommunityContent {
 	public void setCreatedAt(EDate createdAt);
 	public EDate getUpdatedAt();
 	public void setUpdatedAt(EDate updatedAt);
-	org.eclipse.uml2.uml.internal.impl.ClassImpl@708aed9f (name: CommunityContentImpl, visibility: <unset>) (isLeaf: false, isAbstract: false, isFinalSpecialization: false) (isActive: false)
 	HashMap<String, Object> toHashMap();
 }

@@ -14,29 +14,30 @@ public abstract class WishlistItemDecorator extends WishlistItemComponent{
     @OneToOne(cascade=CascadeType.ALL)
 	protected WishlistItemComponent record;
 
-	public WishlistItemDecorator () {
-		super();
-		this.record = record;
-		this.wishlistItemIdwishlistIditemId =  wishlistItemIdwishlistIditemId.randomUUID();
-		
-	public WishlistItemDecorator (WishlistItemComponent record) {
-		this.wishlistItemIdwishlistIditemId =  wishlistItemIdwishlistIditemId.randomUUID();
-		this.record = record;
-	}
+	public WishlistItemDecorator() {
+        super();
+    }
+    
+    public WishlistItemDecorator(WishlistItemComponent record) {
+        super();
+        this.record = record;
+        this.wishlistItemId = UUID.randomUUID();
+    }
 
-	public WishlistItemDecorator (UUID wishlistItemIdUUID wishlistIdUUID itemId, WishlistItemComponent record) {
-		this.wishlistItemIdwishlistIditemId =  wishlistItemIdwishlistIditemId;
-		this.record = record;
-	}
-	
-	public WishlistItemDecorator (WishlistItemComponent record, String objectName) {
-		this.wishlistItemIdwishlistIditemId =  wishlistItemIdwishlistIditemId.randomUUID();
-		this.record = record;	
-		this.objectName=objectName;
-	}
-
-	public WishlistItemDecorator() { }
-
+    public WishlistItemDecorator(UUID wishlistItemId, UUID wishlistId, UUID itemId, WishlistItemComponent record) {
+        super();
+        this.wishlistItemId = wishlistItemId;
+        this.wishlistId = wishlistId;
+        this.itemId = itemId;
+        this.record = record;
+    }
+    
+    public WishlistItemDecorator(WishlistItemComponent record, String objectName) {
+        super();
+        this.record = record;
+        this.wishlistItemId = UUID.randomUUID();
+        this.objectName = objectName;
+    }
 
 
 	public HashMap<String, Object> toHashMap() {

@@ -29,7 +29,7 @@ public class CommunityContentResourceImpl extends CommunityContentResourceDecora
 		String initialPost = (String) vmjExchange.getRequestBodyForm("initialPost");
 		
 		CommunityContentForumThread communitycontentforumthread = record.createCommunityContentForumThread(vmjExchange);
-		CommunityContentForumThread communitycontentforumthreaddeco = CommunityContentForumThreadFactory.createCommunityContentForumThread("SmartLibrary.forumthread.core.CommunityContentImpl", communitycontentforumthread, contentAuthor, contentID, createdAt, updatedAt
+		CommunityContentForumThread communitycontentforumthreaddeco = CommunityContentForumThreadFactory.createCommunityContentForumThread("SmartLibrary.forumthread.core.CommunityContentImpl", communitycontentforumthread, contentAuthor, contentID, createdAt, updatedAt,
 		topic, initialPost, replies
 		);
 			return communitycontentforumthreaddeco;
@@ -40,10 +40,10 @@ public class CommunityContentResourceImpl extends CommunityContentResourceDecora
 		String topic = (String) vmjExchange.getRequestBodyForm("topic");
 		String initialPost = (String) vmjExchange.getRequestBodyForm("initialPost");
 		CommunityContentForumThread communitycontentforumthread = communitycontentforumthreadRepository.getObject(id);
-		int recordCommunityContentForumThreadId = (((CommunityContentForumThreadDecorator) savedCommunityContentForumThread.getRecord()).getId();
+		int recordCommunityContentForumThreadId = ((CommunityContentForumThreadDecorator) savedCommunityContentForumThread.getRecord()).getId();
 		
-		CommunityContentForumThread communitycontentforumthread = record.createCommunityContentForumThread(vmjExchange);
-		CommunityContentForumThread communitycontentforumthreaddeco = CommunityContentForumThreadFactory.createCommunityContentForumThread("SmartLibrary.forumthread.core.CommunityContentImpl", id, communitycontentforumthread, contentAuthor, contentID, createdAt, updatedAt
+		communitycontentforumthread = record.createCommunityContentForumThread(vmjExchange);
+		CommunityContentForumThread communitycontentforumthreaddeco = CommunityContentForumThreadFactory.createCommunityContentForumThread("SmartLibrary.forumthread.core.CommunityContentImpl", id, communitycontentforumthread, contentAuthor, contentID, createdAt, updatedAt,
 		topic, initialPost, replies
 		);
 			return communitycontentforumthreaddeco;

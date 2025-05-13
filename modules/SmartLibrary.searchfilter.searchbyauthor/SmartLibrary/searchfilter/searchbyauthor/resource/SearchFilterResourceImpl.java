@@ -28,7 +28,7 @@ public class SearchFilterResourceImpl extends SearchFilterResourceDecorator {
 		String author = (String) vmjExchange.getRequestBodyForm("author");
 		
 		SearchFilterSearchByAuthor searchfiltersearchbyauthor = record.createSearchFilterSearchByAuthor(vmjExchange);
-		SearchFilterSearchByAuthor searchfiltersearchbyauthordeco = SearchFilterSearchByAuthorFactory.createSearchFilterSearchByAuthor("SmartLibrary.searchbyauthor.core.SearchFilterImpl", searchfiltersearchbyauthor, ebookimpl
+		SearchFilterSearchByAuthor searchfiltersearchbyauthordeco = SearchFilterSearchByAuthorFactory.createSearchFilterSearchByAuthor("SmartLibrary.searchbyauthor.core.SearchFilterImpl", searchfiltersearchbyauthor, ebookimpl,
 		author
 		);
 			return searchfiltersearchbyauthordeco;
@@ -38,10 +38,10 @@ public class SearchFilterResourceImpl extends SearchFilterResourceDecorator {
     public SearchFilter createSearchFilterSearchByAuthor(VMJExchange vmjExchange, int id){
 		String author = (String) vmjExchange.getRequestBodyForm("author");
 		SearchFilterSearchByAuthor searchfiltersearchbyauthor = searchfiltersearchbyauthorRepository.getObject(id);
-		int recordSearchFilterSearchByAuthorId = (((SearchFilterSearchByAuthorDecorator) savedSearchFilterSearchByAuthor.getRecord()).getId();
+		int recordSearchFilterSearchByAuthorId = ((SearchFilterSearchByAuthorDecorator) savedSearchFilterSearchByAuthor.getRecord()).getId();
 		
-		SearchFilterSearchByAuthor searchfiltersearchbyauthor = record.createSearchFilterSearchByAuthor(vmjExchange);
-		SearchFilterSearchByAuthor searchfiltersearchbyauthordeco = SearchFilterSearchByAuthorFactory.createSearchFilterSearchByAuthor("SmartLibrary.searchbyauthor.core.SearchFilterImpl", id, searchfiltersearchbyauthor, ebookimpl
+		searchfiltersearchbyauthor = record.createSearchFilterSearchByAuthor(vmjExchange);
+		SearchFilterSearchByAuthor searchfiltersearchbyauthordeco = SearchFilterSearchByAuthorFactory.createSearchFilterSearchByAuthor("SmartLibrary.searchbyauthor.core.SearchFilterImpl", id, searchfiltersearchbyauthor, ebookimpl,
 		author
 		);
 			return searchfiltersearchbyauthordeco;

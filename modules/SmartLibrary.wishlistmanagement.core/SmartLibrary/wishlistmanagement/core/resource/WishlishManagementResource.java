@@ -9,5 +9,5 @@ public interface WishlishManagementResource {
     HashMap<String, Object> getWishlishManagement(VMJExchange vmjExchange);
     List<HashMap<String,Object>> getAllWishlishManagement(VMJExchange vmjExchange);
     List<HashMap<String,Object>> deleteWishlishManagement(VMJExchange vmjExchange);
-	HashMap<String, Object> WishlishManagement(VMJExchange vmjExhange);
+	HashMap<String, Object> createWishlishManagement(VMJExchange vmjExhange);
 }

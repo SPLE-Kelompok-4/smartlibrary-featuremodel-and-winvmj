@@ -75,7 +75,7 @@ public class SearchFilterServiceImpl extends SearchFilterServiceComponent{
 
 	public HashMap<String, Object> getSearchFilterById(int id){
 		String idStr = vmjExchange.getGETParam(""); 
-		int id = Integer.parseInt(idStr);
+		id = Integer.parseInt(idStr);
 		SearchFilter searchfilter = searchfilterRepository.getObject(id);
 		return searchfilter.toHashMap();
 	}

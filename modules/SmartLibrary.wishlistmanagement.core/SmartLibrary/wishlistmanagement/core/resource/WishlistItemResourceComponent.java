@@ -9,9 +9,7 @@ public abstract class WishlistItemResourceComponent implements WishlistItemImplR
 	
 	public WishlistItemResourceComponent() { }
  
-    public abstract List<HashMap<String,Object>> saveWishlistItemImpl(VMJExchange vmjExchange);
-    public abstract WishlistItemImpl createWishlistItemImpl(VMJExchange vmjExchange);
-	public abstract WishlistItemImpl createWishlistItemImpl(VMJExchange vmjExchange, int id);    
+    public abstract WishlistItemImpl createWishlistItemImpl(VMJExchange vmjExchange);    
 	public abstract HashMap<String, Object> updateWishlistItemImpl(VMJExchange vmjExchange);
     public abstract HashMap<String, Object> getWishlistItemImpl(VMJExchange vmjExchange);
     public abstract List<HashMap<String,Object>> getAllWishlistItemImpl(VMJExchange vmjExchange);

@@ -27,7 +27,7 @@ public class EbookAccessResourceImpl extends EbookAccessResourceDecorator {
     public EBookAccess createEBookAccessSubscription(VMJExchange vmjExchange){
 		
 		EBookAccessSubscription ebookaccesssubscription = record.createEBookAccessSubscription(vmjExchange);
-		EBookAccessSubscription ebookaccesssubscriptiondeco = EBookAccessSubscriptionFactory.createEBookAccessSubscription("SmartLibrary.subscription.core.EbookAccessImpl", ebookaccesssubscription, subscriptionPlanP, freeAccess, payPerBook
+		EBookAccessSubscription ebookaccesssubscriptiondeco = EBookAccessSubscriptionFactory.createEBookAccessSubscription("SmartLibrary.subscription.core.EbookAccessImpl", ebookaccesssubscription, subscriptionPlanP, freeAccess, payPerBook,
 		startDate, endDate
 		);
 			return ebookaccesssubscriptiondeco;
@@ -36,10 +36,10 @@ public class EbookAccessResourceImpl extends EbookAccessResourceDecorator {
 
     public EBookAccess createEBookAccessSubscription(VMJExchange vmjExchange, int id){
 		EBookAccessSubscription ebookaccesssubscription = ebookaccesssubscriptionRepository.getObject(id);
-		int recordEBookAccessSubscriptionId = (((EBookAccessSubscriptionDecorator) savedEBookAccessSubscription.getRecord()).getId();
+		int recordEBookAccessSubscriptionId = ((EBookAccessSubscriptionDecorator) savedEBookAccessSubscription.getRecord()).getId();
 		
-		EBookAccessSubscription ebookaccesssubscription = record.createEBookAccessSubscription(vmjExchange);
-		EBookAccessSubscription ebookaccesssubscriptiondeco = EBookAccessSubscriptionFactory.createEBookAccessSubscription("SmartLibrary.subscription.core.EbookAccessImpl", id, ebookaccesssubscription, subscriptionPlanP, freeAccess, payPerBook
+		ebookaccesssubscription = record.createEBookAccessSubscription(vmjExchange);
+		EBookAccessSubscription ebookaccesssubscriptiondeco = EBookAccessSubscriptionFactory.createEBookAccessSubscription("SmartLibrary.subscription.core.EbookAccessImpl", id, ebookaccesssubscription, subscriptionPlanP, freeAccess, payPerBook,
 		startDate, endDate
 		);
 			return ebookaccesssubscriptiondeco;

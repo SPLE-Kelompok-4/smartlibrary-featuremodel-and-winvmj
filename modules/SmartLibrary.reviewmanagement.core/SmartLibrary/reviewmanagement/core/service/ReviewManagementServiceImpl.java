@@ -83,7 +83,7 @@ public class ReviewManagementServiceImpl extends ReviewManagementServiceComponen
 
 	public HashMap<String, Object> getReviewManagementById(int id){
 		String idStr = vmjExchange.getGETParam("reviewIduserId"); 
-		int id = Integer.parseInt(idStr);
+		id = Integer.parseInt(idStr);
 		ReviewManagement reviewmanagement = reviewmanagementRepository.getObject(id);
 		return reviewmanagement.toHashMap();
 	}
@@ -110,7 +110,7 @@ public class ReviewManagementServiceImpl extends ReviewManagementServiceComponen
 		return getAllReviewManagement(requestBody);
 	}
 
-	public void addReview(Item ) {
+	public void addReview(Item item) {
 		// TODO: implement this method
 	}
 
