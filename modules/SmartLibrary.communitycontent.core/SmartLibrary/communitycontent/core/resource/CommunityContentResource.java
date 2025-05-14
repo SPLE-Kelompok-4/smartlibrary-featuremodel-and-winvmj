@@ -9,5 +9,5 @@ public interface CommunityContentResource {
     HashMap<String, Object> getCommunityContent(VMJExchange vmjExchange);
     List<HashMap<String,Object>> getAllCommunityContent(VMJExchange vmjExchange);
     List<HashMap<String,Object>> deleteCommunityContent(VMJExchange vmjExchange);
-	HashMap<String, Object> CommunityContent(VMJExchange vmjExhange);
+	HashMap<String, Object> createCommunityContent(VMJExchange vmjExhange);
 }

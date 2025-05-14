@@ -9,8 +9,8 @@ public interface CommunityContentService {
 	HashMap<String, Object> getCommunityContent(Map<String, Object> requestBody);
     List<HashMap<String,Object>> saveCommunityContent(Map<String, Object> requestBody);
     HashMap<String, Object> updateCommunityContent(Map<String, Object> requestBody);
-    HashMap<String, Object> getCommunityContentById(int id);
+    HashMap<String, Object> getCommunityContentById(UUID id);
     List<HashMap<String,Object>> getAllCommunityContent(Map<String, Object> requestBody);
     List<HashMap<String,Object>> deleteCommunityContent(Map<String, Object> requestBody);
-	List<HashMap<String, Object>> transformListToHashMap(List<Disbursement> List);
+	List<HashMap<String, Object>> transformListToHashMap(List<CommunityContent> list);
 }

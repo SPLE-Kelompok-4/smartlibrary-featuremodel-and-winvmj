@@ -20,7 +20,7 @@ public class CommunityContentResourceImpl extends CommunityContentResourceDecora
 			return null;
 		}
 		CommunityContentArticle communitycontentarticle = createCommunityContentArticle(vmjExchange);
-		communitycontentarticleRepository.saveObject(communitycontentarticle);
+		Repository.saveObject(communitycontentarticle);
 		return getAllCommunityContentArticle(vmjExchange);
 	}
 
@@ -39,7 +39,7 @@ public class CommunityContentResourceImpl extends CommunityContentResourceDecora
     public CommunityContent createCommunityContentArticle(VMJExchange vmjExchange, int id){
 		String articleTitle = (String) vmjExchange.getRequestBodyForm("articleTitle");
 		String body = (String) vmjExchange.getRequestBodyForm("body");
-		CommunityContentArticle communitycontentarticle = communitycontentarticleRepository.getObject(id);
+		CommunityContentArticle communitycontentarticle = Repository.getObject(id);
 		int recordCommunityContentArticleId = ((CommunityContentArticleDecorator) savedCommunityContentArticle.getRecord()).getId();
 		
 		communitycontentarticle = record.createCommunityContentArticle(vmjExchange);
@@ -58,11 +58,11 @@ public class CommunityContentResourceImpl extends CommunityContentResourceDecora
 		String idStr = (String) vmjExchange.getRequestBodyForm("");
 		int id = Integer.parseInt(idStr);
 		
-		CommunityContentArticle communitycontentarticle = communitycontentarticleRepository.getObject(id);
+		CommunityContentArticle communitycontentarticle = Repository.getObject(id);
 		communitycontentarticle = createCommunityContentArticle(vmjExchange, id);
 		
-		communitycontentarticleRepository.updateObject(communitycontentarticle);
-		communitycontentarticle = communitycontentarticleRepository.getObject(id);
+		Repository.updateObject(communitycontentarticle);
+		communitycontentarticle = Repository.getObject(id);
 		//to do: fix association attributes
 		
 		return communitycontentarticle.toHashMap();
@@ -78,7 +78,7 @@ public class CommunityContentResourceImpl extends CommunityContentResourceDecora
 	// @Restriced(permission = "")
     @Route(url="call/article/list")
     public List<HashMap<String,Object>> getAllCommunityContentArticle(VMJExchange vmjExchange){
-		List<CommunityContentArticle> communitycontentarticleList = communitycontentarticleRepository.getAllObject("communitycontentarticle_impl");
+		List<CommunityContentArticle> communitycontentarticleList = Repository.getAllObject("communitycontentarticle_impl");
 		return transformCommunityContentArticleListToHashMap(communitycontentarticleList);
 	}
 
@@ -100,7 +100,7 @@ public class CommunityContentResourceImpl extends CommunityContentResourceDecora
 		
 		String idStr = (String) vmjExchange.getRequestBodyForm("");
 		int id = Integer.parseInt(idStr);
-		communitycontentarticleRepository.deleteObject(id);
+		Repository.deleteObject(id);
 		return getAllCommunityContentArticle(vmjExchange);
 	}
 

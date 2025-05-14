@@ -26,9 +26,8 @@ public class CommunityContentImpl extends CommunityContentComponent {
     /**
      * Constructor with explicit id
      */
-    public CommunityContentImpl(UUID id, String contentAuthor, UUID contentID, EDate createdAt, EDate updatedAt) {
+    public CommunityContentImpl( String contentAuthor, UUID contentID, EDate createdAt, EDate updatedAt) {
         super();
-        this.id = id;
         this.contentAuthor = contentAuthor;
         this.contentID = contentID;
         this.createdAt = createdAt;
@@ -38,13 +37,12 @@ public class CommunityContentImpl extends CommunityContentComponent {
     /**
      * Constructor that generates a random UUID
      */
-    public CommunityContentImpl(String contentAuthor, UUID contentID, EDate createdAt, EDate updatedAt) {
+    public CommunityContentImpl(String contentAuthor) {
         super();
-        this.id = UUID.randomUUID();
         this.contentAuthor = contentAuthor;
-        this.contentID = contentID;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.contentID = UUID.randomUUID();
+        this.createdAt = new EDate();
+        this.updatedAt = new EDate();
     }
 
     /**
@@ -92,26 +90,6 @@ public class CommunityContentImpl extends CommunityContentComponent {
     @Override
     public void setUpdatedAt(EDate updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    @Override
-    public void createContent() {
-        // TODO: implement this method
-    }
-
-    @Override
-    public void readContent() {
-        // TODO: implement this method
-    }
-
-    @Override
-    public void updateContent() {
-        // TODO: implement this method
-    }
-
-    @Override
-    public void deleteContent() {
-        // TODO: implement this method
     }
     
     @Override

@@ -21,19 +21,19 @@ public abstract class CommunityContentDecorator extends CommunityContentComponen
         
     public CommunityContentDecorator(CommunityContentComponent record) {
         super();
-        this.id = UUID.randomUUID();
+        this.contentID = UUID.randomUUID();
         this.record = record;
     }
 
     public CommunityContentDecorator(UUID id, CommunityContentComponent record) {
         super();
-        this.id = id;
+        this.contentID = id;
         this.record = record;
     }
     
     public CommunityContentDecorator(CommunityContentComponent record, String objectName) {
         super();
-        this.id = UUID.randomUUID();
+        this.contentID = UUID.randomUUID();
         this.record = record;    
         this.objectName = objectName;
     }
@@ -78,25 +78,6 @@ public abstract class CommunityContentDecorator extends CommunityContentComponen
         record.setUpdatedAt(updatedAt);
     }
 
-    @Override
-    public void createContent() {
-        record.createContent();
-    }
-
-    @Override
-    public void readContent() {
-        record.readContent();
-    }
-
-    @Override
-    public void updateContent() {
-        record.updateContent();
-    }
-
-    @Override
-    public void deleteContent() {
-        record.deleteContent();
-    }
 
     @Override
     public HashMap<String, Object> toHashMap() {
