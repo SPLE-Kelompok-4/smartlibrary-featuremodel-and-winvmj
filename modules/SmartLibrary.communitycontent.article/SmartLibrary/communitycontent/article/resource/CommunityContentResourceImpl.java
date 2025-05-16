@@ -6,9 +6,12 @@ import vmj.routing.route.VMJExchange;
 
 import SmartLibrary.communitycontent.core.CommunityContentResourceDecorator;
 import SmartLibrary.communitycontent.core.CommunityContentImpl;
+import SmartLibrary.communitycontent.core.CommunityContent;
 import SmartLibrary.communitycontent.core.CommunityContentResourceComponent;
 
 public class CommunityContentResourceImpl extends CommunityContentResourceDecorator {
+	private CommunityContentServiceImpl communityContentServiceImpl;
+
     public CommunityContentResourceImpl (CommunityContentResourceComponent record) {
         super(record);
     }
@@ -19,35 +22,39 @@ public class CommunityContentResourceImpl extends CommunityContentResourceDecora
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		CommunityContentArticle communitycontentarticle = createCommunityContentArticle(vmjExchange);
-		Repository.saveObject(communitycontentarticle);
-		return getAllCommunityContentArticle(vmjExchange);
+        Map<String, Object> requestBody = vmjExchange.getPayload();
+
+		CommunityContent result = communityContentServiceImpl.createCommunityContent(requestBody);
+		List<HashMap<String, Object>> response = new ArrayList<>();
+        response.add(result.toHashMap());
+        return response;
 	}
 
-    public CommunityContent createCommunityContentArticle(VMJExchange vmjExchange){
-		String articleTitle = (String) vmjExchange.getRequestBodyForm("articleTitle");
-		String body = (String) vmjExchange.getRequestBodyForm("body");
+
+	@Route(url="call/article/create")
+    public HashMap<String,Object> createCommunityContentArticle(VMJExchange vmjExchange) {
+		if (vmjExchange.getHttpMethod().equals("POST")) {
+		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
+			CommunityContent result = communityContentServiceImpl.createCommunityContent(requestBody, new HashMap<>());
+			return result.toHashMap();
+		} else {
+			return null;
+		}
+	}
+
+
+    // public CommunityContent createCommunityContentArticle(VMJExchange vmjExchange, int id){
+	// 	String articleTitle = (String) vmjExchange.getRequestBodyForm("articleTitle");
+	// 	String body = (String) vmjExchange.getRequestBodyForm("body");
+	// 	CommunityContentArticle communitycontentarticle = Repository.getObject(id);
+	// 	int recordCommunityContentArticleId = ((CommunityContentArticleDecorator) savedCommunityContentArticle.getRecord()).getId();
 		
-		CommunityContentArticle communitycontentarticle = record.createCommunityContentArticle(vmjExchange);
-		CommunityContentArticle communitycontentarticledeco = CommunityContentArticleFactory.createCommunityContentArticle("SmartLibrary.article.core.CommunityContentImpl", communitycontentarticle, contentAuthor, contentID, createdAt, updatedAt,
-		articleTitle, body
-		);
-			return communitycontentarticledeco;
-	}
-
-
-    public CommunityContent createCommunityContentArticle(VMJExchange vmjExchange, int id){
-		String articleTitle = (String) vmjExchange.getRequestBodyForm("articleTitle");
-		String body = (String) vmjExchange.getRequestBodyForm("body");
-		CommunityContentArticle communitycontentarticle = Repository.getObject(id);
-		int recordCommunityContentArticleId = ((CommunityContentArticleDecorator) savedCommunityContentArticle.getRecord()).getId();
-		
-		communitycontentarticle = record.createCommunityContentArticle(vmjExchange);
-		CommunityContentArticle communitycontentarticledeco = CommunityContentArticleFactory.createCommunityContentArticle("SmartLibrary.article.core.CommunityContentImpl", id, communitycontentarticle, contentAuthor, contentID, createdAt, updatedAt,
-		articleTitle, body
-		);
-			return communitycontentarticledeco;
-	}
+	// 	communitycontentarticle = record.createCommunityContentArticle(vmjExchange);
+	// 	CommunityContentArticle communitycontentarticledeco = CommunityContentArticleFactory.createCommunityContentArticle("SmartLibrary.article.core.CommunityContentImpl", id, communitycontentarticle, contentAuthor, contentID, createdAt, updatedAt,
+	// 	articleTitle, body
+	// 	);
+	// 		return communitycontentarticledeco;
+	// }
 
 	// @Restriced(permission = "")
     @Route(url="call/article/update")
@@ -55,40 +62,27 @@ public class CommunityContentResourceImpl extends CommunityContentResourceDecora
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		String idStr = (String) vmjExchange.getRequestBodyForm("");
-		int id = Integer.parseInt(idStr);
-		
-		CommunityContentArticle communitycontentarticle = Repository.getObject(id);
-		communitycontentarticle = createCommunityContentArticle(vmjExchange, id);
-		
-		Repository.updateObject(communitycontentarticle);
-		communitycontentarticle = Repository.getObject(id);
-		//to do: fix association attributes
-		
-		return communitycontentarticle.toHashMap();
+		Map<String, Object> requestBody = vmjExchange.getPayload(); 
+		return communityContentServiceImpl.updateCommunityContent(requestBody);
 		
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/article/detail")
     public HashMap<String, Object> getCommunityContentArticle(VMJExchange vmjExchange){
-		return record.getCommunityContentArticle(vmjExchange);
+		Map<String, Object> requestBody = vmjExchange.getPayload(); 
+		return communityContentServiceImpl.getCommunityContent(requestBody);
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/article/list")
     public List<HashMap<String,Object>> getAllCommunityContentArticle(VMJExchange vmjExchange){
-		List<CommunityContentArticle> communitycontentarticleList = Repository.getAllObject("communitycontentarticle_impl");
-		return transformCommunityContentArticleListToHashMap(communitycontentarticleList);
+		Map<String, Object> requestBody = vmjExchange.getPayload(); 
+		return communityContentServiceImpl.getAllCommunityContent(requestBody);
 	}
 
-    public List<HashMap<String,Object>> transformCommunityContentArticleListToHashMap(List<CommunityContentArticle> CommunityContentArticleList){
-		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
-        for(int i = 0; i < CommunityContentArticleList.size(); i++) {
-            resultList.add(CommunityContentArticleList.get(i).toHashMap());
-        }
-
-        return resultList;
+    public List<HashMap<String,Object>> transformCommunityContentArticleListToHashMap(List<CommunityContent> list){
+		return communityContentServiceImpl.transformListToHashMap(list);
 	}
 
 	// @Restriced(permission = "")
@@ -98,10 +92,8 @@ public class CommunityContentResourceImpl extends CommunityContentResourceDecora
 			return null;
 		}
 		
-		String idStr = (String) vmjExchange.getRequestBodyForm("");
-		int id = Integer.parseInt(idStr);
-		Repository.deleteObject(id);
-		return getAllCommunityContentArticle(vmjExchange);
+		Map<String, Object> requestBody = vmjExchange.getPayload(); 
+		return communityContentServiceImpl.deleteCommunityContent(requestBody);
 	}
 
 	public void createContent(String title, String body) {

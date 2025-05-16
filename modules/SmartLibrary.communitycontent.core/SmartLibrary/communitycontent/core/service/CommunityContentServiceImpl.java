@@ -96,10 +96,10 @@ public class CommunityContentServiceImpl extends CommunityContentServiceComponen
 		return transformListToHashMap(list);
 	}
 
-    public List<HashMap<String,Object>> transformListToHashMap(List<CommunityContent> List){
+    public List<HashMap<String,Object>> transformListToHashMap(List<CommunityContent> list){
 		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
-        for(int i = 0; i < List.size(); i++) {
-            resultList.add(List.get(i).toHashMap());
+        for(int i = 0; i < list.size(); i++) {
+            resultList.add(list.get(i).toHashMap());
         }
 
         return resultList;
