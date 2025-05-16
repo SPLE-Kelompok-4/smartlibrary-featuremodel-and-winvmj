@@ -15,7 +15,6 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class WishlistItemComponent implements WishlistItemImpl{
 	@Id
-	public UUID wishlistItemId; public UUID wishlistId; public UUID itemId; 
 	public UUID wishlistItemId;
 	public UUID wishlistId;
 	public UUID itemId;

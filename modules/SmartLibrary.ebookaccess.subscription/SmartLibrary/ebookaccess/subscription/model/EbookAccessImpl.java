@@ -11,35 +11,44 @@ import javax.persistence.Column;
 import SmartLibrary.ebookaccess.core.EbookAccessDecorator;
 import SmartLibrary.ebookaccess.core.EbookAccess;
 import SmartLibrary.ebookaccess.core.EbookAccessComponent;
+import SmartLibrary.ebookaccess.payperbook.EBookAccessImpl;
 
 @Entity(name="ebookaccess_subscription")
 @Table(name="ebookaccess_subscription")
 public class EbookAccessImpl extends EbookAccessDecorator {
 
-	public EDate startDate;
-	public EDate endDate;
-	public EbookAccessImpl(
+    @Column
+    public EDate startDate;
+    
+    @Column
+    public EDate endDate;
+    
+    @Column
+    public EBookAccessImpl ebookAccessImpl;
+    
+    public EbookAccessImpl() {
         super();
         this.objectName = EbookAccessImpl.class.getName();
     }
     
-    public EbookAccessImpl(EDate startDate, EDate endDate, EBookAccessImpl ebookaccessimpl) {
-    	super();
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.objectName = EbookAccessImpl.class.getName();
+    public EbookAccessImpl(EDate startDate, EDate endDate, EBookAccessImpl ebookAccessImpl) {
+        super();
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.ebookAccessImpl = ebookAccessImpl;
+        this.objectName = EbookAccessImpl.class.getName();
     }
-	
-	public EbookAccessImpl(EbookAccessComponent record, EDate startDate, EDate endDate, EBookAccessImpl ebookaccessimpl) {
-		super(record);
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.objectName = EbookAccessImpl.class.getName();
-	}
+    
+    public EbookAccessImpl(EbookAccessComponent record, EDate startDate, EDate endDate, EBookAccessImpl ebookAccessImpl) {
+        super(record);
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.ebookAccessImpl = ebookAccessImpl;
+        this.objectName = EbookAccessImpl.class.getName();
+    }
 
-
-	public void addPlan(Plan ) {
-		// TODO: implement this method
-	}
-
+    @Override
+    public void addPlan(Plan plan) {
+        // TODO: implement this method
+    }
 }

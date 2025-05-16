@@ -23,8 +23,8 @@ public abstract class EBookComponent implements EBook{
 	protected UUID bookID;
 	protected String ISBN;
 	protected EEList categories;
-	@ManyToOne(targetEntity=SmartLibrary..core.Component.class)
-	public  ebookaccessimpl;
+	@ManyToOne(targetEntity=SmartLibrary.core.Component.class)
+	protected EBookAccessImpl ebookAccessImpl;
 	protected EDate createdAt;
 	protected String objectName = EBookComponent.class.getName();
 

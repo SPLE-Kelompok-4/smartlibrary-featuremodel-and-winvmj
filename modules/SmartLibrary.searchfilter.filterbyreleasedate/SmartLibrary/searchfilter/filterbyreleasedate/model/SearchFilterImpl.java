@@ -18,7 +18,7 @@ public class SearchFilterImpl extends SearchFilterDecorator {
 
 	protected EDate releaseDateFrom;
 	protected EDate releaseDateTo;
-	public SearchFilterImpl(
+	public SearchFilterImpl(){
         super();
         this.objectName = SearchFilterImpl.class.getName();
     }

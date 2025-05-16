@@ -27,7 +27,7 @@ public class EBookAccessResourceImpl extends EBookAccessResourceDecorator {
     public EBookAccess createEBookAccessFreeAccess(VMJExchange vmjExchange){
 		
 		EBookAccessFreeAccess ebookaccessfreeaccess = record.createEBookAccessFreeAccess(vmjExchange);
-		EBookAccessFreeAccess ebookaccessfreeaccessdeco = EBookAccessFreeAccessFactory.createEBookAccessFreeAccess("SmartLibrary.freeaccess.core.EBookAccessImpl", ebookaccessfreeaccess, subscriptionPlanP, freeAccess, payPerBook
+		EBookAccessFreeAccess ebookaccessfreeaccessdeco = EBookAccessFreeAccessFactory.createEBookAccessFreeAccess("SmartLibrary.freeaccess.core.EBookAccessImpl", ebookaccessfreeaccess, subscriptionPlanP, freeAccess, payPerBook,
 		book
 		);
 			return ebookaccessfreeaccessdeco;
@@ -36,10 +36,10 @@ public class EBookAccessResourceImpl extends EBookAccessResourceDecorator {
 
     public EBookAccess createEBookAccessFreeAccess(VMJExchange vmjExchange, int id){
 		EBookAccessFreeAccess ebookaccessfreeaccess = ebookaccessfreeaccessRepository.getObject(id);
-		int recordEBookAccessFreeAccessId = (((EBookAccessFreeAccessDecorator) savedEBookAccessFreeAccess.getRecord()).getId();
+		int recordEBookAccessFreeAccessId = ((EBookAccessFreeAccessDecorator) savedEBookAccessFreeAccess.getRecord()).getId();
 		
-		EBookAccessFreeAccess ebookaccessfreeaccess = record.createEBookAccessFreeAccess(vmjExchange);
-		EBookAccessFreeAccess ebookaccessfreeaccessdeco = EBookAccessFreeAccessFactory.createEBookAccessFreeAccess("SmartLibrary.freeaccess.core.EBookAccessImpl", id, ebookaccessfreeaccess, subscriptionPlanP, freeAccess, payPerBook
+		ebookaccessfreeaccess = record.createEBookAccessFreeAccess(vmjExchange);
+		EBookAccessFreeAccess ebookaccessfreeaccessdeco = EBookAccessFreeAccessFactory.createEBookAccessFreeAccess("SmartLibrary.freeaccess.core.EBookAccessImpl", id, ebookaccessfreeaccess, subscriptionPlanP, freeAccess, payPerBook,
 		book
 		);
 			return ebookaccessfreeaccessdeco;
@@ -100,8 +100,9 @@ public class EBookAccessResourceImpl extends EBookAccessResourceDecorator {
 		return getAllEBookAccessFreeAccess(vmjExchange);
 	}
 
-	public void createAccess(EBook ) {
+	public void createAccess(EBook ebook ) {
 		// TODO: implement this method
 	}
+
 	
 }

@@ -19,20 +19,18 @@ import javax.persistence.OneToMany;
 @Table(name="_impl")
 public class EBookAccessImpl extends EBookAccessComponent {
 
-	public EBookAccessImpl(Plan subscriptionPlanP, EEList freeAccess, EEList payPerBook) {
-		this.subscriptionPlanP = subscriptionPlanP;
-		this.freeAccess = freeAccess;
-		this.payPerBook = payPerBook;
-	}
-
-	public EBookAccessImpl(Plan subscriptionPlanP, EEList freeAccess, EEList payPerBook) {
-		this. =  .randomUUID();;
-		this.subscriptionPlanP = subscriptionPlanP;
-		this.freeAccess = freeAccess;
-		this.payPerBook = payPerBook;
-	}
-
-	public EBookAccessImpl() { }
+	@Id
+    private UUID id;
+    
+    public EBookAccessImpl() {
+        super();
+        this.id = UUID.randomUUID();
+    }
+    
+    public EBookAccessImpl(Plan subscriptionPlanP, List<String> freeAccess, List<String> payPerBook) {
+        super(subscriptionPlanP, freeAccess, payPerBook);
+        this.id = UUID.randomUUID();
+    }
 
 
 	public void createAccess() {

@@ -91,7 +91,7 @@ public class ReviewManagementResourceImpl extends ReviewManagementResourceCompon
 
 
 	
-	public void addReview(Item ) {
+	public void addReview(Item item) {
 		// TODO: implement this method
 	}
 

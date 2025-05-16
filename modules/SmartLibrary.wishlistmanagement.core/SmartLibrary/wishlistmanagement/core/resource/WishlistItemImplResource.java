@@ -9,5 +9,5 @@ public interface WishlistItemImplResource {
     HashMap<String, Object> getWishlistItemImpl(VMJExchange vmjExchange);
     List<HashMap<String,Object>> getAllWishlistItemImpl(VMJExchange vmjExchange);
     List<HashMap<String,Object>> deleteWishlistItemImpl(VMJExchange vmjExchange);
-	HashMap<String, Object> WishlistItemImpl(VMJExchange vmjExhange);
+	HashMap<String, Object> createWishlistItemImpl(VMJExchange vmjExhange);
 }

@@ -27,7 +27,7 @@ public class SearchFilterResourceImpl extends SearchFilterResourceDecorator {
     public SearchFilter createSearchFilterFilterByReleaseDate(VMJExchange vmjExchange){
 		
 		SearchFilterFilterByReleaseDate searchfilterfilterbyreleasedate = record.createSearchFilterFilterByReleaseDate(vmjExchange);
-		SearchFilterFilterByReleaseDate searchfilterfilterbyreleasedatedeco = SearchFilterFilterByReleaseDateFactory.createSearchFilterFilterByReleaseDate("SmartLibrary.filterbyreleasedate.core.SearchFilterImpl", searchfilterfilterbyreleasedate, ebookimpl
+		SearchFilterFilterByReleaseDate searchfilterfilterbyreleasedatedeco = SearchFilterFilterByReleaseDateFactory.createSearchFilterFilterByReleaseDate("SmartLibrary.filterbyreleasedate.core.SearchFilterImpl", searchfilterfilterbyreleasedate, ebookimpl,
 		releaseDateFrom, releaseDateTo
 		);
 			return searchfilterfilterbyreleasedatedeco;
@@ -36,10 +36,10 @@ public class SearchFilterResourceImpl extends SearchFilterResourceDecorator {
 
     public SearchFilter createSearchFilterFilterByReleaseDate(VMJExchange vmjExchange, int id){
 		SearchFilterFilterByReleaseDate searchfilterfilterbyreleasedate = searchfilterfilterbyreleasedateRepository.getObject(id);
-		int recordSearchFilterFilterByReleaseDateId = (((SearchFilterFilterByReleaseDateDecorator) savedSearchFilterFilterByReleaseDate.getRecord()).getId();
+		int recordSearchFilterFilterByReleaseDateId = ((SearchFilterFilterByReleaseDateDecorator) savedSearchFilterFilterByReleaseDate.getRecord()).getId();
 		
-		SearchFilterFilterByReleaseDate searchfilterfilterbyreleasedate = record.createSearchFilterFilterByReleaseDate(vmjExchange);
-		SearchFilterFilterByReleaseDate searchfilterfilterbyreleasedatedeco = SearchFilterFilterByReleaseDateFactory.createSearchFilterFilterByReleaseDate("SmartLibrary.filterbyreleasedate.core.SearchFilterImpl", id, searchfilterfilterbyreleasedate, ebookimpl
+		searchfilterfilterbyreleasedate = record.createSearchFilterFilterByReleaseDate(vmjExchange);
+		SearchFilterFilterByReleaseDate searchfilterfilterbyreleasedatedeco = SearchFilterFilterByReleaseDateFactory.createSearchFilterFilterByReleaseDate("SmartLibrary.filterbyreleasedate.core.SearchFilterImpl", id, searchfilterfilterbyreleasedate, ebookimpl,
 		releaseDateFrom, releaseDateTo
 		);
 			return searchfilterfilterbyreleasedatedeco;

@@ -18,15 +18,8 @@ public abstract class CommunityContentServiceComponent implements CommunityConte
 	public abstract HashMap<String, Object> updateCommunityContent(Map<String, Object> requestBody);
     public abstract HashMap<String, Object> getCommunityContent(Map<String, Object> requestBody);
     public abstract List<HashMap<String,Object>> getAllCommunityContent(Map<String, Object> requestBody);
-    public abstract List<HashMap<String,Object>> transformListToHashMap(List<CommunityContent> List);
+    public abstract List<HashMap<String,Object>> transformListToHashMap(List<CommunityContent> list);
     public abstract List<HashMap<String,Object>> deleteCommunityContent(Map<String, Object> requestBody);
-	public abstract HashMap<String, Object> getCommunityContentById(int id);
+	public abstract HashMap<String, Object> getCommunityContentById(UUID id);
 
-	public abstract void createContent();
-
-	public abstract void readContent();
-
-	public abstract void updateContent();
-
-	public abstract void deleteContent();
 }

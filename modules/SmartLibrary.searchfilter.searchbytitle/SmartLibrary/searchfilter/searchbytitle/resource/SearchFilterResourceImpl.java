@@ -28,7 +28,7 @@ public class SearchFilterResourceImpl extends SearchFilterResourceDecorator {
 		String title = (String) vmjExchange.getRequestBodyForm("title");
 		
 		SearchFilterSearchByTitle searchfiltersearchbytitle = record.createSearchFilterSearchByTitle(vmjExchange);
-		SearchFilterSearchByTitle searchfiltersearchbytitledeco = SearchFilterSearchByTitleFactory.createSearchFilterSearchByTitle("SmartLibrary.searchbytitle.core.SearchFilterImpl", searchfiltersearchbytitle, ebookimpl
+		SearchFilterSearchByTitle searchfiltersearchbytitledeco = SearchFilterSearchByTitleFactory.createSearchFilterSearchByTitle("SmartLibrary.searchbytitle.core.SearchFilterImpl", searchfiltersearchbytitle, ebookimpl,
 		title
 		);
 			return searchfiltersearchbytitledeco;
@@ -38,10 +38,10 @@ public class SearchFilterResourceImpl extends SearchFilterResourceDecorator {
     public SearchFilter createSearchFilterSearchByTitle(VMJExchange vmjExchange, int id){
 		String title = (String) vmjExchange.getRequestBodyForm("title");
 		SearchFilterSearchByTitle searchfiltersearchbytitle = searchfiltersearchbytitleRepository.getObject(id);
-		int recordSearchFilterSearchByTitleId = (((SearchFilterSearchByTitleDecorator) savedSearchFilterSearchByTitle.getRecord()).getId();
+		int recordSearchFilterSearchByTitleId = ((SearchFilterSearchByTitleDecorator) savedSearchFilterSearchByTitle.getRecord()).getId();
 		
-		SearchFilterSearchByTitle searchfiltersearchbytitle = record.createSearchFilterSearchByTitle(vmjExchange);
-		SearchFilterSearchByTitle searchfiltersearchbytitledeco = SearchFilterSearchByTitleFactory.createSearchFilterSearchByTitle("SmartLibrary.searchbytitle.core.SearchFilterImpl", id, searchfiltersearchbytitle, ebookimpl
+		searchfiltersearchbytitle = record.createSearchFilterSearchByTitle(vmjExchange);
+		SearchFilterSearchByTitle searchfiltersearchbytitledeco = SearchFilterSearchByTitleFactory.createSearchFilterSearchByTitle("SmartLibrary.searchbytitle.core.SearchFilterImpl", id, searchfiltersearchbytitle, ebookimpl,
 		title
 		);
 			return searchfiltersearchbytitledeco;

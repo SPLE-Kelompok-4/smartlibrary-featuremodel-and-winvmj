@@ -1,5 +1,4 @@
 module SmartLibrary.wishlistmanagement.core {
-	requires SmartLibrary.wishlistmanagement.core;
 	exports SmartLibrary.wishlistmanagement;
     exports SmartLibrary.wishlistmanagement.core;
 	requires vmj.routing.route;

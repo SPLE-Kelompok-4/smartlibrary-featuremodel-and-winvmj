@@ -15,7 +15,6 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class WishlistManagementComponent implements WishlishManagement{
 	@Id
-	public UUID wishlistId; public UUID userId; 
 	public UUID wishlistId;
 	public UUID userId;
 	public String name;
@@ -59,7 +58,7 @@ public abstract class WishlistManagementComponent implements WishlishManagement{
 	public abstract void setWishlistitemimpl(WishlistItemImpl wishlistitemimpl);
 	
  
-	public abstract void addItem(Item );
+	public abstract void addItem(Item item);
 
 	public abstract void removeItem(UUID itemId);
 

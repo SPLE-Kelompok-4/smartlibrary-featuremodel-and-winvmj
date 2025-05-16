@@ -95,7 +95,7 @@ public class EBookServiceImpl extends EBookServiceComponent{
 
 	public HashMap<String, Object> getEBookById(int id){
 		String idStr = vmjExchange.getGETParam(""); 
-		int id = Integer.parseInt(idStr);
+		id = Integer.parseInt(idStr);
 		EBook ebook = ebookRepository.getObject(id);
 		return ebook.toHashMap();
 	}

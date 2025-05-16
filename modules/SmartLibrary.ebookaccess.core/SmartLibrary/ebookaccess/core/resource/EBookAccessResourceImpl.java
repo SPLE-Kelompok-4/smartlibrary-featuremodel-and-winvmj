@@ -15,21 +15,21 @@ public class EBookAccessResourceImpl extends EBookAccessResourceComponent{
 
 	// @Restriced(permission = "")
     @Route(url="call/ebookaccess/save")
-    public List<HashMap<String,Object>> save(VMJExchange vmjExchange){
+    public List<HashMap<String,Object>> save(VMJExchange vmjExchange) {
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		  = create(vmjExchange);
-		Repository.saveObject();
+		EBookAccess ebookAccess = createEBookAccess(vmjExchange);
+		repository.saveObject(ebookAccess);
 		return getAll(vmjExchange);
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/ebookaccess")
-    public HashMap<String,Object> (VMJExchange vmjExchange){
+    public HashMap<String,Object> processEBookAccess(VMJExchange vmjExchange) {
 		if (vmjExchange.getHttpMethod().equals("POST")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			 result = ServiceImpl.create(requestBody);
+			EBookAccess result = serviceImpl.create(requestBody);
 			return result.toHashMap();
 		}
 		throw new NotFoundException("Route tidak ditemukan");

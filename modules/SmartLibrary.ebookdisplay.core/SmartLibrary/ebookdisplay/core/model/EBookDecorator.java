@@ -14,28 +14,28 @@ public abstract class EBookDecorator extends EBookComponent{
     @OneToOne(cascade=CascadeType.ALL)
 	protected EBookComponent record;
 
-	public EBookDecorator () {
-		super();
-		this.record = record;
-		this. =  .randomUUID();
-		
-	public EBookDecorator (EBookComponent record) {
-		this. =  .randomUUID();
-		this.record = record;
-	}
+    public EBookDecorator() {
+        super();
+    }
 
-	public EBookDecorator (, EBookComponent record) {
-		this. =  ;
-		this.record = record;
-	}
-	
-	public EBookDecorator (EBookComponent record, String objectName) {
-		this. =  .randomUUID();
-		this.record = record;	
-		this.objectName=objectName;
-	}
-
-	public EBookDecorator() { }
+    public EBookDecorator(EBookComponent record) {
+        super();
+        this.record = record;
+        this.bookID = UUID.randomUUID();
+    }
+    
+    public EBookDecorator(UUID bookID, EBookComponent record) {
+        super();
+        this.bookID = bookID;
+        this.record = record;
+    }
+    
+    public EBookDecorator(EBookComponent record, String objectName) {
+        super();
+        this.record = record;
+        this.bookID = UUID.randomUUID();
+        this.objectName = objectName;
+    }
 
 	public EDate getReleaseDate() {
 		return record.getReleaseDate();

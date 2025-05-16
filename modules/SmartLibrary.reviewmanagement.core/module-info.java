@@ -1,5 +1,4 @@
 module SmartLibrary.reviewmanagement.core {
-	requires SmartLibrary.reviewmanagement.core;
 	exports SmartLibrary.reviewmanagement;
     exports SmartLibrary.reviewmanagement.core;
 	requires vmj.routing.route;

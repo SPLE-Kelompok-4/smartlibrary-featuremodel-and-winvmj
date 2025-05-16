@@ -11,16 +11,8 @@ public abstract class WishlistItemResourceDecorator extends WishlistItemResource
         this.record = record;
     }
 
-    public List<HashMap<String,Object>> saveWishlistItemImpl(VMJExchange vmjExchange){
-		return record.saveWishlistItemImpl(vmjExchange);
-	}
-
     public WishlistItemImpl createWishlistItemImpl(VMJExchange vmjExchange){
 		return record.createWishlistItemImpl(vmjExchange);
-	}
-
-    public WishlistItemImpl createWishlistItemImpl(VMJExchange vmjExchange, int id){
-		return record.createWishlistItemImpl(vmjExchange, id);
 	}
 
     public HashMap<String, Object> updateWishlistItemImpl(VMJExchange vmjExchange){

@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import SmartLibrary.communitycontent.core.CommunityContentDecorator;
 import SmartLibrary.communitycontent.core.CommunityContent;
 import SmartLibrary.communitycontent.core.CommunityContentComponent;
+import SmartLibrary.communitycontent.core.EDate;
 
 @Entity(name="communitycontent_article")
 @Table(name="communitycontent_article")
@@ -18,7 +19,7 @@ public class CommunityContentImpl extends CommunityContentDecorator {
 
 	protected String articleTitle;
 	protected String body;
-	public CommunityContentImpl(
+	public CommunityContentImpl(){
         super();
         this.objectName = CommunityContentImpl.class.getName();
     }
@@ -27,6 +28,8 @@ public class CommunityContentImpl extends CommunityContentDecorator {
     	super();
 		this.articleTitle = articleTitle;
 		this.body = body;
+		this.createdAt    = new EDate();
+		this.updatedAt    = new EDate();
 		this.objectName = CommunityContentImpl.class.getName();
     }
 	
@@ -34,6 +37,8 @@ public class CommunityContentImpl extends CommunityContentDecorator {
 		super(record);
 		this.articleTitle = articleTitle;
 		this.body = body;
+		this.createdAt    = new EDate();
+		this.updatedAt    = new EDate();
 		this.objectName = CommunityContentImpl.class.getName();
 	}
 

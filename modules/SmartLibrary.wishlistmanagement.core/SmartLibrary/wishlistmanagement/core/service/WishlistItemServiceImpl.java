@@ -78,7 +78,7 @@ public class WishlistItemServiceImpl extends WishlistItemServiceComponent{
 
 	public HashMap<String, Object> getWishlistItemImplById(int id){
 		String idStr = vmjExchange.getGETParam("wishlistItemIdwishlistIditemId"); 
-		int id = Integer.parseInt(idStr);
+		id = Integer.parseInt(idStr);
 		WishlistItemImpl wishlistitemimpl = wishlistitemimplRepository.getObject(id);
 		return wishlistitemimpl.toHashMap();
 	}

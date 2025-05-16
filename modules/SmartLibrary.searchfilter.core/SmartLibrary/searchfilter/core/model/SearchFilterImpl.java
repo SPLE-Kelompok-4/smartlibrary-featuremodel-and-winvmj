@@ -24,7 +24,7 @@ public class SearchFilterImpl extends SearchFilterComponent {
 	}
 
 	public SearchFilterImpl(EBookImpl ebookimpl) {
-		this. =  .randomUUID();;
+		this.ebookId =  UUID.randomUUID();;
 		this.ebookimpl = ebookimpl;
 	}
 

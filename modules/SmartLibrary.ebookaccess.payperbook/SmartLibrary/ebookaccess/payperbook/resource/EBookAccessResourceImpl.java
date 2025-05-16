@@ -27,7 +27,7 @@ public class EBookAccessResourceImpl extends EBookAccessResourceDecorator {
     public EBookAccess createEBookAccessPayPerBook(VMJExchange vmjExchange){
 		
 		EBookAccessPayPerBook ebookaccesspayperbook = record.createEBookAccessPayPerBook(vmjExchange);
-		EBookAccessPayPerBook ebookaccesspayperbookdeco = EBookAccessPayPerBookFactory.createEBookAccessPayPerBook("SmartLibrary.payperbook.core.EBookAccessImpl", ebookaccesspayperbook, subscriptionPlanP, freeAccess, payPerBook
+		EBookAccessPayPerBook ebookaccesspayperbookdeco = EBookAccessPayPerBookFactory.createEBookAccessPayPerBook("SmartLibrary.payperbook.core.EBookAccessImpl", ebookaccesspayperbook, subscriptionPlanP, freeAccess, payPerBook,
 		book, accessStamp
 		);
 			return ebookaccesspayperbookdeco;
@@ -36,10 +36,10 @@ public class EBookAccessResourceImpl extends EBookAccessResourceDecorator {
 
     public EBookAccess createEBookAccessPayPerBook(VMJExchange vmjExchange, int id){
 		EBookAccessPayPerBook ebookaccesspayperbook = ebookaccesspayperbookRepository.getObject(id);
-		int recordEBookAccessPayPerBookId = (((EBookAccessPayPerBookDecorator) savedEBookAccessPayPerBook.getRecord()).getId();
+		int recordEBookAccessPayPerBookId = ((EBookAccessPayPerBookDecorator) savedEBookAccessPayPerBook.getRecord()).getId();
 		
-		EBookAccessPayPerBook ebookaccesspayperbook = record.createEBookAccessPayPerBook(vmjExchange);
-		EBookAccessPayPerBook ebookaccesspayperbookdeco = EBookAccessPayPerBookFactory.createEBookAccessPayPerBook("SmartLibrary.payperbook.core.EBookAccessImpl", id, ebookaccesspayperbook, subscriptionPlanP, freeAccess, payPerBook
+		ebookaccesspayperbook = record.createEBookAccessPayPerBook(vmjExchange);
+		EBookAccessPayPerBook ebookaccesspayperbookdeco = EBookAccessPayPerBookFactory.createEBookAccessPayPerBook("SmartLibrary.payperbook.core.EBookAccessImpl", id, ebookaccesspayperbook, subscriptionPlanP, freeAccess, payPerBook,
 		book, accessStamp
 		);
 			return ebookaccesspayperbookdeco;
@@ -100,7 +100,7 @@ public class EBookAccessResourceImpl extends EBookAccessResourceDecorator {
 		return getAllEBookAccessPayPerBook(vmjExchange);
 	}
 
-	public void createAccess(EBook ) {
+	public void createAccess(EBook ebook) {
 		// TODO: implement this method
 	}
 	

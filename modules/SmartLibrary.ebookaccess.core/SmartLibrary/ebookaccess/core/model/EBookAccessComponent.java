@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="_comp")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class EBookAccessComponent implements {
+public abstract class EBookAccessComponent {
 	@Id
 	
 	public Plan subscriptionPlanP;

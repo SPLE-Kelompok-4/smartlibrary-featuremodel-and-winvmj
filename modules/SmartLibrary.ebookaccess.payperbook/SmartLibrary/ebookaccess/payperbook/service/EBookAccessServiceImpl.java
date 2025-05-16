@@ -14,7 +14,7 @@ public class EBookAccessServiceImpl extends EBookAccessServiceDecorator {
     }
 
     
-	public void createAccess(EBook ) {
+	public void createAccess(EBook ebook) {
 		// TODO: implement this method
 	}
 }

@@ -5,28 +5,16 @@ import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import SmartLibrary.wishlistmanagement.WishlistItemFactory;
-import prices.auth.vmj.annotations.Restricted;
+//import prices.auth.vmj.annotations.Restricted;
 //add other required packages
-
 
 public class WishlistItemResourceImpl extends WishlistItemResourceComponent{
 	
 	private WishlistItemServiceImpl wishlistitemimplServiceImpl = new WishlistItemServiceImpl();
 
 	// @Restriced(permission = "")
-    @Route(url="call/wishlistmanagement/save")
-    public List<HashMap<String,Object>> saveWishlistItemImpl(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
-			return null;
-		}
-		WishlistItemImpl wishlistitemimpl = createWishlistItemImpl(vmjExchange);
-		wishlistitemimplRepository.saveObject(wishlistitemimpl);
-		return getAllWishlistItemImpl(vmjExchange);
-	}
-
-	// @Restriced(permission = "")
     @Route(url="call/wishlistmanagement")
-    public HashMap<String,Object> wishlistitemimpl(VMJExchange vmjExchange){
+    public HashMap<String,Object> createwishlistitemimpl(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
 			WishlistItemImpl result = wishlistitemimplServiceImpl.createWishlistItemImpl(requestBody);
@@ -35,25 +23,7 @@ public class WishlistItemResourceImpl extends WishlistItemResourceComponent{
 		throw new NotFoundException("Route tidak ditemukan");
 	}
 
-    public WishlistItemImpl createWishlistItemImpl(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("POST")) {
-		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			WishlistItemImpl result = wishlistitemimplServiceImpl.createWishlistItemImpl(requestBody);
-			return result.toHashMap();
-		}
-		throw new NotFoundException("Route tidak ditemukan");
-	}
-
-    public WishlistItemImpl createWishlistItemImpl(VMJExchange vmjExchange, int id){
-		if (vmjExchange.getHttpMethod().equals("POST")) {
-		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			WishlistItemImpl result = wishlistitemimplServiceImpl.createWishlistItemImpl(requestBody, id);
-			return result.toHashMap();
-		}
-		throw new NotFoundException("Route tidak ditemukan");
-	}
-
-	// @Restriced(permission = "")
+    // @Restriced(permission = "")
     @Route(url="call/wishlistmanagement/update")
     public HashMap<String, Object> updateWishlistItemImpl(VMJExchange vmjExchange){
 		Map<String, Object> requestBody = vmjExchange.getPayload(); 
@@ -78,6 +48,7 @@ public class WishlistItemResourceImpl extends WishlistItemResourceComponent{
 		return wishlistitemimplServiceImpl.getAllWishlistItemImpl(requestBody);
 	}
 
+    
 	// @Restriced(permission = "")
     @Route(url="call/wishlistmanagement/delete")
     public List<HashMap<String,Object>> deleteWishlistItemImpl(VMJExchange vmjExchange){
@@ -88,6 +59,5 @@ public class WishlistItemResourceImpl extends WishlistItemResourceComponent{
 		
 		return wishlistitemimplServiceImpl.deleteWishlistItemImpl(requestBody);
 	}
-
 
 }

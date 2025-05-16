@@ -41,7 +41,7 @@ public class WishlistManagementImpl extends WishlistManagementComponent {
 	public WishlistManagementImpl() { }
 
 
-	public void addItem(Item ) {
+	public void addItem(Item item) {
 		// TODO: implement this method
 	}
 

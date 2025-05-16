@@ -14,31 +14,31 @@ public abstract class WishlistManagementDecorator extends WishlistManagementComp
     @OneToOne(cascade=CascadeType.ALL)
 	protected WishlistManagementComponent record;
 
-	public WishlistManagementDecorator () {
-		super();
-		this.record = record;
-		this.wishlistIduserId =  wishlistIduserId.randomUUID();
-		
-	public WishlistManagementDecorator (WishlistManagementComponent record) {
-		this.wishlistIduserId =  wishlistIduserId.randomUUID();
-		this.record = record;
-	}
+	public WishlistManagementDecorator() {
+        super();
+    }
+    
+    public WishlistManagementDecorator(WishlistManagementComponent record) {
+        super();
+        this.record = record;
+        this.wishlistId = UUID.randomUUID();
+    }
+    
+    public WishlistManagementDecorator(UUID wishlistId, UUID userId, WishlistManagementComponent record) {
+        super();
+        this.wishlistId = wishlistId;
+        this.userId = userId;
+        this.record = record;
+    }
+    
+    public WishlistManagementDecorator(WishlistManagementComponent record, String objectName) {
+        super();
+        this.record = record;
+        this.wishlistId = UUID.randomUUID();
+        this.objectName = objectName;
+    }
 
-	public WishlistManagementDecorator (UUID wishlistIdUUID userId, WishlistManagementComponent record) {
-		this.wishlistIduserId =  wishlistIduserId;
-		this.record = record;
-	}
-	
-	public WishlistManagementDecorator (WishlistManagementComponent record, String objectName) {
-		this.wishlistIduserId =  wishlistIduserId.randomUUID();
-		this.record = record;	
-		this.objectName=objectName;
-	}
-
-	public WishlistManagementDecorator() { }
-
-
-	public void addItem(Item ) {
+	public void addItem(Item item) {
 		return record.addItem();
 	}
 

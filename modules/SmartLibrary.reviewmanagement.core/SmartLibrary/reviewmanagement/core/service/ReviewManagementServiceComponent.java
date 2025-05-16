@@ -22,7 +22,7 @@ public abstract class ReviewManagementServiceComponent implements ReviewManageme
     public abstract List<HashMap<String,Object>> deleteReviewManagement(Map<String, Object> requestBody);
 	public abstract HashMap<String, Object> getReviewManagementById(int id);
 
-	public abstract void addReview(Item );
+	public abstract void addReview(Item item);
 
 	public abstract void removeReview(UUID itemId);
 
