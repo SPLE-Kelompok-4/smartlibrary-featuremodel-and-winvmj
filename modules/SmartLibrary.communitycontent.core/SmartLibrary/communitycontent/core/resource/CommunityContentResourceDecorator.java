@@ -15,12 +15,8 @@ public abstract class CommunityContentResourceDecorator extends CommunityContent
 		return record.saveCommunityContent(vmjExchange);
 	}
 
-    public CommunityContent createCommunityContent(VMJExchange vmjExchange){
+    public HashMap<String,Object> createCommunityContent(VMJExchange vmjExchange){
 		return record.createCommunityContent(vmjExchange);
-	}
-
-    public CommunityContent createCommunityContent(VMJExchange vmjExchange, int id){
-		return record.createCommunityContent(vmjExchange, id);
 	}
 
     public HashMap<String, Object> updateCommunityContent(VMJExchange vmjExchange){
@@ -37,21 +33,5 @@ public abstract class CommunityContentResourceDecorator extends CommunityContent
 
     public List<HashMap<String,Object>> deleteCommunityContent(VMJExchange vmjExchange){
 		return record.deleteCommunityContent(vmjExchange);
-	}
-
-	public void createContent() {
-		return record.createContent();
-	}
-
-	public void readContent() {
-		return record.readContent();
-	}
-
-	public void updateContent() {
-		return record.updateContent();
-	}
-
-	public void deleteContent() {
-		return record.deleteContent();
 	}
 }

@@ -63,14 +63,7 @@ public abstract class CommunityContentComponent implements CommunityContent{
 	public void setUpdatedAt(EDate updatedAt) {
 		this.updatedAt = updatedAt;
 	}
- 
-	public abstract void createContent();
 
-	public abstract void readContent();
-
-	public abstract void updateContent();
-
-	public abstract void deleteContent();
 
 	@Override
     public String toString() {

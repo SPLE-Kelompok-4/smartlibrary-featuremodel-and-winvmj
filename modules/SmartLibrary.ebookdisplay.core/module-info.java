@@ -1,14 +1,24 @@
 module SmartLibrary.ebookdisplay.core {
-	requires SmartLibrary.ebookaccess.core;
-	exports SmartLibrary.ebookdisplay;
+    exports SmartLibrary.ebookdisplay;
     exports SmartLibrary.ebookdisplay.core;
-	requires vmj.routing.route;
-	requires vmj.hibernate.integrator;
-	requires vmj.auth;
-	requires java.logging;
-	// https://stackoverflow.com/questions/46488346/error32-13-error-cannot-access-referenceable-class-file-for-javax-naming-re/50568217
-	requires java.naming;
-	requires java.net.http;
-
-	opens SmartLibrary.ebookdisplay.core to org.hibernate.orm.core, gson, vmj.hibernate.integrator;
+    exports SmartLibrary.ebookdisplay.core.model;
+    exports SmartLibrary.ebookdisplay.core.service;
+    exports SmartLibrary.ebookdisplay.core.resource;
+    
+    requires vmj.routing.route;
+    requires vmj.hibernate.integrator;
+    requires vmj.auth;
+    requires vmj.auth.model;  
+    requires prices.auth.vmj;
+    requires java.logging;
+    requires java.naming;
+    requires java.net.http;
+    requires java.persistence; 
+    requires java.sql;        
+    requires java.desktop;     
+    
+    opens SmartLibrary.ebookdisplay.core to org.hibernate.orm.core, gson, vmj.hibernate.integrator;
+    opens SmartLibrary.ebookdisplay.core.model to org.hibernate.orm.core, gson, vmj.hibernate.integrator;
+    opens SmartLibrary.ebookdisplay.core.service to org.hibernate.orm.core, gson, vmj.hibernate.integrator;
+    opens SmartLibrary.ebookdisplay.core.resource to org.hibernate.orm.core, gson, vmj.hibernate.integrator;
 }
