@@ -9,15 +9,15 @@ public abstract class ReviewManagementResourceComponent implements ReviewManagem
 	
 	public ReviewManagementResourceComponent() { }
  
-    public abstract List<HashMap<String,Object>> saveReviewManagement(VMJExchange vmjExchange);
-    public abstract ReviewManagement createReviewManagement(VMJExchange vmjExchange);
-	public abstract ReviewManagement createReviewManagement(VMJExchange vmjExchange, int id);    
+  public abstract List<HashMap<String,Object>> saveReviewManagement(VMJExchange vmjExchange);
+  public abstract HashMap<String,Object> createReviewManagement(VMJExchange vmjExchange);
+	public abstract HashMap<String,Object> createReviewManagement(VMJExchange vmjExchange, int id);    
 	public abstract HashMap<String, Object> updateReviewManagement(VMJExchange vmjExchange);
-    public abstract HashMap<String, Object> getReviewManagement(VMJExchange vmjExchange);
-    public abstract List<HashMap<String,Object>> getAllReviewManagement(VMJExchange vmjExchange);
-    public abstract List<HashMap<String,Object>> deleteReviewManagement(VMJExchange vmjExchange);
+  public abstract HashMap<String, Object> getReviewManagement(VMJExchange vmjExchange);
+  public abstract List<HashMap<String,Object>> getAllReviewManagement(VMJExchange vmjExchange);
+  public abstract List<HashMap<String,Object>> deleteReviewManagement(VMJExchange vmjExchange);
 
-	public abstract void addReview(Item item);
+	public abstract void addReview(ReviewItem reviewItem);
 
 	public abstract void removeReview(UUID itemId);
 

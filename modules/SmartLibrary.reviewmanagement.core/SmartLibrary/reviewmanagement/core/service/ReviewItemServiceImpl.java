@@ -15,81 +15,74 @@ import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import SmartLibrary.reviewmanagement.ReviewItemFactory;
-import prices.auth.vmj.annotations.Restricted;
+//import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
 public class ReviewItemServiceImpl extends ReviewItemServiceComponent{
 
-    public List<HashMap<String,Object>> saveReviewItemImpl(VMJExchange vmjExchange){
+    public List<HashMap<String,Object>> saveReviewItem(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		ReviewItemImpl reviewitemimpl = createReviewItemImpl(vmjExchange);
-		reviewitemimplRepository.saveObject(reviewitemimpl);
-		return getAllReviewItemImpl(vmjExchange);
+		Map<String, Object> requestBody = vmjExchange.getPayload();
+		ReviewItem reviewitem = createReviewItem(requestBody);
+		Repository.saveObject(reviewitem);
+		return getAllReviewItem(requestBody);
 	}
 
-    public ReviewItemImpl createReviewItemImpl(Map<String, Object> requestBody){
+	@Override
+	public List<HashMap<String, Object>> saveReviewItem(Map<String, Object> requestBody) {
+		ReviewItem reviewitem = createReviewItem(requestBody);
+		Repository.saveObject(reviewitem);
+		return getAllReviewItem(requestBody);
+	}
+
+    public ReviewItem createReviewItem(Map<String, Object> requestBody){
+		String reviewId = (String) requestBody.get("reviewId");
+		String itemId = (String) requestBody.get("itemId");
+		String addedAt = (String) requestBody.get("addedAt");
 		
-		//to do: fix association attributes
-		ReviewItemImpl ReviewItemImpl = ReviewItemImplFactory.createReviewItemImpl(
+		ReviewItem reviewitem = ReviewItemFactory.createReviewItem(
 			"SmartLibrary.reviewmanagement.core.ReviewItemImpl",
-		reviewItemId
-		, reviewId
-		, itemId
-		, addedAt
+			reviewId, itemId, addedAt
 		);
-		Repository.saveObject(reviewitemimpl);
-		return reviewitemimpl;
+
+		return reviewitem;
 	}
 
-    public ReviewItemImpl createReviewItemImpl(Map<String, Object> requestBody, int id){
-		
-		//to do: fix association attributes
-		
-		ReviewItemImpl reviewitemimpl = ReviewItemImplFactory.createReviewItemImpl("SmartLibrary.reviewmanagement.core.ReviewItemImpl", reviewItemId, reviewId, itemId, addedAt);
-		return reviewitemimpl;
-	}
-
-    public HashMap<String, Object> updateReviewItemImpl(Map<String, Object> requestBody){
-		String idStr = (String) requestBody.get("reviewItemIdreviewIditemId");
+    public HashMap<String, Object> updateReviewItem(Map<String, Object> requestBody){
+		String idStr = (String) requestBody.get("reviewIditemId");
 		int id = Integer.parseInt(idStr);
-		ReviewItemImpl reviewitemimpl = Repository.getObject(id);
+		ReviewItem reviewitem = Repository.getObject(id);
 		
 		
-		Repository.updateObject(reviewitemimpl);
+		Repository.updateObject(reviewitem);
 		
 		//to do: fix association attributes
 		
-		return reviewitemimpl.toHashMap();
+		return reviewitem.toHashMap();
 		
 	}
 
-    public HashMap<String, Object> getReviewItemImpl(Map<String, Object> requestBody){
-		List<HashMap<String, Object>> reviewitemimplList = getAllReviewItemImpl("reviewitemimpl_impl");
-		for (HashMap<String, Object> reviewitemimpl : reviewitemimplList){
-			int record_id = ((Double) reviewitemimpl.get("record_id")).intValue();
-			if (record_id == id){
-				return reviewitemimpl;
-			}
-		}
-		return null;
+    public HashMap<String, Object> getReviewItem(Map<String, Object> requestBody){
+		String idStr = (String) requestBody.get("reviewIditemId");
+		int id = Integer.parseInt(idStr);
+		ReviewItem reviewitem = Repository.getObject(id);
+		return reviewitem.toHashMap();
 	}
 
-	public HashMap<String, Object> getReviewItemImplById(int id){
-		String idStr = vmjExchange.getGETParam("reviewItemIdreviewIditemId"); 
-		id = Integer.parseInt(idStr);
-		ReviewItemImpl reviewitemimpl = reviewitemimplRepository.getObject(id);
-		return reviewitemimpl.toHashMap();
+	public HashMap<String, Object> getReviewItemById(int id){
+		ReviewItem reviewitem = Repository.getObject(id);
+		return reviewitem.toHashMap();
 	}
 
-    public List<HashMap<String,Object>> getAllReviewItemImpl(Map<String, Object> requestBody){
+    public List<HashMap<String,Object>> getAllReviewItem(Map<String, Object> requestBody){
 		String table = (String) requestBody.get("table_name");
-		List<ReviewItemImpl> List = Repository.getAllObject(table);
+		List<ReviewItem> List = Repository.getAllObject(table);
 		return transformListToHashMap(List);
 	}
 
-    public List<HashMap<String,Object>> transformListToHashMap(List<ReviewItemImpl> List){
+    public List<HashMap<String,Object>> transformListToHashMap(List<ReviewItem> List){
 		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
         for(int i = 0; i < List.size(); i++) {
             resultList.add(List.get(i).toHashMap());
@@ -98,11 +91,11 @@ public class ReviewItemServiceImpl extends ReviewItemServiceComponent{
         return resultList;
 	}
 
-    public List<HashMap<String,Object>> deleteReviewItemImpl(Map<String, Object> requestBody){
+    public List<HashMap<String,Object>> deleteReviewItem(Map<String, Object> requestBody){
 		String idStr = ((String) requestBody.get("id"));
 		int id = Integer.parseInt(idStr);
 		Repository.deleteObject(id);
-		return getAllReviewItemImpl(requestBody);
+		return getAllReviewItem(requestBody);
 	}
 
 }

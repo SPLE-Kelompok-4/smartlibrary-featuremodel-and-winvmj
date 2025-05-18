@@ -14,40 +14,41 @@ public abstract class ReviewManagementDecorator extends ReviewManagementComponen
     @OneToOne(cascade=CascadeType.ALL)
 	protected ReviewManagementComponent record;
 
-	public ReviewManagementDecorator() {
-        super();
-    }
-    
-    public ReviewManagementDecorator(ReviewManagementComponent record) {
-        super();
-        this.record = record;
-        this.reviewId = UUID.randomUUID();
-    }
+	public ReviewManagementDecorator () {
+		super();
+		this.record = record;
+		this.reviewId =  UUID.randomUUID();
+		this.userId =  UUID.randomUUID();
+	}
+		
+	public ReviewManagementDecorator (ReviewManagementComponent record) {
+		this.reviewId =  UUID.randomUUID();
+		this.record = record;
+	}
 
-    public ReviewManagementDecorator(UUID reviewId, UUID userId, ReviewManagementComponent record) {
-        super();
-        this.reviewId = reviewId;
-        this.userId = userId;
-        this.record = record;
-    }
-    
-    public ReviewManagementDecorator(ReviewManagementComponent record, String objectName) {
-        super();
-        this.record = record;
-        this.reviewId = UUID.randomUUID();
-        this.objectName = objectName;
-    }
+	public ReviewManagementDecorator (UUID reviewId, UUID userId, ReviewManagementComponent record) {
+		this.reviewId = reviewId;
+		this.userId = userId;
+		this.record = record;
+	}
+	
+	public ReviewManagementDecorator (ReviewManagementComponent record, String objectName) {
+		this.reviewId =  UUID.randomUUID();
+		this.userId =  UUID.randomUUID();
+		this.record = record;	
+		this.objectName=objectName;
+	}
 
-	public void addReview(Item item) {
-		return record.addReview();
+	public void addReview(ReviewItem reviewItem) {
+		record.addReview(reviewItem);
 	}
 
 	public void removeReview(UUID itemId) {
-		return record.removeReview(itemId);
+		record.removeReview(itemId);
 	}
 
 	public void getReviews() {
-		return record.getReviews();
+		record.getReviews();
 	}
 
 	public HashMap<String, Object> toHashMap() {

@@ -15,11 +15,11 @@ public abstract class ReviewManagementResourceDecorator extends ReviewManagement
 		return record.saveReviewManagement(vmjExchange);
 	}
 
-    public ReviewManagement createReviewManagement(VMJExchange vmjExchange){
+    public HashMap<String,Object> createReviewManagement(VMJExchange vmjExchange){
 		return record.createReviewManagement(vmjExchange);
 	}
 
-    public ReviewManagement createReviewManagement(VMJExchange vmjExchange, int id){
+    public HashMap<String,Object> createReviewManagement(VMJExchange vmjExchange, int id){
 		return record.createReviewManagement(vmjExchange, id);
 	}
 
@@ -39,15 +39,15 @@ public abstract class ReviewManagementResourceDecorator extends ReviewManagement
 		return record.deleteReviewManagement(vmjExchange);
 	}
 
-	public void addReview(Item item) {
-		return record.addReview();
+	public void addReview(ReviewItem reviewItem) {
+		 record.addReview(reviewItem);
 	}
 
 	public void removeReview(UUID itemId) {
-		return record.removeReview(itemId);
+		 record.removeReview(itemId);
 	}
 
 	public void getReviews() {
-		return record.getReviews();
+		 record.getReviews();
 	}
 }
