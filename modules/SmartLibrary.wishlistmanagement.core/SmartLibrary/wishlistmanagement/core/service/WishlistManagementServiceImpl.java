@@ -1,4 +1,6 @@
 package SmartLibrary.wishlistmanagement.core;
+
+import SmartLibrary.wishlistmanagement.core.WishlistManagement;
 import java.util.*;
 import com.google.gson.Gson;
 import java.util.*;
@@ -15,86 +17,81 @@ import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import SmartLibrary.wishlistmanagement.WishlistManagementFactory;
-import prices.auth.vmj.annotations.Restricted;
+// import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
 public class WishlistManagementServiceImpl extends WishlistManagementServiceComponent{
 
-    public List<HashMap<String,Object>> saveWishlishManagement(VMJExchange vmjExchange){
+    public List<HashMap<String,Object>> saveWishlistManagement(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		WishlishManagement wishlishmanagement = createWishlishManagement(vmjExchange);
-		wishlishmanagementRepository.saveObject(wishlishmanagement);
-		return getAllWishlishManagement(vmjExchange);
+		Map<String, Object> requestBody = vmjExchange.getPayload();
+		WishlistManagement wishlistManagement = createWishlistManagement(requestBody);
+		Repository.saveObject(wishlistManagement);
+		return getAllWishlistManagement(requestBody);
 	}
 
-    public WishlishManagement createWishlishManagement(Map<String, Object> requestBody){
+    public List<HashMap<String,Object>> saveWishlistManagement(Map<String, Object> requestBody){
+		WishlistManagement wishlistManagement = createWishlistManagement(requestBody);
+		Repository.saveObject(wishlistManagement);
+		return getAllWishlistManagement(requestBody);
+	}
+
+    public WishlistManagement createWishlistManagement(Map<String, Object> requestBody){
+		String wishlistId = (String) requestBody.get("wishlistId");
+		String userId = (String) requestBody.get("userId");
 		String name = (String) requestBody.get("name");
-		
-		//to do: fix association attributes
-		WishlishManagement WishlishManagement = WishlishManagementFactory.createWishlishManagement(
-			"SmartLibrary.wishlistmanagement.core.WishlistManagementImpl",
-		wishlistId
-		, userId
-		, name
-		, createdAt
-		, updateAt
-		, wishlistitemimpl
+		String createdAt = (String) requestBody.get("createdAt");
+		String updateAt = (String) requestBody.get("updateAt");
+
+		WishlistItemImpl wishListItemImpl = null;
+
+		WishlistManagement Wishlistmanagement = WishlistManagementFactory.createWishlistManagement(
+			"SmartLibrary.Wishlistmanagement.core.WishlistManagementImpl",
+			wishlistId, userId, name, createdAt, wishListItemImpl, updateAt
 		);
-		Repository.saveObject(wishlishmanagement);
-		return wishlishmanagement;
+		return Wishlistmanagement;
 	}
 
-    public WishlishManagement createWishlishManagement(Map<String, Object> requestBody, int id){
-		String name = (String) vmjExchange.getRequestBodyForm("name");
-		
-		//to do: fix association attributes
-		
-		WishlishManagement wishlishmanagement = WishlishManagementFactory.createWishlishManagement("SmartLibrary.wishlistmanagement.core.WishlistManagementImpl", wishlistId, userId, name, createdAt, updateAt, wishlistitemimpl);
-		return wishlishmanagement;
-	}
-
-    public HashMap<String, Object> updateWishlishManagement(Map<String, Object> requestBody){
-		String idStr = (String) requestBody.get("wishlistIduserId");
-		int id = Integer.parseInt(idStr);
-		WishlishManagement wishlishmanagement = Repository.getObject(id);
-		
-		wishlishmanagement.setName((String) requestBody.get("name"));
-		
-		Repository.updateObject(wishlishmanagement);
-		
-		//to do: fix association attributes
-		
-		return wishlishmanagement.toHashMap();
-		
-	}
-
-    public HashMap<String, Object> getWishlishManagement(Map<String, Object> requestBody){
-		List<HashMap<String, Object>> wishlishmanagementList = getAllWishlishManagement("wishlishmanagement_impl");
-		for (HashMap<String, Object> wishlishmanagement : wishlishmanagementList){
-			int record_id = ((Double) wishlishmanagement.get("record_id")).intValue();
-			if (record_id == id){
-				return wishlishmanagement;
-			}
-		}
+    public WishlistManagement createWishlistManagement(Map<String, Object> requestBody, int id){
 		return null;
 	}
 
-	public HashMap<String, Object> getWishlishManagementById(int id){
-		String idStr = vmjExchange.getGETParam("wishlistIduserId"); 
-		id = Integer.parseInt(idStr);
-		WishlishManagement wishlishmanagement = wishlishmanagementRepository.getObject(id);
-		return wishlishmanagement.toHashMap();
+    public HashMap<String, Object> updateWishlistManagement(Map<String, Object> requestBody){
+		String idStr = (String) requestBody.get("wishlistId");
+		int id = Integer.parseInt(idStr);
+		WishlistManagement wishlistManagement = Repository.getObject(id);
+		
+		wishlistManagement.setName((String) requestBody.get("name"));
+		
+		Repository.updateObject(wishlistManagement);
+		
+		//to do: fix association attributes
+		
+		return wishlistManagement.toHashMap();
+		
 	}
 
-    public List<HashMap<String,Object>> getAllWishlishManagement(Map<String, Object> requestBody){
+    public HashMap<String, Object> getWishlistManagement(Map<String, Object> requestBody){
+		String idStr = (String) requestBody.get("WishlistId");
+		int id = Integer.parseInt(idStr);
+		WishlistManagement wishlistManagement = Repository.getObject(id);
+		return wishlistManagement.toHashMap();
+	}
+
+	public HashMap<String, Object> getWishlistManagementById(int id){
+		WishlistManagement wishlistManagement = Repository.getObject(id);
+		return wishlistManagement.toHashMap();
+	}
+
+    public List<HashMap<String,Object>> getAllWishlistManagement(Map<String, Object> requestBody){
 		String table = (String) requestBody.get("table_name");
-		List<WishlishManagement> List = Repository.getAllObject(table);
+		List<WishlistManagement> List = Repository.getAllObject(table);
 		return transformListToHashMap(List);
 	}
 
-    public List<HashMap<String,Object>> transformListToHashMap(List<WishlishManagement> List){
+    public List<HashMap<String,Object>> transformListToHashMap(List<WishlistManagement> List){
 		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
         for(int i = 0; i < List.size(); i++) {
             resultList.add(List.get(i).toHashMap());
@@ -103,22 +100,22 @@ public class WishlistManagementServiceImpl extends WishlistManagementServiceComp
         return resultList;
 	}
 
-    public List<HashMap<String,Object>> deleteWishlishManagement(Map<String, Object> requestBody){
+    public List<HashMap<String,Object>> deleteWishlistManagement(Map<String, Object> requestBody){
 		String idStr = ((String) requestBody.get("id"));
 		int id = Integer.parseInt(idStr);
 		Repository.deleteObject(id);
-		return getAllWishlishManagement(requestBody);
+		return getAllWishlistManagement(requestBody);
 	}
 
-	public void addItem(Item item) {
+	public void addWishlist(WishlistItem  wishlistItem) {
 		// TODO: implement this method
 	}
 
-	public void removeItem(UUID itemId) {
+	public void removeWishlist(UUID itemId) {
 		// TODO: implement this method
 	}
 
-	public void getItems() {
+	public void getWishlists() {
 		// TODO: implement this method
 	}
 }

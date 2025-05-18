@@ -1,5 +1,6 @@
 package SmartLibrary.wishlistmanagement.core;
 import java.util.*;
+import SmartLibrary.wishlistmanagement.core.WishlistManagementImpl;
 
 import vmj.routing.route.VMJExchange;
 
@@ -10,51 +11,47 @@ public abstract class WishlistManagementServiceDecorator extends WishlistManagem
         this.record = record;
     }
 
-	public WishlistManagementImpl createWishlishManagement(Map<String, Object> requestBody){
-		return record.createWishlishManagement(requestBody);
+	public WishlistManagement createWishlistManagement(Map<String, Object> requestBody){
+		return record.createWishlistManagement(requestBody);
 	}
 
-    public WishlishManagement createWishlishManagement(Map<String, Object> requestBody, Map<String, Object> response){
-		return record.createWishlishManagement(requestBody, response);
+	public HashMap<String, Object> getWishlistManagement(Map<String, Object> requestBody){
+		return record.getWishlistManagement(requestBody);
 	}
 
-	public HashMap<String, Object> getWishlishManagement(Map<String, Object> requestBody){
-		return record.getWishlishManagement(requestBody);
+	public List<HashMap<String,Object>> getAllWishlistManagement(Map<String, Object> requestBody){
+		return record.getAllWishlistManagement(requestBody);
 	}
 
-	public List<HashMap<String,Object>> getAllWishlishManagement(Map<String, Object> requestBody){
-		return record.getAllWishlishManagement(requestBody);
+    public List<HashMap<String,Object>> saveWishlistManagement(VMJExchange vmjExchange){
+		return record.saveWishlistManagement(vmjExchange);
 	}
 
-    public List<HashMap<String,Object>> saveWishlishManagement(VMJExchange vmjExchange){
-		return record.saveWishlishManagement(vmjExchange);
+    public HashMap<String, Object> updateWishlistManagement(Map<String, Object> requestBody){
+		return record.updateWishlistManagement(requestBody);
 	}
 
-    public HashMap<String, Object> updateWishlishManagement(Map<String, Object> requestBody){
-		return record.updateWishlishManagement(requestBody);
-	}
-
-    public List<HashMap<String,Object>> transformListToHashMap(List<WishlishManagement> List){
+    public List<HashMap<String,Object>> transformListToHashMap(List<WishlistManagement> List){
 		return record.transformListToHashMap(List);
 	}
 
-    public List<HashMap<String,Object>> deleteWishlishManagement(Map<String, Object> requestBody){
-		return record.deleteWishlishManagement(requestBody);
+    public List<HashMap<String,Object>> deleteWishlistManagement(Map<String, Object> requestBody){
+		return record.deleteWishlistManagement(requestBody);
 	}
 
-	public HashMap<String, Object> getWishlishManagementById(int id){
-        return record.getWishlishManagementById(id);
+	public HashMap<String, Object> getWishlistManagementById(int id){
+        return record.getWishlistManagementById(id);
     }
 
-	public void addItem(Item item) {
-		return record.addItem();
+	public void addWishlist(WishlistItem wishlistitem) {
+		record.addWishlist(wishlistitem);
 	}
 
-	public void removeItem(UUID itemId) {
-		return record.removeItem(itemId);
+	public void removeWishlist(UUID itemId) {
+		record.removeWishlist(itemId);
 	}
 
-	public void getItems() {
-		return record.getItems();
+	public void getWishlists() {
+		record.getWishlists();
 	}
 }

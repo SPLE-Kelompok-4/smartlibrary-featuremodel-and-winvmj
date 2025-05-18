@@ -10,17 +10,19 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import javax.persistence.ManyToOne;
+
 @Entity
 @Table(name="wishlishmanagement_comp")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class WishlistManagementComponent implements WishlishManagement{
+public abstract class WishlistManagementComponent implements WishlistManagement{
 	@Id
 	public UUID wishlistId;
 	public UUID userId;
 	public String name;
 	public EDate createdAt;
 	public EDate updateAt;
-	@ManyToOne(targetEntity=SmartLibrary.wishlistitemimpl.core.WishlistItemImplComponent.class)
+	@ManyToOne
 	public WishlistItemImpl wishlistitemimpl;
 	protected String objectName = WishlistManagementComponent.class.getName();
 
@@ -58,7 +60,7 @@ public abstract class WishlistManagementComponent implements WishlishManagement{
 	public abstract void setWishlistitemimpl(WishlistItemImpl wishlistitemimpl);
 	
  
-	public abstract void addItem(Item item);
+	public abstract void addItem(WishlistItem item);
 
 	public abstract void removeItem(UUID itemId);
 

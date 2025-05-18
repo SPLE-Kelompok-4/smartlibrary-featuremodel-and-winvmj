@@ -7,39 +7,43 @@ import vmj.routing.route.VMJExchange;
 public abstract class WishlistManagementResourceDecorator extends WishlistManagementResourceComponent{
 	protected WishlistManagementResourceComponent record;
 
-    public WishlistManagementResourceDecorator(WishlistManagementResourceComponent record) {
-        this.record = record;
-    }
-
-    public WishlishManagement createWishlishManagement(VMJExchange vmjExchange){
-		return record.createWishlishManagement(vmjExchange);
+    public List<HashMap<String,Object>> saveWishlistManagement(VMJExchange vmjExchange){
+		return record.saveWishlistManagement(vmjExchange);
 	}
 
-    public HashMap<String, Object> updateWishlishManagement(VMJExchange vmjExchange){
-		return record.updateWishlishManagement(vmjExchange);
+    public HashMap<String,Object> createWishlistManagement(VMJExchange vmjExchange){
+		return record.createWishlistManagement(vmjExchange);
 	}
 
-    public HashMap<String, Object> getWishlishManagement(VMJExchange vmjExchange){
-		return record.getWishlishManagement(vmjExchange);
+    public HashMap<String,Object> createWishlistManagement(VMJExchange vmjExchange, int id){
+		return record.createWishlistManagement(vmjExchange, id);
 	}
 
-    public List<HashMap<String,Object>> getAllWishlishManagement(VMJExchange vmjExchange){
-		return record.getAllWishlishManagement(vmjExchange);
+    public HashMap<String, Object> updateWishlistManagement(VMJExchange vmjExchange){
+		return record.updateWishlistManagement(vmjExchange);
 	}
 
-    public List<HashMap<String,Object>> deleteWishlishManagement(VMJExchange vmjExchange){
-		return record.deleteWishlishManagement(vmjExchange);
+    public HashMap<String, Object> getWishlistManagement(VMJExchange vmjExchange){
+		return record.getWishlistManagement(vmjExchange);
 	}
 
-	public void addItem(Item item) {
-		return record.addItem();
+    public List<HashMap<String,Object>> getAllWishlistManagement(VMJExchange vmjExchange){
+		return record.getAllWishlistManagement(vmjExchange);
 	}
 
-	public void removeItem(UUID itemId) {
-		return record.removeItem(itemId);
+    public List<HashMap<String,Object>> deleteWishlistManagement(VMJExchange vmjExchange){
+		return record.deleteWishlistManagement(vmjExchange);
 	}
 
-	public void getItems() {
-		return record.getItems();
+	public void addWishlist(WishlistItem wishlistItem) {
+		 record.addWishlist(wishlistItem);
+	}
+
+	public void removeWishlist(UUID itemId) {
+		 record.removeWishlist(itemId);
+	}
+
+	public void getWishlists() {
+		 record.getWishlists();
 	}
 }
