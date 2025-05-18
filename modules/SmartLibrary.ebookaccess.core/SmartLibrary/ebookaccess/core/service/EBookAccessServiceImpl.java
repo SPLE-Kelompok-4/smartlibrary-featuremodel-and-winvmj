@@ -24,52 +24,61 @@ public class EBookAccessServiceImpl extends EBookAccessServiceComponent{
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		  = create(vmjExchange);
-		Repository.saveObject();
-		return getAll(vmjExchange);
+
+		// CONVERT PAYLOAD
+		Map<String, Object> requestBody = vmjExchange.getPayload();
+
+		
+		// CREATE OBJECT
+		EBookAccess eBookAccess = create(requestBody);
+		Repository.saveObject(eBookAccess);
+		return getAll(requestBody);
 	}
 
-    public  create(Map<String, Object> requestBody){
-		
+
+    public EBookAccess create(Map<String, Object> requestBody){
+		UUID subscriptionPlanP = (UUID) requestBody.get("subscriptionPlanP");
+		boolean freeAccess = (boolean) requestBody.get("freeAccess");
+		boolean payPerBook = (boolean) requestBody.get("payPerBook");
+
 		//to do: fix association attributes
-		  = Factory.create(
+		//   = Factory.create("SmartLibrary.ebookaccess.core.EBookAccessImpl", subscriptionPlanP, freeAccess, payPerBook);
+		EBookAccess eBookAccess = EBookAccessFactory.createEBookAccess(
 			"SmartLibrary.ebookaccess.core.EBookAccessImpl",
-		subscriptionPlanP
-		, freeAccess
-		, payPerBook
+			subscriptionPlanP, freeAccess, payPerBook
 		);
-		Repository.saveObject();
-		return ;
+
+		return eBookAccess;
 	}
 
-    public  create(Map<String, Object> requestBody, int id){
+
+	public EBookAccess create(Map<String, Object> requestBody, int id){
 		
 		//to do: fix association attributes
 		
-		  = Factory.create("SmartLibrary.ebookaccess.core.EBookAccessImpl", subscriptionPlanP, freeAccess, payPerBook);
-		return ;
+		//   = Factory.create("SmartLibrary.ebookaccess.core.EBookAccessImpl", subscriptionPlanP, freeAccess, payPerBook);
+		return null;
 	}
 
     public HashMap<String, Object> update(Map<String, Object> requestBody){
 		String idStr = (String) requestBody.get("");
 		int id = Integer.parseInt(idStr);
-		  = Repository.getObject(id);
+		EBookAccess eBookAccess = (EBookAccess) Repository.getObject(id);
 		
 		
-		Repository.updateObject();
+		Repository.updateObject(eBookAccess);
 		
 		//to do: fix association attributes
-		
-		return .toHashMap();
+		return eBookAccess.toHashMap();
 		
 	}
 
     public HashMap<String, Object> get(Map<String, Object> requestBody){
 		List<HashMap<String, Object>> List = getAll("_impl");
-		for (HashMap<String, Object>  : List){
-			int record_id = ((Double) .get("record_id")).intValue();
+		for (HashMap<String, Object> record : List){
+			int record_id = ((Double) record.get("record_id")).intValue();
 			if (record_id == id){
-				return ;
+				return record;
 			}
 		}
 		return null;
@@ -77,24 +86,24 @@ public class EBookAccessServiceImpl extends EBookAccessServiceComponent{
 
 	public HashMap<String, Object> getById(int id){
 		String idStr = vmjExchange.getGETParam(""); 
-		int id = Integer.parseInt(idStr);
-		  = Repository.getObject(id);
-		return .toHashMap();
+		id = Integer.parseInt(idStr);
+		EBookAccess eBookAccess = (EBookAccess) Repository.getObject(id);
+		return eBookAccess.toHashMap();
 	}
 
-    public List<HashMap<String,Object>> getAll(Map<String, Object> requestBody){
+	public List<HashMap<String,Object>> getAll(Map<String, Object> requestBody){
 		String table = (String) requestBody.get("table_name");
-		List<> List = Repository.getAllObject(table);
-		return transformListToHashMap(List);
+		List<EBookAccess> list = Repository.getAllObject(table);
+		return transformListToHashMap(list);
 	}
 
-    public List<HashMap<String,Object>> transformListToHashMap(List<> List){
+	public List<HashMap<String,Object>> transformListToHashMap(List<EBookAccess> list){
 		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
-        for(int i = 0; i < List.size(); i++) {
-            resultList.add(List.get(i).toHashMap());
-        }
+		for(int i = 0; i < list.size(); i++) {
+			resultList.add(list.get(i).toHashMap());
+		}
 
-        return resultList;
+		return resultList;
 	}
 
     public List<HashMap<String,Object>> delete(Map<String, Object> requestBody){

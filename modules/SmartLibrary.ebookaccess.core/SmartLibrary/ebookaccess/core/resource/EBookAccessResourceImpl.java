@@ -35,19 +35,19 @@ public class EBookAccessResourceImpl extends EBookAccessResourceComponent{
 		throw new NotFoundException("Route tidak ditemukan");
 	}
 
-    public  create(VMJExchange vmjExchange){
+	public HashMap<String, Object> create(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
-		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			 result = ServiceImpl.create(requestBody);
+			Map<String, Object> requestBody = vmjExchange.getPayload(); 
+			EBookAccess result = ServiceImpl.create(requestBody);
 			return result.toHashMap();
 		}
 		throw new NotFoundException("Route tidak ditemukan");
 	}
 
-    public  create(VMJExchange vmjExchange, int id){
+	public HashMap<String, Object> create(VMJExchange vmjExchange, int id){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
-		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			 result = ServiceImpl.create(requestBody, id);
+			Map<String, Object> requestBody = vmjExchange.getPayload(); 
+			EBookAccess result = ServiceImpl.create(requestBody, id);
 			return result.toHashMap();
 		}
 		throw new NotFoundException("Route tidak ditemukan");

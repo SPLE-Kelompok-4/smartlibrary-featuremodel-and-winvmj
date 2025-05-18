@@ -15,11 +15,11 @@ public abstract class EBookAccessResourceDecorator extends EBookAccessResourceCo
 		return record.save(vmjExchange);
 	}
 
-    public  create(VMJExchange vmjExchange){
+    public Object create(VMJExchange vmjExchange){
 		return record.create(vmjExchange);
 	}
 
-    public  create(VMJExchange vmjExchange, int id){
+	public Object create(VMJExchange vmjExchange, int id){
 		return record.create(vmjExchange, id);
 	}
 
