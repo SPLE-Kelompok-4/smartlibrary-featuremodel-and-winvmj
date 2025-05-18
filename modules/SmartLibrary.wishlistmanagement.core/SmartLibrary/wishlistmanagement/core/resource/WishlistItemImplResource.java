@@ -4,10 +4,10 @@ import java.util.*;
 import vmj.routing.route.VMJExchange;
 
 public interface WishlistItemImplResource {
-    List<HashMap<String,Object>> saveWishlistItemImpl(VMJExchange vmjExchange);
-    HashMap<String, Object> updateWishlistItemImpl(VMJExchange vmjExchange);
-    HashMap<String, Object> getWishlistItemImpl(VMJExchange vmjExchange);
-    List<HashMap<String,Object>> getAllWishlistItemImpl(VMJExchange vmjExchange);
-    List<HashMap<String,Object>> deleteWishlistItemImpl(VMJExchange vmjExchange);
-	HashMap<String, Object> createWishlistItemImpl(VMJExchange vmjExhange);
+    List<HashMap<String,Object>> saveWishlistItem(VMJExchange vmjExchange);
+    HashMap<String, Object> updateWishlistItem(VMJExchange vmjExchange);
+    HashMap<String, Object> getWishlistItem(VMJExchange vmjExchange);
+    List<HashMap<String,Object>> getAllWishlistItem(VMJExchange vmjExchange);
+    List<HashMap<String,Object>> deleteWishlistItem(VMJExchange vmjExchange);
+	HashMap<String, Object> createWishlistItem(VMJExchange vmjExhange);
 }

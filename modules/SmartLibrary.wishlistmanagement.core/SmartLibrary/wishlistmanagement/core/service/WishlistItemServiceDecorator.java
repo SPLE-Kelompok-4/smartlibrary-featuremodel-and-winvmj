@@ -10,40 +10,37 @@ public abstract class WishlistItemServiceDecorator extends WishlistItemServiceCo
         this.record = record;
     }
 
-	public WishlistItemImpl createWishlistItemImpl(Map<String, Object> requestBody){
-		return record.createWishlistItemImpl(requestBody);
+	public WishlistItem createWishlistItem(Map<String, Object> requestBody){
+		return record.createWishlistItem(requestBody);
 	}
 
-    public WishlistItemImpl createWishlistItemImpl(Map<String, Object> requestBody, Map<String, Object> response){
-		return record.createWishlistItemImpl(requestBody, response);
+	public HashMap<String, Object> getWishlistItem(Map<String, Object> requestBody){
+		return record.getWishlistItem(requestBody);
 	}
 
-	public HashMap<String, Object> getWishlistItemImpl(Map<String, Object> requestBody){
-		return record.getWishlistItemImpl(requestBody);
+	public List<HashMap<String,Object>> getAllWishlistItem(Map<String, Object> requestBody){
+		return record.getAllWishlistItem(requestBody);
 	}
 
-	public List<HashMap<String,Object>> getAllWishlistItemImpl(Map<String, Object> requestBody){
-		return record.getAllWishlistItemImpl(requestBody);
+    public List<HashMap<String,Object>> saveWishlistItem(VMJExchange vmjExchange){
+		return record.saveWishlistItem(vmjExchange);
 	}
 
-    public List<HashMap<String,Object>> saveWishlistItemImpl(VMJExchange vmjExchange){
-		return record.saveWishlistItemImpl(vmjExchange);
+    public HashMap<String, Object> updateWishlistItem(Map<String, Object> requestBody){
+		return record.updateWishlistItem(requestBody);
 	}
 
-    public HashMap<String, Object> updateWishlistItemImpl(Map<String, Object> requestBody){
-		return record.updateWishlistItemImpl(requestBody);
+    @Override
+    public List<HashMap<String, Object>> transformListToHashMap(List<WishlistItem> items) {
+        return record.transformListToHashMap(items);
+    }
+
+    public List<HashMap<String,Object>> deleteWishlistItem(Map<String, Object> requestBody){
+		return record.deleteWishlistItem(requestBody);
 	}
 
-    public List<HashMap<String,Object>> transformListToHashMap(List<WishlistItemImpl> List){
-		return record.transformListToHashMap(List);
-	}
-
-    public List<HashMap<String,Object>> deleteWishlistItemImpl(Map<String, Object> requestBody){
-		return record.deleteWishlistItemImpl(requestBody);
-	}
-
-	public HashMap<String, Object> getWishlistItemImplById(int id){
-        return record.getWishlistItemImplById(id);
+	public HashMap<String, Object> getWishlistItemById(int id){
+        return record.getWishlistItemById(id);
     }
 
 }

@@ -38,16 +38,16 @@ public abstract class WishlistManagementDecorator extends WishlistManagementComp
         this.objectName = objectName;
     }
 
-	public void addItem(Item item) {
-		return record.addItem();
+	public void addItem(WishlistItem wishlistItem) {
+		record.addItem(wishlistItem);
 	}
 
 	public void removeItem(UUID itemId) {
-		return record.removeItem(itemId);
+		record.removeItem(itemId);
 	}
 
 	public void getItems() {
-		return record.getItems();
+		record.getItems();
 	}
 
 	public HashMap<String, Object> toHashMap() {

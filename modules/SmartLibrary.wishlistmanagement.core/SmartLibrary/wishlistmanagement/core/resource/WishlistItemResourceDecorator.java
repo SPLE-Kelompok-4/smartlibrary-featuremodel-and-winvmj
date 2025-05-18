@@ -11,24 +11,32 @@ public abstract class WishlistItemResourceDecorator extends WishlistItemResource
         this.record = record;
     }
 
-    public WishlistItemImpl createWishlistItemImpl(VMJExchange vmjExchange){
-		return record.createWishlistItemImpl(vmjExchange);
+    public List<HashMap<String,Object>> saveWishlistItem(VMJExchange vmjExchange){
+		return record.saveWishlistItem(vmjExchange);
 	}
 
-    public HashMap<String, Object> updateWishlistItemImpl(VMJExchange vmjExchange){
-		return record.updateWishlistItemImpl(vmjExchange);
+    public HashMap<String, Object> createWishlistItem(VMJExchange vmjExchange){
+		return record.createWishlistItem(vmjExchange);
 	}
 
-    public HashMap<String, Object> getWishlistItemImpl(VMJExchange vmjExchange){
-		return record.getWishlistItemImpl(vmjExchange);
+    public HashMap<String, Object> createWishlistItem(VMJExchange vmjExchange, int id){
+		return record.createWishlistItem(vmjExchange, id);
 	}
 
-    public List<HashMap<String,Object>> getAllWishlistItemImpl(VMJExchange vmjExchange){
-		return record.getAllWishlistItemImpl(vmjExchange);
+    public HashMap<String, Object> updateWishlistItem(VMJExchange vmjExchange){
+		return record.updateWishlistItem(vmjExchange);
 	}
 
-    public List<HashMap<String,Object>> deleteWishlistItemImpl(VMJExchange vmjExchange){
-		return record.deleteWishlistItemImpl(vmjExchange);
+    public HashMap<String, Object> getWishlistItem(VMJExchange vmjExchange){
+		return record.getWishlistItem(vmjExchange);
+	}
+
+    public List<HashMap<String,Object>> getAllWishlistItem(VMJExchange vmjExchange){
+		return record.getAllWishlistItem(vmjExchange);
+	}
+
+    public List<HashMap<String,Object>> deleteWishlistItem(VMJExchange vmjExchange){
+		return record.deleteWishlistItem(vmjExchange);
 	}
 
 }

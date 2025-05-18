@@ -5,19 +5,21 @@ import vmj.hibernate.integrator.RepositoryUtil;
 import vmj.routing.route.VMJExchange;
 //add other required packages
 
-public abstract class WishlistManagementResourceComponent implements WishlishManagementResource{
+public abstract class WishlistManagementResourceComponent implements WishlistManagementResource{
 	
 	public WishlistManagementResourceComponent() { }
  
-    public abstract WishlishManagement createWishlishManagement(VMJExchange vmjExchange);    
-	public abstract HashMap<String, Object> updateWishlishManagement(VMJExchange vmjExchange);
-    public abstract HashMap<String, Object> getWishlishManagement(VMJExchange vmjExchange);
-    public abstract List<HashMap<String,Object>> getAllWishlishManagement(VMJExchange vmjExchange);
-    public abstract List<HashMap<String,Object>> deleteWishlishManagement(VMJExchange vmjExchange);
+	public abstract List<HashMap<String,Object>> saveWishlistManagement(VMJExchange vmjExchange);
+  	public abstract HashMap<String,Object> createWishlistManagement(VMJExchange vmjExchange);
+	public abstract HashMap<String,Object> createWishlistManagement(VMJExchange vmjExchange, int id);    
+	public abstract HashMap<String, Object> updateWishlistManagement(VMJExchange vmjExchange);
+  	public abstract HashMap<String, Object> getWishlistManagement(VMJExchange vmjExchange);
+  	public abstract List<HashMap<String,Object>> getAllWishlistManagement(VMJExchange vmjExchange);
+  	public abstract List<HashMap<String,Object>> deleteWishlistManagement(VMJExchange vmjExchange);
 
-	public abstract void addItem(Item item);
+	public abstract void addWishlist(WishlistItem wishlistItem);
 
-	public abstract void removeItem(UUID itemId);
+	public abstract void removeWishlist(UUID itemId);
 
-	public abstract void getItems();
+	public abstract void getWishlists();
 }

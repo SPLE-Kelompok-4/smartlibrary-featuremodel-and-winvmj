@@ -10,65 +10,86 @@ import SmartLibrary.wishlistmanagement.WishlistManagementFactory;
 
 public class WishlistManagementResourceImpl extends WishlistManagementResourceComponent{
 	
-	private WishlistManagementServiceImpl wishlishmanagementServiceImpl = new WishlistManagementServiceImpl();
+	private WishlistManagementServiceImpl wishlistManagementServiceImpl = new WishlistManagementServiceImpl();
 
 	// @Restriced(permission = "")
-    @Route(url="call/wishlistmanagement")
-    public HashMap<String,Object> createwishlishmanagement(VMJExchange vmjExchange){
+    @Route(url="call/Wishlistmanagement/save")
+    public List<HashMap<String,Object>> saveWishlistManagement(VMJExchange vmjExchange){
+		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
+			return null;
+		}
+		return wishlistManagementServiceImpl.saveWishlistManagement(vmjExchange);
+	}
+
+
+		@Route(url="call/wishlistManagement")
+    public HashMap<String,Object> createWishlistManagement(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			WishlishManagement result = wishlishmanagementServiceImpl.createWishlishManagement(requestBody);
+			WishlistManagement result = wishlistManagementServiceImpl.createWishlistManagement(requestBody);
 			return result.toHashMap();
 		}
 		throw new NotFoundException("Route tidak ditemukan");
 	}
 
-    // @Restriced(permission = "")
-    @Route(url="call/wishlistmanagement/update")
-    public HashMap<String, Object> updateWishlishManagement(VMJExchange vmjExchange){
+    public HashMap<String,Object> createWishlistManagement(VMJExchange vmjExchange, int id){
+		if (vmjExchange.getHttpMethod().equals("POST")) {
+		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
+			WishlistManagement result = wishlistManagementServiceImpl.createWishlistManagement(requestBody, id);
+			return result.toHashMap();
+		}
+		throw new NotFoundException("Route tidak ditemukan");
+	}
+
+	// @Restriced(permission = "")
+    @Route(url="call/wishlistManagement/update")
+    public HashMap<String, Object> updateWishlistManagement(VMJExchange vmjExchange){
 		Map<String, Object> requestBody = vmjExchange.getPayload(); 
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")){
 			return null;
 		}
-		return wishlishmanagementServiceImpl.updateWishlishManagement(requestBody);
+		return wishlistManagementServiceImpl.updateWishlistManagement(requestBody);
 		
 	}
 
 	// @Restriced(permission = "")
-    @Route(url="call/wishlistmanagement/detail")
-    public HashMap<String, Object> getWishlishManagement(VMJExchange vmjExchange){
+    @Route(url="call/wishlistManagement/detail")
+    public HashMap<String, Object> getWishlistManagement(VMJExchange vmjExchange){
 		Map<String, Object> requestBody = vmjExchange.getPayload(); 
-		return wishlishmanagementServiceImpl.getWishlishManagement(requestBody);
+		return wishlistManagementServiceImpl.getWishlistManagement(requestBody);
 	}
 
 	// @Restriced(permission = "")
-    @Route(url="call/wishlistmanagement/list")
-    public List<HashMap<String,Object>> getAllWishlishManagement(VMJExchange vmjExchange){
+    @Route(url="call/wishlistManagement/list")
+    public List<HashMap<String,Object>> getAllWishlistManagement(VMJExchange vmjExchange){
 		Map<String, Object> requestBody = vmjExchange.getPayload(); 
-		return wishlishmanagementServiceImpl.getAllWishlishManagement(requestBody);
+		return wishlistManagementServiceImpl.getAllWishlistManagement(requestBody);
 	}
 
-    
 	// @Restriced(permission = "")
-    @Route(url="call/wishlistmanagement/delete")
-    public List<HashMap<String,Object>> deleteWishlishManagement(VMJExchange vmjExchange){
+    @Route(url="call/wishlistManagement/delete")
+    public List<HashMap<String,Object>> deleteWishlistManagement(VMJExchange vmjExchange){
 		Map<String, Object> requestBody = vmjExchange.getPayload(); 
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
 		
-		return wishlishmanagementServiceImpl.deleteWishlishManagement(requestBody);
+		return wishlistManagementServiceImpl.deleteWishlistManagement(requestBody);
 	}
 
-	public void addItem(Item item) {
+
+	
+	public void addWishlist(WishlistItem wishlistItem) {
 		// TODO: implement this method
 	}
 
-	public void removeItem(UUID itemId) {
+	
+	public void removeWishlist(UUID itemId) {
 		// TODO: implement this method
 	}
 
-	public void getItems() {
+	
+	public void getWishlists() {
 		// TODO: implement this method
 	}
 }
