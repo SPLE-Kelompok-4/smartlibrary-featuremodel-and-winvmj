@@ -7,6 +7,7 @@ import vmj.routing.route.VMJExchange;
 import javax.persistence.OneToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.CascadeType;
+import SmartLibrary.ebookdisplay.core.EEList;
 //add other required packages
 
 @MappedSuperclass

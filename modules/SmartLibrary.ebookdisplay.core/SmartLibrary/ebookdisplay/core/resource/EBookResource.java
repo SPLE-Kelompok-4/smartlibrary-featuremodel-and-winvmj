@@ -9,5 +9,5 @@ public interface EBookResource {
     HashMap<String, Object> getEBook(VMJExchange vmjExchange);
     List<HashMap<String,Object>> getAllEBook(VMJExchange vmjExchange);
     List<HashMap<String,Object>> deleteEBook(VMJExchange vmjExchange);
-	HashMap<String, Object> EBook(VMJExchange vmjExhange);
+	HashMap<String, Object> createEBook(VMJExchange vmjExhange);
 }

@@ -13,13 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
+import SmartLibrary.ebookdisplay.core.EEList;
 
 @Entity(name="ebook_impl")
 @Table(name="ebook_impl")
 public class EBookImpl extends EBookComponent {
-
-	public EBookImpl(EDate releaseDate, String description, String eBookTitle, String eBookAuthor, UUID bookID, String ISBN, EEList categories, EBookAccessImpl ebookaccessimpl, EDate createdAt) {
+	
+	public EBookImpl(EDate releaseDate, String description, String eBookTitle, String eBookAuthor, UUID bookID, String ISBN, EEList categories, EDate createdAt) {
 		this.releaseDate = releaseDate;
 		this.description = description;
 		this.eBookTitle = eBookTitle;
@@ -27,23 +27,24 @@ public class EBookImpl extends EBookComponent {
 		this.bookID = bookID;
 		this.ISBN = ISBN;
 		this.categories = categories;
-		this.ebookaccessimpl = ebookaccessimpl;
+		// this.ebookaccessimpl = ebookaccessimpl;
 		this.createdAt = createdAt;
 	}
 
-	public EBookImpl(EDate releaseDate, String description, String eBookTitle, String eBookAuthor, UUID bookID, String ISBN, EEList categories, EBookAccessImpl ebookaccessimpl, EDate createdAt) {
-		this.bookID =  UUID.randomUUID();;
+	// With Random UUID constructor
+	public EBookImpl(EDate releaseDate, String description, String eBookTitle, String eBookAuthor, String ISBN, EEList categories, EDate createdAt) {
+		this.bookID =  UUID.randomUUID();
 		this.releaseDate = releaseDate;
 		this.description = description;
 		this.eBookTitle = eBookTitle;
 		this.eBookAuthor = eBookAuthor;
-		this.bookID = bookID;
 		this.ISBN = ISBN;
 		this.categories = categories;
-		this.ebookaccessimpl = ebookaccessimpl;
+		// this.ebookaccessimpl = ebookaccessimpl;
 		this.createdAt = createdAt;
 	}
 
+	// Default constructor required by JPA
 	public EBookImpl() { }
 
 	public EDate getReleaseDate() {
@@ -103,7 +104,7 @@ public class EBookImpl extends EBookComponent {
 		this.createdAt = createdAt;
 	}
 
-	
+	@Override
 	public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> ebookMap = new HashMap<String,Object>();
 		ebookMap.put("releaseDate",getReleaseDate());
@@ -113,7 +114,7 @@ public class EBookImpl extends EBookComponent {
 		ebookMap.put("bookID",getBookID());
 		ebookMap.put("ISBN",getISBN());
 		ebookMap.put("categories",getCategories());
-		ebookMap.put("ebookaccessimpl",getEbookaccessimpl());
+		// ebookMap.put("ebookaccessimpl",getEbookaccessimpl());
 		ebookMap.put("createdAt",getCreatedAt());
 
         return ebookMap;
