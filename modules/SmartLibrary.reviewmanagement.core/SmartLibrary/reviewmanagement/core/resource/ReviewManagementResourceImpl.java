@@ -5,7 +5,7 @@ import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import SmartLibrary.reviewmanagement.ReviewManagementFactory;
-import prices.auth.vmj.annotations.Restricted;
+//import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
 
@@ -19,14 +19,12 @@ public class ReviewManagementResourceImpl extends ReviewManagementResourceCompon
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		ReviewManagement reviewmanagement = createReviewManagement(vmjExchange);
-		reviewmanagementRepository.saveObject(reviewmanagement);
-		return getAllReviewManagement(vmjExchange);
+		return reviewmanagementServiceImpl.saveReviewManagement(vmjExchange);
 	}
 
-	// @Restriced(permission = "")
-    @Route(url="call/reviewmanagement")
-    public HashMap<String,Object> reviewmanagement(VMJExchange vmjExchange){
+
+		@Route(url="call/reviewmanagement")
+    public HashMap<String,Object> createReviewManagement(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
 			ReviewManagement result = reviewmanagementServiceImpl.createReviewManagement(requestBody);
@@ -35,16 +33,7 @@ public class ReviewManagementResourceImpl extends ReviewManagementResourceCompon
 		throw new NotFoundException("Route tidak ditemukan");
 	}
 
-    public ReviewManagement createReviewManagement(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("POST")) {
-		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			ReviewManagement result = reviewmanagementServiceImpl.createReviewManagement(requestBody);
-			return result.toHashMap();
-		}
-		throw new NotFoundException("Route tidak ditemukan");
-	}
-
-    public ReviewManagement createReviewManagement(VMJExchange vmjExchange, int id){
+    public HashMap<String,Object> createReviewManagement(VMJExchange vmjExchange, int id){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
 			ReviewManagement result = reviewmanagementServiceImpl.createReviewManagement(requestBody, id);
@@ -91,7 +80,7 @@ public class ReviewManagementResourceImpl extends ReviewManagementResourceCompon
 
 
 	
-	public void addReview(Item item) {
+	public void addReview(ReviewItem reviewItem) {
 		// TODO: implement this method
 	}
 

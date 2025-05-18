@@ -5,49 +5,47 @@ import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import SmartLibrary.reviewmanagement.ReviewItemFactory;
-import prices.auth.vmj.annotations.Restricted;
+//import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
 
 public class ReviewItemResourceImpl extends ReviewItemResourceComponent{
 	
-	private ReviewItemServiceImpl reviewitemimplServiceImpl = new ReviewItemServiceImpl();
+	private ReviewItemServiceImpl reviewitemServiceImpl = new ReviewItemServiceImpl();
 
 	// @Restriced(permission = "")
     @Route(url="call/reviewmanagement/save")
-    public List<HashMap<String,Object>> saveReviewItemImpl(VMJExchange vmjExchange){
+    public List<HashMap<String,Object>> saveReviewItem(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		ReviewItemImpl reviewitemimpl = createReviewItemImpl(vmjExchange);
-		reviewitemimplRepository.saveObject(reviewitemimpl);
-		return getAllReviewItemImpl(vmjExchange);
+		return reviewitemServiceImpl.saveReviewItem(vmjExchange);
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/reviewmanagement")
-    public HashMap<String,Object> reviewitemimpl(VMJExchange vmjExchange){
+    public HashMap<String,Object> ReviewItem(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			ReviewItemImpl result = reviewitemimplServiceImpl.createReviewItemImpl(requestBody);
+			ReviewItem result = reviewitemServiceImpl.createReviewItem(requestBody);
 			return result.toHashMap();
 		}
 		throw new NotFoundException("Route tidak ditemukan");
 	}
 
-    public ReviewItemImpl createReviewItemImpl(VMJExchange vmjExchange){
+    public HashMap<String, Object> createReviewItem(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			ReviewItemImpl result = reviewitemimplServiceImpl.createReviewItemImpl(requestBody);
+			ReviewItem result = reviewitemServiceImpl.createReviewItem(requestBody);
 			return result.toHashMap();
 		}
 		throw new NotFoundException("Route tidak ditemukan");
 	}
 
-    public ReviewItemImpl createReviewItemImpl(VMJExchange vmjExchange, int id){
+    public HashMap<String, Object> createReviewItem(VMJExchange vmjExchange, int id){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			ReviewItemImpl result = reviewitemimplServiceImpl.createReviewItemImpl(requestBody, id);
+			ReviewItem result = reviewitemServiceImpl.createReviewItem(requestBody);
 			return result.toHashMap();
 		}
 		throw new NotFoundException("Route tidak ditemukan");
@@ -55,38 +53,38 @@ public class ReviewItemResourceImpl extends ReviewItemResourceComponent{
 
 	// @Restriced(permission = "")
     @Route(url="call/reviewmanagement/update")
-    public HashMap<String, Object> updateReviewItemImpl(VMJExchange vmjExchange){
+    public HashMap<String, Object> updateReviewItem(VMJExchange vmjExchange){
 		Map<String, Object> requestBody = vmjExchange.getPayload(); 
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")){
 			return null;
 		}
-		return reviewitemimplServiceImpl.updateReviewItemImpl(requestBody);
+		return reviewitemServiceImpl.updateReviewItem(requestBody);
 		
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/reviewmanagement/detail")
-    public HashMap<String, Object> getReviewItemImpl(VMJExchange vmjExchange){
+    public HashMap<String, Object> getReviewItem(VMJExchange vmjExchange){
 		Map<String, Object> requestBody = vmjExchange.getPayload(); 
-		return reviewitemimplServiceImpl.getReviewItemImpl(requestBody);
+		return reviewitemServiceImpl.getReviewItem(requestBody);
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/reviewmanagement/list")
-    public List<HashMap<String,Object>> getAllReviewItemImpl(VMJExchange vmjExchange){
+    public List<HashMap<String,Object>> getAllReviewItem(VMJExchange vmjExchange){
 		Map<String, Object> requestBody = vmjExchange.getPayload(); 
-		return reviewitemimplServiceImpl.getAllReviewItemImpl(requestBody);
+		return reviewitemServiceImpl.getAllReviewItem(requestBody);
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/reviewmanagement/delete")
-    public List<HashMap<String,Object>> deleteReviewItemImpl(VMJExchange vmjExchange){
+    public List<HashMap<String,Object>> deleteReviewItem(VMJExchange vmjExchange){
 		Map<String, Object> requestBody = vmjExchange.getPayload(); 
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
 		
-		return reviewitemimplServiceImpl.deleteReviewItemImpl(requestBody);
+		return reviewitemServiceImpl.deleteReviewItem(requestBody);
 	}
 
 

@@ -5,21 +5,20 @@ import vmj.hibernate.integrator.RepositoryUtil;
 import vmj.routing.route.VMJExchange;
 //add other required packages
 
-public abstract class ReviewItemServiceComponent implements ReviewItemImplService{
-	protected RepositoryUtil<ReviewItemImpl> Repository;
+public abstract class ReviewItemServiceComponent implements ReviewItemService{
+	protected RepositoryUtil<ReviewItem> Repository;
 
     public ReviewItemServiceComponent(){
-        this.Repository = new RepositoryUtil<ReviewItemImpl>(SmartLibrary.reviewmanagement.core.ReviewItemComponent.class);
+        this.Repository = new RepositoryUtil<ReviewItem>(SmartLibrary.reviewmanagement.core.ReviewItemComponent.class);
     }	
 
-    public abstract List<HashMap<String,Object>> saveReviewItemImpl(VMJExchange vmjExchange);
-    public abstract ReviewItemImpl createReviewItemImpl(Map<String, Object> requestBodye);
-	public abstract ReviewItemImpl createReviewItemImpl(Map<String, Object> requestBody, Map<String, Object> response);    
-	public abstract HashMap<String, Object> updateReviewItemImpl(Map<String, Object> requestBody);
-    public abstract HashMap<String, Object> getReviewItemImpl(Map<String, Object> requestBody);
-    public abstract List<HashMap<String,Object>> getAllReviewItemImpl(Map<String, Object> requestBody);
-    public abstract List<HashMap<String,Object>> transformListToHashMap(List<ReviewItemImpl> List);
-    public abstract List<HashMap<String,Object>> deleteReviewItemImpl(Map<String, Object> requestBody);
-	public abstract HashMap<String, Object> getReviewItemImplById(int id);
+    public abstract List<HashMap<String,Object>> saveReviewItem(VMJExchange vmjExchange);
+    public abstract ReviewItem createReviewItem(Map<String, Object> requestBodye);
+	public abstract HashMap<String, Object> updateReviewItem(Map<String, Object> requestBody);
+    public abstract HashMap<String, Object> getReviewItem(Map<String, Object> requestBody);
+    public abstract List<HashMap<String,Object>> getAllReviewItem(Map<String, Object> requestBody);
+    public abstract List<HashMap<String,Object>> transformListToHashMap(List<ReviewItem> List);
+    public abstract List<HashMap<String,Object>> deleteReviewItem(Map<String, Object> requestBody);
+	public abstract HashMap<String, Object> getReviewItemById(int id);
 
 }
