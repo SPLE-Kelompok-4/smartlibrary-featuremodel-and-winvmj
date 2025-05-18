@@ -3,106 +3,85 @@ import java.util.*;
 
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
+import vmj.routing.route.exceptions.*;
 
 import SmartLibrary.ebookdisplay.core.EBookResourceDecorator;
-import SmartLibrary.ebookdisplay.core.EBookImpl;
+import SmartLibrary.ebookdisplay.core.EBook;
 import SmartLibrary.ebookdisplay.core.EBookResourceComponent;
+import prices.auth.vmj.annotations.Restricted;
 
 public class EBookResourceImpl extends EBookResourceDecorator {
-    public EBookResourceImpl (EBookResourceComponent record) {
+    
+    private EBookServiceImpl ebookServiceImpl;
+    
+    public EBookResourceImpl(EBookResourceComponent record) {
         super(record);
+        this.ebookServiceImpl = new EBookServiceImpl();
     }
 
-    // @Restriced(permission = "")
+    // @Restricted(permission = "")
     @Route(url="call/displaywithprice/save")
-    public List<HashMap<String,Object>> save(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
-			return null;
-		}
-		EBookDisplayDisplayWithPrice ebookdisplaydisplaywithprice = createEBookDisplayDisplayWithPrice(vmjExchange);
-		ebookdisplaydisplaywithpriceRepository.saveObject(ebookdisplaydisplaywithprice);
-		return getAllEBookDisplayDisplayWithPrice(vmjExchange);
-	}
-
-    public EBookDisplay createEBookDisplayDisplayWithPrice(VMJExchange vmjExchange){
-		String priceStr = (String) vmjExchange.getRequestBodyForm("price");
-		int price = Integer.parseInt(priceStr);
-		
-		EBookDisplayDisplayWithPrice ebookdisplaydisplaywithprice = record.createEBookDisplayDisplayWithPrice(vmjExchange);
-		EBookDisplayDisplayWithPrice ebookdisplaydisplaywithpricedeco = EBookDisplayDisplayWithPriceFactory.createEBookDisplayDisplayWithPrice("SmartLibrary.displaywithprice.core.EBookImpl", ebookdisplaydisplaywithprice, releaseDate, description, eBookTitle, eBookAuthor, bookID, ISBN, categories, ebookaccessimpl, createdAt,
-		price
-		);
-			return ebookdisplaydisplaywithpricedeco;
-	}
-
-
-    public EBookDisplay createEBookDisplayDisplayWithPrice(VMJExchange vmjExchange, int id){
-		String priceStr = (String) vmjExchange.getRequestBodyForm("price");
-		int price = Integer.parseInt(priceStr);
-		EBookDisplayDisplayWithPrice ebookdisplaydisplaywithprice = ebookdisplaydisplaywithpriceRepository.getObject(id);
-		int recordEBookDisplayDisplayWithPriceId = ((EBookDisplayDisplayWithPriceDecorator) savedEBookDisplayDisplayWithPrice.getRecord()).getId();
-		
-		ebookdisplaydisplaywithprice = record.createEBookDisplayDisplayWithPrice(vmjExchange);
-		EBookDisplayDisplayWithPrice ebookdisplaydisplaywithpricedeco = EBookDisplayDisplayWithPriceFactory.createEBookDisplayDisplayWithPrice("SmartLibrary.displaywithprice.core.EBookImpl", id, ebookdisplaydisplaywithprice, releaseDate, description, eBookTitle, eBookAuthor, bookID, ISBN, categories, ebookaccessimpl, createdAt,
-		price
-		);
-			return ebookdisplaydisplaywithpricedeco;
-	}
-
-	// @Restriced(permission = "")
-    @Route(url="call/displaywithprice/update")
-    public HashMap<String, Object> updateEBookDisplayDisplayWithPrice(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
-			return null;
-		}
-		String idStr = (String) vmjExchange.getRequestBodyForm("");
-		int id = Integer.parseInt(idStr);
-		
-		EBookDisplayDisplayWithPrice ebookdisplaydisplaywithprice = ebookdisplaydisplaywithpriceRepository.getObject(id);
-		ebookdisplaydisplaywithprice = createEBookDisplayDisplayWithPrice(vmjExchange, id);
-		
-		ebookdisplaydisplaywithpriceRepository.updateObject(ebookdisplaydisplaywithprice);
-		ebookdisplaydisplaywithprice = ebookdisplaydisplaywithpriceRepository.getObject(id);
-		//to do: fix association attributes
-		
-		return ebookdisplaydisplaywithprice.toHashMap();
-		
-	}
-
-	// @Restriced(permission = "")
-    @Route(url="call/displaywithprice/detail")
-    public HashMap<String, Object> getEBookDisplayDisplayWithPrice(VMJExchange vmjExchange){
-		return record.getEBookDisplayDisplayWithPrice(vmjExchange);
-	}
-
-	// @Restriced(permission = "")
-    @Route(url="call/displaywithprice/list")
-    public List<HashMap<String,Object>> getAllEBookDisplayDisplayWithPrice(VMJExchange vmjExchange){
-		List<EBookDisplayDisplayWithPrice> ebookdisplaydisplaywithpriceList = ebookdisplaydisplaywithpriceRepository.getAllObject("ebookdisplaydisplaywithprice_impl");
-		return transformEBookDisplayDisplayWithPriceListToHashMap(ebookdisplaydisplaywithpriceList);
-	}
-
-    public List<HashMap<String,Object>> transformEBookDisplayDisplayWithPriceListToHashMap(List<EBookDisplayDisplayWithPrice> EBookDisplayDisplayWithPriceList){
-		List<HashMap<String,Object>> resultList = new ArrayList<HashMap<String,Object>>();
-        for(int i = 0; i < EBookDisplayDisplayWithPriceList.size(); i++) {
-            resultList.add(EBookDisplayDisplayWithPriceList.get(i).toHashMap());
+    public List<HashMap<String,Object>> saveEBookWithPrice(VMJExchange vmjExchange) {
+        if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
+            return null;
         }
+        return ebookServiceImpl.saveEBookWithPrice(vmjExchange);
+    }
 
-        return resultList;
-	}
+    // @Restricted(permission = "")
+    @Route(url="call/displaywithprice")
+    public HashMap<String,Object> createEBookWithPrice(VMJExchange vmjExchange) {
+        if (vmjExchange.getHttpMethod().equals("POST")) {
+            Map<String, Object> requestBody = vmjExchange.getPayload();
+            String priceStr = (String) vmjExchange.getRequestBodyForm("price");
+            if (priceStr != null && !priceStr.isEmpty()) {
+                requestBody.put("price", priceStr);
+            }
+            
+            EBook result = ebookServiceImpl.createEBookWithPrice(requestBody);
+            return result.toHashMap();
+        }
+        throw new NotFoundException("Route tidak ditemukan");
+    }
 
-	// @Restriced(permission = "")
+    // @Restricted(permission = "")
+    @Route(url="call/displaywithprice/update")
+    public HashMap<String, Object> updateEBookWithPrice(VMJExchange vmjExchange) {
+        if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
+            return null;
+        }
+        
+        Map<String, Object> requestBody = vmjExchange.getPayload();
+        String priceStr = (String) vmjExchange.getRequestBodyForm("price");
+        if (priceStr != null && !priceStr.isEmpty()) {
+            requestBody.put("price", priceStr);
+        }
+        
+        return ebookServiceImpl.updateEBookWithPrice(requestBody);
+    }
+
+    // @Restricted(permission = "")
+    @Route(url="call/displaywithprice/detail")
+    public HashMap<String, Object> getEBookWithPrice(VMJExchange vmjExchange) {
+        Map<String, Object> requestBody = vmjExchange.getPayload();
+        return ebookServiceImpl.getEBookWithPrice(requestBody);
+    }
+
+    // @Restricted(permission = "")
+    @Route(url="call/displaywithprice/list")
+    public List<HashMap<String,Object>> getAllEBookWithPrice(VMJExchange vmjExchange) {
+        Map<String, Object> requestBody = vmjExchange.getPayload();
+        return ebookServiceImpl.getAllEBookWithPrice(requestBody);
+    }
+
+    // @Restricted(permission = "")
     @Route(url="call/displaywithprice/delete")
-    public List<HashMap<String,Object>> deleteEBookDisplayDisplayWithPrice(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
-			return null;
-		}
-		
-		String idStr = (String) vmjExchange.getRequestBodyForm("");
-		int id = Integer.parseInt(idStr);
-		ebookdisplaydisplaywithpriceRepository.deleteObject(id);
-		return getAllEBookDisplayDisplayWithPrice(vmjExchange);
-	}
-
-	
+    public List<HashMap<String,Object>> deleteEBookWithPrice(VMJExchange vmjExchange) {
+        if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
+            return null;
+        }
+        
+        Map<String, Object> requestBody = vmjExchange.getPayload();
+        return ebookServiceImpl.deleteEBookWithPrice(requestBody);
+    }
 }

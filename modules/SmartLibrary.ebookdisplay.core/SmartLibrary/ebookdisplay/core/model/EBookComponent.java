@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import SmartLibrary.ebookdisplay.core.EEList;
 
 @Entity
 @Table(name="ebook_comp")
@@ -23,8 +24,8 @@ public abstract class EBookComponent implements EBook{
 	protected UUID bookID;
 	protected String ISBN;
 	protected EEList categories;
-	@ManyToOne(targetEntity=SmartLibrary.core.Component.class)
-	protected EBookAccessImpl ebookAccessImpl;
+	// @ManyToOne(targetEntity=SmartLibrary.core.Component.class)
+	// protected EBookAccessImpl ebookAccessImpl;
 	protected EDate createdAt;
 	protected String objectName = EBookComponent.class.getName();
 
@@ -32,9 +33,19 @@ public abstract class EBookComponent implements EBook{
 
 	} 
 
-	public EBookComponent(
-        EDate releaseDate, String description, String eBookTitle, String eBookAuthor, UUID bookID, String ISBN, EEList categories, EBookAccessImpl ebookaccessimpl, EDate createdAt
-    ) {
+	// public EBookComponent(EDate releaseDate, String description, String eBookTitle, String eBookAuthor, UUID bookID, String ISBN, EEList categories, EBookAccessImpl ebookaccessimpl, EDate createdAt) {
+    //     this.releaseDate = releaseDate;
+    //     this.description = description;
+    //     this.eBookTitle = eBookTitle;
+    //     this.eBookAuthor = eBookAuthor;
+    //     this.bookID = bookID;
+    //     this.ISBN = ISBN;
+    //     this.categories = categories;
+    //     this.ebookaccessimpl = ebookaccessimpl;
+    //     this.createdAt = createdAt;
+    // }
+
+	public EBookComponent(EDate releaseDate, String description, String eBookTitle, String eBookAuthor, UUID bookID, String ISBN, EEList categories, EDate createdAt) {
         this.releaseDate = releaseDate;
         this.description = description;
         this.eBookTitle = eBookTitle;
@@ -42,7 +53,6 @@ public abstract class EBookComponent implements EBook{
         this.bookID = bookID;
         this.ISBN = ISBN;
         this.categories = categories;
-        this.ebookaccessimpl = ebookaccessimpl;
         this.createdAt = createdAt;
     }
 
@@ -95,8 +105,8 @@ public abstract class EBookComponent implements EBook{
 	public void setCategories(EEList categories) {
 		this.categories = categories;
 	}
-	public abstract EBookAccessImpl getEbookaccessimpl();
-	public abstract void setEbookaccessimpl(EBookAccessImpl ebookaccessimpl);
+	// public abstract EBookAccessImpl getEbookaccessimpl();
+	// public abstract void setEbookaccessimpl(EBookAccessImpl ebookaccessimpl);
 	
 	public EDate getCreatedAt() {
 		return this.createdAt;
@@ -117,7 +127,7 @@ public abstract class EBookComponent implements EBook{
             " bookID='" + getBookID() + "'" +
             " ISBN='" + getISBN() + "'" +
             " categories='" + getCategories() + "'" +
-            " ebookaccessimpl='" + getEbookaccessimpl() + "'" +
+            // " ebookaccessimpl='" + getEbookaccessimpl() + "'" +
             " createdAt='" + getCreatedAt() + "'" +
             "}";
     }

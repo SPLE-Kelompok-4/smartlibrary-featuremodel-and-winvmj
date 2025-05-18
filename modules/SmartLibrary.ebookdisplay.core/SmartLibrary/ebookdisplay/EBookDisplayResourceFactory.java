@@ -1,6 +1,6 @@
 package SmartLibrary.ebookdisplay;
 
-import SmartLibrary.ebookdisplay.core.EBookDisplayResource;
+import SmartLibrary.ebookdisplay.core.EBookResource;
 import java.lang.reflect.Constructor;
 import java.util.logging.Logger;
 
@@ -12,13 +12,13 @@ public class EBookDisplayResourceFactory{
 
     }
 
-    public static EBookDisplayResource createEBookDisplayResource(String fullyQualifiedName, Object ... base)
+    public static EBookResource createEBookDisplayResource(String fullyQualifiedName, Object ... base)
     {
-        EBookDisplayResource record = null;
+        EBookResource record = null;
         try {
             Class<?> clz = Class.forName(fullyQualifiedName);
             Constructor<?> constructor = clz.getDeclaredConstructors()[0];
-            record = (EBookDisplayResource) constructor.newInstance(base);
+            record = (EBookResource) constructor.newInstance(base);
         } 
         catch (IllegalArgumentException e)
         {

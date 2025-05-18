@@ -9,5 +9,5 @@ public interface ReviewManagementResource {
     HashMap<String, Object> getReviewManagement(VMJExchange vmjExchange);
     List<HashMap<String,Object>> getAllReviewManagement(VMJExchange vmjExchange);
     List<HashMap<String,Object>> deleteReviewManagement(VMJExchange vmjExchange);
-	HashMap<String, Object> ReviewManagement(VMJExchange vmjExhange);
+	HashMap<String, Object> createReviewManagement(VMJExchange vmjExhange);
 }

@@ -15,12 +15,8 @@ public abstract class EBookResourceDecorator extends EBookResourceComponent{
 		return record.saveEBook(vmjExchange);
 	}
 
-    public EBook createEBook(VMJExchange vmjExchange){
+    public HashMap<String,Object> createEBook(VMJExchange vmjExchange){
 		return record.createEBook(vmjExchange);
-	}
-
-    public EBook createEBook(VMJExchange vmjExchange, int id){
-		return record.createEBook(vmjExchange, id);
 	}
 
     public HashMap<String, Object> updateEBook(VMJExchange vmjExchange){

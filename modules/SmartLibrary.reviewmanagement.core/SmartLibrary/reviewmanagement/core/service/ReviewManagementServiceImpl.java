@@ -15,7 +15,7 @@ import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import SmartLibrary.reviewmanagement.ReviewManagementFactory;
-import prices.auth.vmj.annotations.Restricted;
+//import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
 public class ReviewManagementServiceImpl extends ReviewManagementServiceComponent{
@@ -24,35 +24,37 @@ public class ReviewManagementServiceImpl extends ReviewManagementServiceComponen
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		ReviewManagement reviewmanagement = createReviewManagement(vmjExchange);
-		reviewmanagementRepository.saveObject(reviewmanagement);
-		return getAllReviewManagement(vmjExchange);
+		Map<String, Object> requestBody = vmjExchange.getPayload();
+		ReviewManagement reviewmanagement = createReviewManagement(requestBody);
+		Repository.saveObject(reviewmanagement);
+		return getAllReviewManagement(requestBody);
+	}
+
+	public List<HashMap<String,Object>> saveReviewManagement(Map<String, Object> requestBody){
+		ReviewManagement reviewmanagement = createReviewManagement(requestBody);
+		Repository.saveObject(reviewmanagement);
+		return getAllReviewManagement(requestBody);
 	}
 
     public ReviewManagement createReviewManagement(Map<String, Object> requestBody){
+		String reviewId = (String) requestBody.get("reviewId");
+		String userId = (String) requestBody.get("userId");
 		String name = (String) requestBody.get("name");
-		
+		String createdAt = (String) requestBody.get("createdAt");
+		String updateAt = (String) requestBody.get("updateAt");
+
 		//to do: fix association attributes
-		ReviewManagement ReviewManagement = ReviewManagementFactory.createReviewManagement(
+		ReviewItemImpl reviewitemimpl = null;
+
+		ReviewManagement reviewmanagement = ReviewManagementFactory.createReviewManagement(
 			"SmartLibrary.reviewmanagement.core.ReviewManagementImpl",
-		reviewId
-		, userId
-		, name
-		, createdAt
-		, reviewitemimpl
-		, updateAt
+			reviewId, userId, name, createdAt, reviewitemimpl, updateAt
 		);
-		Repository.saveObject(reviewmanagement);
 		return reviewmanagement;
 	}
 
     public ReviewManagement createReviewManagement(Map<String, Object> requestBody, int id){
-		String name = (String) vmjExchange.getRequestBodyForm("name");
-		
-		//to do: fix association attributes
-		
-		ReviewManagement reviewmanagement = ReviewManagementFactory.createReviewManagement("SmartLibrary.reviewmanagement.core.ReviewManagementImpl", reviewId, userId, name, createdAt, reviewitemimpl, updateAt);
-		return reviewmanagement;
+		return null;
 	}
 
     public HashMap<String, Object> updateReviewManagement(Map<String, Object> requestBody){
@@ -71,20 +73,14 @@ public class ReviewManagementServiceImpl extends ReviewManagementServiceComponen
 	}
 
     public HashMap<String, Object> getReviewManagement(Map<String, Object> requestBody){
-		List<HashMap<String, Object>> reviewmanagementList = getAllReviewManagement("reviewmanagement_impl");
-		for (HashMap<String, Object> reviewmanagement : reviewmanagementList){
-			int record_id = ((Double) reviewmanagement.get("record_id")).intValue();
-			if (record_id == id){
-				return reviewmanagement;
-			}
-		}
-		return null;
+		String idStr = (String) requestBody.get("reviewIduserId");
+		int id = Integer.parseInt(idStr);
+		ReviewManagement reviewmanagement = Repository.getObject(id);
+		return reviewmanagement.toHashMap();
 	}
 
 	public HashMap<String, Object> getReviewManagementById(int id){
-		String idStr = vmjExchange.getGETParam("reviewIduserId"); 
-		id = Integer.parseInt(idStr);
-		ReviewManagement reviewmanagement = reviewmanagementRepository.getObject(id);
+		ReviewManagement reviewmanagement = Repository.getObject(id);
 		return reviewmanagement.toHashMap();
 	}
 
@@ -110,7 +106,7 @@ public class ReviewManagementServiceImpl extends ReviewManagementServiceComponen
 		return getAllReviewManagement(requestBody);
 	}
 
-	public void addReview(Item item) {
+	public void addReview(ReviewItem  reviewItem) {
 		// TODO: implement this method
 	}
 

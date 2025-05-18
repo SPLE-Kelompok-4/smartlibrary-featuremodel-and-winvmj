@@ -12,35 +12,42 @@ import SmartLibrary.ebookdisplay.core.EBookDecorator;
 import SmartLibrary.ebookdisplay.core.EBook;
 import SmartLibrary.ebookdisplay.core.EBookComponent;
 
-@Entity(name="ebookdisplay_displaywithprice")
-@Table(name="ebookdisplay_displaywithprice")
+@Entity(name="ebookdisplaywithprice_impl")
+@Table(name="ebookdisplaywithprice_impl")
 public class EBookImpl extends EBookDecorator {
 
-	protected int price;
+	protected double price;
 	public EBookImpl(){
         super();
         this.objectName = EBookImpl.class.getName();
     }
     
-    public EBookImpl(int price) {
+    public EBookImpl(double price) {
     	super();
 		this.price = price;
 		this.objectName = EBookImpl.class.getName();
     }
 	
-	public EBookImpl(EBookComponent record, int price) {
+	public EBookImpl(EBookComponent record, double price) {
 		super(record);
 		this.price = price;
 		this.objectName = EBookImpl.class.getName();
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
+	@Override
+	public HashMap<String, Object> toHashMap() {
+		HashMap<String, Object> ebookMap = super.toHashMap();
+		ebookMap.put("price", getPrice());
+		
+		return ebookMap;
+	}
 
 }

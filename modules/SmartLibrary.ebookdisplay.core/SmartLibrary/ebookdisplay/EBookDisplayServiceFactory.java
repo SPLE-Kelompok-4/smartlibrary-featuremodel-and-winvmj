@@ -1,6 +1,6 @@
 package SmartLibrary.ebookdisplay;
 
-import SmartLibrary.ebookdisplay.core.EBookDisplayService;
+import SmartLibrary.ebookdisplay.core.EBookService;
 import java.lang.reflect.Constructor;
 import java.util.logging.Logger;
 
@@ -12,13 +12,13 @@ public class EBookDisplayServiceFactory{
 
     }
 
-    public static EBookDisplayService createEBookDisplayService(String fullyQualifiedName, Object ... base)
+    public static EBookService createEBookDisplayService(String fullyQualifiedName, Object ... base)
     {
-        EBookDisplayService record = null;
+        EBookService record = null;
         try {
             Class<?> clz = Class.forName(fullyQualifiedName);
             Constructor<?> constructor = clz.getDeclaredConstructors()[0];
-            record = (EBookDisplayService) constructor.newInstance(base);
+            record = (EBookService) constructor.newInstance(base);
         } 
         catch (IllegalArgumentException e)
         {

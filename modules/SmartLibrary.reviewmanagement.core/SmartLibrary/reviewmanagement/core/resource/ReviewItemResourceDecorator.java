@@ -11,32 +11,32 @@ public abstract class ReviewItemResourceDecorator extends ReviewItemResourceComp
         this.record = record;
     }
 
-    public List<HashMap<String,Object>> saveReviewItemImpl(VMJExchange vmjExchange){
-		return record.saveReviewItemImpl(vmjExchange);
+    public List<HashMap<String,Object>> saveReviewItem(VMJExchange vmjExchange){
+		return record.saveReviewItem(vmjExchange);
 	}
 
-    public ReviewItemImpl createReviewItemImpl(VMJExchange vmjExchange){
-		return record.createReviewItemImpl(vmjExchange);
+    public HashMap<String, Object> createReviewItem(VMJExchange vmjExchange){
+		return record.createReviewItem(vmjExchange);
 	}
 
-    public ReviewItemImpl createReviewItemImpl(VMJExchange vmjExchange, int id){
-		return record.createReviewItemImpl(vmjExchange, id);
+    public HashMap<String, Object> createReviewItem(VMJExchange vmjExchange, int id){
+		return record.createReviewItem(vmjExchange, id);
 	}
 
-    public HashMap<String, Object> updateReviewItemImpl(VMJExchange vmjExchange){
-		return record.updateReviewItemImpl(vmjExchange);
+    public HashMap<String, Object> updateReviewItem(VMJExchange vmjExchange){
+		return record.updateReviewItem(vmjExchange);
 	}
 
-    public HashMap<String, Object> getReviewItemImpl(VMJExchange vmjExchange){
-		return record.getReviewItemImpl(vmjExchange);
+    public HashMap<String, Object> getReviewItem(VMJExchange vmjExchange){
+		return record.getReviewItem(vmjExchange);
 	}
 
-    public List<HashMap<String,Object>> getAllReviewItemImpl(VMJExchange vmjExchange){
-		return record.getAllReviewItemImpl(vmjExchange);
+    public List<HashMap<String,Object>> getAllReviewItem(VMJExchange vmjExchange){
+		return record.getAllReviewItem(vmjExchange);
 	}
 
-    public List<HashMap<String,Object>> deleteReviewItemImpl(VMJExchange vmjExchange){
-		return record.deleteReviewItemImpl(vmjExchange);
+    public List<HashMap<String,Object>> deleteReviewItem(VMJExchange vmjExchange){
+		return record.deleteReviewItem(vmjExchange);
 	}
 
 }

@@ -11,13 +11,12 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="reviewitemimpl_comp")
+@Table(name="reviewitem_comp")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class ReviewItemComponent implements ReviewItemImpl{
+public abstract class ReviewItemComponent implements ReviewItem{
 	@Id
-	public UUID reviewItemId;
-	public UUID reviewId;
-	public UUID itemId;
+	public UUID reviewId; 
+	public UUID itemId; 
 	public EDate addedAt;
 	protected String objectName = ReviewItemComponent.class.getName();
 
@@ -26,17 +25,13 @@ public abstract class ReviewItemComponent implements ReviewItemImpl{
 	} 
 
 	public ReviewItemComponent(
-        UUID reviewItemId, UUID reviewId, UUID itemId, EDate addedAt
+        UUID reviewId, UUID itemId, EDate addedAt
     ) {
-        this.reviewItemId = reviewItemId;
         this.reviewId = reviewId;
         this.itemId = itemId;
         this.addedAt = addedAt;
     }
 
-	public abstract UUID getReviewItemId();
-	public abstract void setReviewItemId(UUID reviewItemId);
-	
 	public abstract UUID getReviewId();
 	public abstract void setReviewId(UUID reviewId);
 	
@@ -51,7 +46,6 @@ public abstract class ReviewItemComponent implements ReviewItemImpl{
 	@Override
     public String toString() {
         return "{" +
-            " reviewItemId='" + getReviewItemId() + "'" +
             " reviewId='" + getReviewId() + "'" +
             " itemId='" + getItemId() + "'" +
             " addedAt='" + getAddedAt() + "'" +

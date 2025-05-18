@@ -10,17 +10,19 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import javax.persistence.ManyToOne;
+
 @Entity
 @Table(name="reviewmanagement_comp")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class ReviewManagementComponent implements ReviewManagement{
 	@Id
-	public UUID reviewId;
-	public UUID userId;
+	public UUID reviewId; 
+	public UUID userId; 
 	public String name;
 	public EDate createdAt;
-	@ManyToOne(targetEntity=SmartLibrary.core.Component.class)
-	public  ReviewItemImpl reviewitemimpl;
+	@ManyToOne
+	public ReviewItemImpl reviewitemimpl;
 	public EDate updateAt;
 	protected String objectName = ReviewManagementComponent.class.getName();
 
@@ -58,7 +60,7 @@ public abstract class ReviewManagementComponent implements ReviewManagement{
 	public abstract void setUpdateAt(EDate updateAt);
 	
  
-	public abstract void addReview(Item item);
+	public abstract void addReview(ReviewItem reviewItem);
 
 	public abstract void removeReview(UUID itemId);
 

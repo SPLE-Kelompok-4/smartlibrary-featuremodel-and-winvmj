@@ -12,8 +12,8 @@ import SmartLibrary.ebookdisplay.core.EBookDecorator;
 import SmartLibrary.ebookdisplay.core.EBook;
 import SmartLibrary.ebookdisplay.core.EBookComponent;
 
-@Entity(name="ebookdisplay_displaywithimage")
-@Table(name="ebookdisplay_displaywithimage")
+@Entity(name="ebookdisplaywithimage_impl")
+@Table(name="ebookdisplaywithimage_impl")
 public class EBookImpl extends EBookDecorator {
 
 	protected String image;
@@ -42,5 +42,12 @@ public class EBookImpl extends EBookDecorator {
 		this.image = image;
 	}
 
+	@Override
+	public HashMap<String, Object> toHashMap() {
+		HashMap<String, Object> ebookMap = super.toHashMap();
+		ebookMap.put("image", getImage());
+		
+		return ebookMap;
+	}
 
 }

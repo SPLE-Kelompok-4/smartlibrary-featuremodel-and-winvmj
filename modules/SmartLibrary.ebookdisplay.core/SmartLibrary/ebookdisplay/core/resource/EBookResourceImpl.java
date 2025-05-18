@@ -4,7 +4,7 @@ import java.util.*;
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
-import SmartLibrary.ebookdisplay.EBookFactory;
+import SmartLibrary.ebookdisplay.EBookDisplayFactory;
 import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
@@ -19,14 +19,12 @@ public class EBookResourceImpl extends EBookResourceComponent{
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		EBook ebook = createEBook(vmjExchange);
-		ebookRepository.saveObject(ebook);
-		return getAllEBook(vmjExchange);
+		return saveEBook(vmjExchange);
 	}
 
 	// @Restriced(permission = "")
     @Route(url="call/ebookdisplay")
-    public HashMap<String,Object> ebook(VMJExchange vmjExchange){
+    public HashMap<String,Object> createEBook(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
 			EBook result = ebookServiceImpl.createEBook(requestBody);
@@ -35,23 +33,14 @@ public class EBookResourceImpl extends EBookResourceComponent{
 		throw new NotFoundException("Route tidak ditemukan");
 	}
 
-    public EBook createEBook(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("POST")) {
-		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			EBook result = ebookServiceImpl.createEBook(requestBody);
-			return result.toHashMap();
-		}
-		throw new NotFoundException("Route tidak ditemukan");
-	}
-
-    public EBook createEBook(VMJExchange vmjExchange, int id){
-		if (vmjExchange.getHttpMethod().equals("POST")) {
-		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
-			EBook result = ebookServiceImpl.createEBook(requestBody, id);
-			return result.toHashMap();
-		}
-		throw new NotFoundException("Route tidak ditemukan");
-	}
+    // public EBook createEBook(VMJExchange vmjExchange, int id){
+	// 	if (vmjExchange.getHttpMethod().equals("POST")) {
+	// 	    Map<String, Object> requestBody = vmjExchange.getPayload(); 
+	// 		EBook result = ebookServiceImpl.createEBook(requestBody, id);
+	// 		return result.toHashMap();
+	// 	}
+	// 	throw new NotFoundException("Route tidak ditemukan");
+	// }
 
 	// @Restriced(permission = "")
     @Route(url="call/ebookdisplay/update")
