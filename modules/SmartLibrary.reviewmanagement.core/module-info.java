@@ -1,6 +1,6 @@
 module SmartLibrary.reviewmanagement.core {
 	exports SmartLibrary.reviewmanagement;
-  exports SmartLibrary.reviewmanagement.core;
+	exports SmartLibrary.reviewmanagement.core;
 	requires vmj.routing.route;
 	requires vmj.hibernate.integrator;
 	requires vmj.auth;
