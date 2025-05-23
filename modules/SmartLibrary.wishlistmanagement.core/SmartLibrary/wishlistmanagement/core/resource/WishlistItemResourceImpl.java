@@ -13,7 +13,7 @@ public class WishlistItemResourceImpl extends WishlistItemResourceComponent{
 	private WishlistItemServiceImpl wishListItemServiceImpl = new WishlistItemServiceImpl();
 
 	// @Restriced(permission = "")
-    @Route(url="call/Wishlistmanagement/save")
+    @Route(url="call/wishlistmanagement/save")
     public List<HashMap<String,Object>> saveWishlistItem(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
@@ -22,7 +22,7 @@ public class WishlistItemResourceImpl extends WishlistItemResourceComponent{
 	}
 
 	// @Restriced(permission = "")
-    @Route(url="call/Wishlistmanagement")
+    @Route(url="call/wishlistmanagement")
     public HashMap<String,Object> WishlistItem(VMJExchange vmjExchange){
 		if (vmjExchange.getHttpMethod().equals("POST")) {
 		    Map<String, Object> requestBody = vmjExchange.getPayload(); 
@@ -51,7 +51,7 @@ public class WishlistItemResourceImpl extends WishlistItemResourceComponent{
 	}
 
 	// @Restriced(permission = "")
-    @Route(url="call/Wishlistmanagement/update")
+    @Route(url="call/wishlistmanagement/update")
     public HashMap<String, Object> updateWishlistItem(VMJExchange vmjExchange){
 		Map<String, Object> requestBody = vmjExchange.getPayload(); 
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")){
@@ -62,21 +62,21 @@ public class WishlistItemResourceImpl extends WishlistItemResourceComponent{
 	}
 
 	// @Restriced(permission = "")
-    @Route(url="call/Wishlistmanagement/detail")
+    @Route(url="call/wishlistmanagement/detail")
     public HashMap<String, Object> getWishlistItem(VMJExchange vmjExchange){
 		Map<String, Object> requestBody = vmjExchange.getPayload(); 
 		return wishListItemServiceImpl.getWishlistItem(requestBody);
 	}
 
 	// @Restriced(permission = "")
-    @Route(url="call/Wishlistmanagement/list")
+    @Route(url="call/wishlistmanagement/list")
     public List<HashMap<String,Object>> getAllWishlistItem(VMJExchange vmjExchange){
 		Map<String, Object> requestBody = vmjExchange.getPayload(); 
 		return wishListItemServiceImpl.getAllWishlistItem(requestBody);
 	}
 
 	// @Restriced(permission = "")
-    @Route(url="call/Wishlistmanagement/delete")
+    @Route(url="call/wishlistmanagement/delete")
     public List<HashMap<String,Object>> deleteWishlistItem(VMJExchange vmjExchange){
 		Map<String, Object> requestBody = vmjExchange.getPayload(); 
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {

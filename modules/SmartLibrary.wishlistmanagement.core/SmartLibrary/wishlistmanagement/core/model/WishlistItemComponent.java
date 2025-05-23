@@ -11,51 +11,67 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="wishlistitemimpl_comp")
+@Table(name="wishlistitem_comp")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class WishlistItemComponent implements WishlistItemImpl{
-	@Id
-	public UUID wishlistItemId;
-	public UUID wishlistId;
-	public UUID itemId;
-	public EDate addedItem;
-	protected String objectName = WishlistItemComponent.class.getName();
+public abstract class WishlistItemComponent implements WishlistItem {
+    @Id
+    protected UUID wishlistItemId;
 
-	public WishlistItemComponent() {
+    protected UUID wishlistId;
+    protected UUID itemId;
+    protected EDate addedAt;
+    protected String objectName = WishlistItemComponent.class.getName();
 
-	} 
-
-	public WishlistItemComponent(
-        UUID wishlistItemId, UUID wishlistId, UUID itemId, EDate addedItem
-    ) {
-        this.wishlistItemId = wishlistItemId;
+    public WishlistItemComponent(UUID wishlistId, UUID itemId) {
         this.wishlistId = wishlistId;
         this.itemId = itemId;
-        this.addedItem = addedItem;
+        this.wishlistItemId = UUID.randomUUID();
+        this.addedAt = new EDate();
     }
 
-	public abstract UUID getWishlistItemId();
-	public abstract void setWishlistItemId(UUID wishlistItemId);
-	
-	public abstract UUID getWishlistId();
-	public abstract void setWishlistId(UUID wishlistId);
-	
-	public abstract UUID getItemId();
-	public abstract void setItemId(UUID itemId);
-	
-	public abstract EDate getAddedItem();
-	public abstract void setAddedItem(EDate addedItem);
-	
- 
+    public WishlistItemComponent() {
 
-	@Override
+    }
+
+    public UUID getWishlistItemId() {
+        return this.wishlistItemId;
+    }
+
+    public void setWishlistItemId(UUID wishlistItemId) {
+        this.wishlistItemId = wishlistItemId;
+    }
+
+    public UUID getWishlistId() {
+        return this.wishlistId;
+    }
+
+    public void setWishlistId(UUID wishlistId) {
+        this.wishlistId = wishlistId;
+    }
+
+    public UUID getItemId() {
+        return this.itemId;
+    }
+
+    public void setItemId(UUID itemId) {
+        this.itemId = itemId;
+    }
+
+    public EDate getAddedAt() {
+        return this.addedAt;
+    }
+
+    public void setAddedAt(EDate addedAt) {
+        this.addedAt = addedAt;
+    }
+
+    @Override
     public String toString() {
         return "{" +
             " wishlistItemId='" + getWishlistItemId() + "'" +
             " wishlistId='" + getWishlistId() + "'" +
             " itemId='" + getItemId() + "'" +
-            " addedItem='" + getAddedItem() + "'" +
+            " addedAt='" + getAddedAt() + "'" +
             "}";
     }
-	
 }

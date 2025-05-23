@@ -5,7 +5,7 @@ import vmj.hibernate.integrator.RepositoryUtil;
 import vmj.routing.route.VMJExchange;
 //add other required packages
 
-public abstract class WishlistItemResourceComponent implements WishlistItemImplResource{
+public abstract class WishlistItemResourceComponent implements WishlistItemResource{
 	
 	public WishlistItemResourceComponent() { }
  

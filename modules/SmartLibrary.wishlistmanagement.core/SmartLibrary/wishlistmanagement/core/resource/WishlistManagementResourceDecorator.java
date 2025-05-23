@@ -7,6 +7,10 @@ import vmj.routing.route.VMJExchange;
 public abstract class WishlistManagementResourceDecorator extends WishlistManagementResourceComponent{
 	protected WishlistManagementResourceComponent record;
 
+	public WishlistManagementResourceDecorator(WishlistManagementResourceComponent record) {
+        this.record = record;
+    }
+
     public List<HashMap<String,Object>> saveWishlistManagement(VMJExchange vmjExchange){
 		return record.saveWishlistManagement(vmjExchange);
 	}

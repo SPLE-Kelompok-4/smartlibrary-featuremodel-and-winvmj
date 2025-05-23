@@ -7,51 +7,89 @@ import vmj.routing.route.VMJExchange;
 import javax.persistence.OneToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.CascadeType;
-//add other required packages
+import java.util.UUID;
+import SmartLibrary.wishlistmanagement.core.EDate;
 
 @MappedSuperclass
-public abstract class WishlistManagementDecorator extends WishlistManagementComponent{
+public abstract class WishlistManagementDecorator extends WishlistManagementComponent {
     @OneToOne(cascade=CascadeType.ALL)
-	protected WishlistManagementComponent record;
+    protected WishlistManagementComponent record;
 
-	public WishlistManagementDecorator() {
+    public WishlistManagementDecorator() {
         super();
     }
-    
+
     public WishlistManagementDecorator(WishlistManagementComponent record) {
         super();
-        this.record = record;
         this.wishlistId = UUID.randomUUID();
-    }
-    
-    public WishlistManagementDecorator(UUID wishlistId, UUID userId, WishlistManagementComponent record) {
-        super();
-        this.wishlistId = wishlistId;
-        this.userId = userId;
         this.record = record;
     }
-    
+
+    public WishlistManagementDecorator(UUID id, WishlistManagementComponent record) {
+        super();
+        this.wishlistId = id;
+        this.record = record;
+    }
+
     public WishlistManagementDecorator(WishlistManagementComponent record, String objectName) {
         super();
-        this.record = record;
         this.wishlistId = UUID.randomUUID();
+        this.record = record;
         this.objectName = objectName;
     }
 
-	public void addItem(WishlistItem wishlistItem) {
-		record.addItem(wishlistItem);
-	}
-
-	public void removeItem(UUID itemId) {
-		record.removeItem(itemId);
-	}
-
-	public void getItems() {
-		record.getItems();
-	}
-
-	public HashMap<String, Object> toHashMap() {
-        return this.record.toHashMap();
+    @Override
+    public UUID getWishlistId() {
+        return record.getWishlistId();
     }
 
+    @Override
+    public void setWishlistId(UUID wishlistId) {
+        record.setWishlistId(wishlistId);
+    }
+
+    @Override
+    public UUID getUserId() {
+        return record.getUserId();
+    }
+
+    @Override
+    public void setUserId(UUID userId) {
+        record.setUserId(userId);
+    }
+
+    @Override
+    public String getName() {
+        return record.getName();
+    }
+
+    @Override
+    public void setName(String name) {
+        record.setName(name);
+    }
+
+    @Override
+    public EDate getCreatedAt() {
+        return record.getCreatedAt();
+    }
+
+    @Override
+    public void setCreatedAt(EDate createdAt) {
+        record.setCreatedAt(createdAt);
+    }
+
+    @Override
+    public EDate getUpdatedAt() {
+        return record.getUpdatedAt();
+    }
+
+    @Override
+    public void setUpdatedAt(EDate updatedAt) {
+        record.setUpdatedAt(updatedAt);
+    }
+
+    @Override
+    public HashMap<String, Object> toHashMap() {
+        return this.record.toHashMap();
+    }
 }
