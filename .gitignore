@@ -1,0 +1,10 @@
+/src/
+
+# Compiled output
+/bin/
+/bin-comp/
+
+# Configuration files
+/db.properties
+
+# Other common files to ignore
