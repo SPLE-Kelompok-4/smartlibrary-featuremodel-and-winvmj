@@ -18,9 +18,9 @@ tail -f java.log --pid=$TEE_PID | while read -r LINE; do
     fi
 done
 
-echo "SELECT 'CREATE DATABASE smartlibrary_product_commcon' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'smartlibrary_product_commcon') \gexec" | psql "postgresql://postgres:postgres@localhost"
+echo "SELECT 'CREATE DATABASE smartlibrary_product_commcon' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'smartlibrary_product_commcon') \gexec" | psql "postgresql://postgres:asterisk2@localhost"
 for file in sql/*.sql; do
-    psql -a -f "$file" "postgresql://postgres:postgres@localhost/smartlibrary_product_commcon"
+    psql -a -f "$file" "postgresql://postgres:asterisk2@localhost/smartlibrary_product_commcon"
 done
 
 wait

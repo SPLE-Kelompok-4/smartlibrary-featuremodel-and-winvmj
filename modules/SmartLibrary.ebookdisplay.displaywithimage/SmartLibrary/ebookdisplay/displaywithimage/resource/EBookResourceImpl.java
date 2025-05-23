@@ -6,6 +6,7 @@ import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 
 import SmartLibrary.ebookdisplay.core.EBookResourceDecorator;
+import SmartLibrary.ebookdisplay.core.EBookServiceComponent;
 import SmartLibrary.ebookdisplay.core.EBook;
 import SmartLibrary.ebookdisplay.core.EBookResourceComponent;
 import prices.auth.vmj.annotations.Restricted;
@@ -14,9 +15,9 @@ public class EBookResourceImpl extends EBookResourceDecorator {
     
     private EBookServiceImpl ebookServiceImpl;
     
-    public EBookResourceImpl(EBookResourceComponent record) {
+    public EBookResourceImpl(EBookResourceComponent record, EBookServiceComponent ebookServiceImpl) {
         super(record);
-        this.ebookServiceImpl = new EBookServiceImpl();
+        this.ebookServiceImpl = new EBookServiceImpl(ebookServiceImpl);
     }
 
     // @Restricted(permission = "")

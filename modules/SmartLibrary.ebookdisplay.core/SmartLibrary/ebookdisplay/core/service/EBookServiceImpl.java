@@ -18,7 +18,7 @@ import java.nio.charset.StandardCharsets;
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
-import SmartLibrary.ebookdisplay.EBookDisplayFactory;
+import SmartLibrary.ebookdisplay.EBookFactory;
 import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
@@ -61,7 +61,7 @@ public class EBookServiceImpl extends EBookServiceComponent{
         }
 		// EBookAccessImpl ebookaccessimpl = null; // This should be retrieved or created
 		Date createdAt = new Date();
-		EBook ebook = EBookDisplayFactory.createEBookDisplay(
+		EBook ebook = EBookFactory.createEBook(
 			"SmartLibrary.ebookdisplay.core.EBookImpl",
 		releaseDate
 		, description
