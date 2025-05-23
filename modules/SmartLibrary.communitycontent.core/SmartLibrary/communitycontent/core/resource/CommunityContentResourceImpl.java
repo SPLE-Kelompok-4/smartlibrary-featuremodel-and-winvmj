@@ -3,7 +3,7 @@ import java.util.*;
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
-import prices.auth.vmj.annotations.Restricted;
+// import prices.auth.vmj.annotations.Restricted;
 
 public class CommunityContentResourceImpl extends CommunityContentResourceComponent {
 	

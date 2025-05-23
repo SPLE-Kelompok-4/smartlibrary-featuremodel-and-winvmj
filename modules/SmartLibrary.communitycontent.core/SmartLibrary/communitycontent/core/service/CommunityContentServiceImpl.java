@@ -14,7 +14,7 @@ import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
 import SmartLibrary.communitycontent.CommunityContentFactory;
-import prices.auth.vmj.annotations.Restricted;
+// import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
 public class CommunityContentServiceImpl extends CommunityContentServiceComponent{

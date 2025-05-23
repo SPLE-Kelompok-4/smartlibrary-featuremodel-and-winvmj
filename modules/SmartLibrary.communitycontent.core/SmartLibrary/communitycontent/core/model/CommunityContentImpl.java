@@ -15,29 +15,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-/**
- * Implementation of CommunityContentComponent
- * Represents a concrete community content entity
- */
+
 @Entity(name="communitycontent_impl")
 @Table(name="communitycontent_impl")
 public class CommunityContentImpl extends CommunityContentComponent {
 
-    /**
-     * Constructor with explicit id
-     */
-    public CommunityContentImpl( String contentAuthor, UUID contentID, EDate createdAt, EDate updatedAt) {
-        super();
-        this.contentAuthor = contentAuthor;
-        this.contentID = contentID;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-
-    /**
-     * Constructor that generates a random UUID
-     */
-    public CommunityContentImpl(String contentAuthor) {
+    public CommunityContentImpl( String contentAuthor) {
         super();
         this.contentAuthor = contentAuthor;
         this.contentID = UUID.randomUUID();
@@ -45,9 +28,7 @@ public class CommunityContentImpl extends CommunityContentComponent {
         this.updatedAt = new EDate();
     }
 
-    /**
-     * Default constructor required by JPA
-     */
+   
     public CommunityContentImpl() {
         super();
     }

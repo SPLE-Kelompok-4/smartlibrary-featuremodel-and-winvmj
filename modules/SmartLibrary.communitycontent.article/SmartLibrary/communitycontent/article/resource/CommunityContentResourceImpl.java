@@ -8,13 +8,17 @@ import SmartLibrary.communitycontent.core.CommunityContentResourceDecorator;
 import SmartLibrary.communitycontent.core.CommunityContentImpl;
 import SmartLibrary.communitycontent.core.CommunityContent;
 import SmartLibrary.communitycontent.core.CommunityContentResourceComponent;
+import SmartLibrary.communitycontent.core.CommunityContentServiceComponent;
 
 public class CommunityContentResourceImpl extends CommunityContentResourceDecorator {
+
 	private CommunityContentServiceImpl communityContentServiceImpl;
 
-    public CommunityContentResourceImpl (CommunityContentResourceComponent record) {
+	public CommunityContentResourceImpl (CommunityContentResourceComponent record, CommunityContentServiceComponent communityContentServiceImpl) {
         super(record);
+		this.communityContentServiceImpl = new CommunityContentServiceImpl(communityContentServiceImpl);
     }
+
 
     // @Restriced(permission = "")
     @Route(url="call/article/save")

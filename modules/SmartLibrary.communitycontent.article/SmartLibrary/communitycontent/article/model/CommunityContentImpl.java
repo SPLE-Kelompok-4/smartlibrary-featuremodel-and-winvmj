@@ -24,14 +24,14 @@ public class CommunityContentImpl extends CommunityContentDecorator {
         this.objectName = CommunityContentImpl.class.getName();
     }
     
-    public CommunityContentImpl(String articleTitle, String body) {
-    	super();
-		this.articleTitle = articleTitle;
-		this.body = body;
-		this.createdAt    = new EDate();
-		this.updatedAt    = new EDate();
-		this.objectName = CommunityContentImpl.class.getName();
-    }
+    // public CommunityContentImpl(String articleTitle, String body) {
+    // 	super();
+	// 	this.articleTitle = articleTitle;
+	// 	this.body = body;
+	// 	this.createdAt    = new EDate();
+	// 	this.updatedAt    = new EDate();
+	// 	this.objectName = CommunityContentImpl.class.getName();
+    // }
 	
 	public CommunityContentImpl(CommunityContentComponent record, String articleTitle, String body) {
 		super(record);

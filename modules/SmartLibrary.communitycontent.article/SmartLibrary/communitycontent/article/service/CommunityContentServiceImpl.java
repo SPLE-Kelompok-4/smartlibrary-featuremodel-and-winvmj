@@ -7,20 +7,22 @@ import vmj.hibernate.integrator.RepositoryUtil;
 import vmj.routing.route.VMJExchange;
 
 import SmartLibrary.communitycontent.core.CommunityContent;
+import SmartLibrary.communitycontent.core.CommunityContentComponent;
 import SmartLibrary.communitycontent.core.CommunityContentServiceComponent;
 import SmartLibrary.communitycontent.core.CommunityContentServiceDecorator;
 
 public class CommunityContentServiceImpl extends CommunityContentServiceDecorator {
 
 	private RepositoryUtil<CommunityContent> repository = new RepositoryUtil<>(CommunityContentImpl.class);
+	private CommunityContentComponent record;
 
 	public CommunityContentServiceImpl(CommunityContentServiceComponent record) {
 		super(record);
 	}
 
-	public CommunityContentServiceImpl() {
-		super(null);
-	}
+	// public CommunityContentServiceImpl() {
+	// super(null);
+	// }
 
 	public List<HashMap<String, Object>> saveCommunityContent(VMJExchange exchange) {
 		return saveCommunityContent(exchange.getPayload());
@@ -38,7 +40,13 @@ public class CommunityContentServiceImpl extends CommunityContentServiceDecorato
 		String articleTitle = (String) requestBody.get("articleTitle");
 		String body = (String) requestBody.get("body");
 
-		return new CommunityContentImpl(articleTitle, body);
+		CommunityContent communityContent = new CommunityContentImpl(
+				record,
+				articleTitle, body);
+
+		repository.saveObject(communityContent);
+
+		return communityContent;
 	}
 
 	@Override
