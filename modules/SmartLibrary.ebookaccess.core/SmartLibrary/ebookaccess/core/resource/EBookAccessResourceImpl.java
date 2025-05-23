@@ -8,7 +8,6 @@ import SmartLibrary.ebookaccess.EBookAccessFactory;
 import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 
-
 public class EBookAccessResourceImpl extends EBookAccessResourceComponent{
 	
 	private EBookAccessServiceImpl ServiceImpl = new EBookAccessServiceImpl();

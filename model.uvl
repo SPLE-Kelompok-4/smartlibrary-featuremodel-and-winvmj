@@ -2,15 +2,17 @@ namespace SmartLibrary
 
 features
 	SmartLibrary {abstract true}
-		mandatory
+		optional
 			EBookDisplay {abstract true}
 				or
 					DisplayPrice
 					DisplayImage
+		mandatory
 			CommunityContent {abstract true}
 				or
 					Article
 					ForumThread
+		optional
 			SearchFilter {abstract true}
 				or
 					Search {abstract true}

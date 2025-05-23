@@ -15,25 +15,25 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class CommunityContentComponent implements CommunityContent{
 	@Id
+	protected UUID contentID;
 	
 	protected String contentAuthor;
-	protected UUID contentID;
 	protected EDate createdAt;
 	protected EDate updatedAt;
 	protected String objectName = CommunityContentComponent.class.getName();
 
-	public CommunityContentComponent() {
 
+	public CommunityContentComponent(String contentAuthor) {
+		this.contentAuthor = contentAuthor;
+		this.contentID = UUID.randomUUID();
+		this.createdAt = new EDate();
+		this.updatedAt = new EDate();
 	} 
 
-	public CommunityContentComponent(
-        String contentAuthor, UUID contentID, EDate createdAt, EDate updatedAt
-    ) {
-        this.contentAuthor = contentAuthor;
-        this.contentID = contentID;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
+	public CommunityContentComponent() {
+		
+	} 
+	
 
 	public String getContentAuthor() {
 		return this.contentAuthor;

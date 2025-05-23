@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<feature automatic="selected" name="SmartLibrary"/>
+	<feature automatic="selected" name="EBookDisplay"/>
+	<feature manual="selected" name="DisplayPrice"/>
+	<feature name="DisplayImage"/>
+	<feature automatic="selected" name="CommunityContent"/>
+	<feature manual="selected" name="Article"/>
+	<feature name="ForumThread"/>
+	<feature name="SearchFilter"/>
+	<feature name="Search"/>
+	<feature name="SearchByTitle"/>
+	<feature name="SearchByAuthor"/>
+	<feature name="Filter"/>
+	<feature name="FilterByCategory"/>
+	<feature name="FilterByReleaseDate"/>
+	<feature automatic="selected" name="ReviewManagement"/>
+	<feature name="WishlistManagement"/>
+	<feature name="WishlistWithDescription"/>
+	<feature name="EBookAccess"/>
+	<feature name="FreeAccess"/>
+	<feature name="Subscription"/>
+	<feature name="PayPerBook"/>
+</configuration>
