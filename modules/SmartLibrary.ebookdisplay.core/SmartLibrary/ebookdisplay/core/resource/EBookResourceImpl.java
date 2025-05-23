@@ -4,7 +4,7 @@ import java.util.*;
 import vmj.routing.route.Route;
 import vmj.routing.route.VMJExchange;
 import vmj.routing.route.exceptions.*;
-import SmartLibrary.ebookdisplay.EBookDisplayFactory;
+import SmartLibrary.ebookdisplay.EBookFactory;
 import prices.auth.vmj.annotations.Restricted;
 //add other required packages
 

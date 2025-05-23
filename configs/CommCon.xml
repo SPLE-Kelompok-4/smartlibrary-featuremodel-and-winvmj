@@ -4,7 +4,7 @@
 	<feature name="EBookDisplay"/>
 	<feature name="DisplayPrice"/>
 	<feature name="DisplayImage"/>
-	<feature automatic="selected" name="CommunityContent"/>
+	<feature automatic="selected" manual="selected" name="CommunityContent"/>
 	<feature manual="selected" name="Article"/>
 	<feature name="ForumThread"/>
 	<feature name="SearchFilter"/>

@@ -16,12 +16,12 @@ import SmartLibrary.ebookdisplay.core.EEList;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class EBookComponent implements EBook{
 	@Id
+	protected UUID bookID;
 	
 	protected EDate releaseDate;
 	protected String description;
 	protected String eBookTitle;
 	protected String eBookAuthor;
-	protected UUID bookID;
 	protected String ISBN;
 	protected EEList categories;
 	// @ManyToOne(targetEntity=SmartLibrary.core.Component.class)

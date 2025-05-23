@@ -12,8 +12,8 @@ import SmartLibrary.ebookdisplay.core.EBookDecorator;
 import SmartLibrary.ebookdisplay.core.EBook;
 import SmartLibrary.ebookdisplay.core.EBookComponent;
 
-@Entity(name="ebookdisplaywithprice_impl")
-@Table(name="ebookdisplaywithprice_impl")
+@Entity(name="ebook_displaywithprice")
+@Table(name="ebook_displaywithprice")
 public class EBookImpl extends EBookDecorator {
 
 	protected double price;

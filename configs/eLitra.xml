@@ -6,18 +6,19 @@
 	<feature manual="selected" name="DisplayImage"/>
 	<feature automatic="selected" name="CommunityContent"/>
 	<feature manual="selected" name="Article"/>
-	<feature manual="selected" name="ForumThread"/>
-	<feature automatic="selected" name="SearchFilter"/>
-	<feature automatic="selected" manual="selected" name="Search"/>
-	<feature manual="selected" name="SearchByTitle"/>
-	<feature manual="selected" name="SearchByAuthor"/>
-	<feature automatic="selected" manual="selected" name="Filter"/>
-	<feature manual="selected" name="FilterByCategory"/>
-	<feature manual="selected" name="FilterByReleaseDate"/>
-	<feature automatic="selected" name="ReviewManagement"/>
-	<feature manual="selected" name="WishlistManagement"/>
-	<feature automatic="selected" manual="selected" name="EBookAccess"/>
-	<feature manual="selected" name="FreeAccess"/>
-	<feature manual="selected" name="Subscription"/>
-	<feature manual="selected" name="PayPerBook"/>
+	<feature name="ForumThread"/>
+	<feature name="SearchFilter"/>
+	<feature name="Search"/>
+	<feature name="SearchByTitle"/>
+	<feature name="SearchByAuthor"/>
+	<feature name="Filter"/>
+	<feature name="FilterByCategory"/>
+	<feature name="FilterByReleaseDate"/>
+	<feature name="ReviewManagement"/>
+	<feature name="WishlistManagement"/>
+	<feature name="WishlistWithDescription"/>
+	<feature name="EBookAccess"/>
+	<feature name="FreeAccess"/>
+	<feature name="Subscription"/>
+	<feature name="PayPerBook"/>
 </configuration>

@@ -12,8 +12,8 @@ import SmartLibrary.ebookdisplay.core.EBookDecorator;
 import SmartLibrary.ebookdisplay.core.EBook;
 import SmartLibrary.ebookdisplay.core.EBookComponent;
 
-@Entity(name="ebookdisplaywithimage_impl")
-@Table(name="ebookdisplaywithimage_impl")
+@Entity(name="ebook_displaywithimage")
+@Table(name="ebook_displaywithimage")
 public class EBookImpl extends EBookDecorator {
 
 	protected String image;

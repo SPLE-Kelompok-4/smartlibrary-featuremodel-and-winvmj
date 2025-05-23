@@ -7,12 +7,10 @@ features
 				or
 					DisplayPrice
 					DisplayImage
-		mandatory
 			CommunityContent {abstract true}
 				or
 					Article
 					ForumThread
-		optional
 			SearchFilter {abstract true}
 				or
 					Search {abstract true}
@@ -24,8 +22,7 @@ features
 							FilterByCategory
 							FilterByReleaseDate
 			ReviewManagement
-		optional
-			WishlistManagement 
+			WishlistManagement
 				optional
 					WishlistWithDescription
 			EBookAccess {abstract true}
