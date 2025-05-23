@@ -1,6 +1,6 @@
 module SmartLibrary.wishlistmanagement.core {
 	exports SmartLibrary.wishlistmanagement;
-  exports SmartLibrary.wishlistmanagement.core;
+    exports SmartLibrary.wishlistmanagement.core;
 	requires vmj.routing.route;
 	requires vmj.hibernate.integrator;
 	requires vmj.auth;

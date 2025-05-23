@@ -9,73 +9,81 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-
 import javax.persistence.ManyToOne;
 
 @Entity
-@Table(name="wishlishmanagement_comp")
+@Table(name="wishlistmanagement_comp")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class WishlistManagementComponent implements WishlistManagement{
-	@Id
-	public UUID wishlistId;
-	public UUID userId;
-	public String name;
-	public EDate createdAt;
-	public EDate updateAt;
-	@ManyToOne
-	public WishlistItemImpl wishlistitemimpl;
-	protected String objectName = WishlistManagementComponent.class.getName();
+public abstract class WishlistManagementComponent implements WishlistManagement {
+    @Id
+    protected UUID wishlistId;
 
-	public WishlistManagementComponent() {
+    protected UUID userId;
+    protected String name;
+    protected EDate createdAt;
+    protected EDate updatedAt;
+    protected String objectName = WishlistManagementComponent.class.getName();
 
-	} 
-
-	public WishlistManagementComponent(
-        UUID wishlistId, UUID userId, String name, EDate createdAt, EDate updateAt, WishlistItemImpl wishlistitemimpl
-    ) {
-        this.wishlistId = wishlistId;
+    public WishlistManagementComponent(UUID userId, String name) {
         this.userId = userId;
         this.name = name;
-        this.createdAt = createdAt;
-        this.updateAt = updateAt;
-        this.wishlistitemimpl = wishlistitemimpl;
+        this.wishlistId = UUID.randomUUID();
+        this.createdAt = new EDate();
+        this.updatedAt = new EDate();
     }
 
-	public abstract UUID getWishlistId();
-	public abstract void setWishlistId(UUID wishlistId);
-	
-	public abstract UUID getUserId();
-	public abstract void setUserId(UUID userId);
-	
-	public abstract String getName();
-	public abstract void setName(String name);
-	
-	public abstract EDate getCreatedAt();
-	public abstract void setCreatedAt(EDate createdAt);
-	
-	public abstract EDate getUpdateAt();
-	public abstract void setUpdateAt(EDate updateAt);
-	
-	public abstract WishlistItemImpl getWishlistitemimpl();
-	public abstract void setWishlistitemimpl(WishlistItemImpl wishlistitemimpl);
-	
- 
-	public abstract void addItem(WishlistItem item);
+    public WishlistManagementComponent() {
 
-	public abstract void removeItem(UUID itemId);
+    }
 
-	public abstract void getItems();
+    public UUID getWishlistId() {
+        return this.wishlistId;
+    }
 
-	@Override
+    public void setWishlistId(UUID wishlistId) {
+        this.wishlistId = wishlistId;
+    }
+
+    public UUID getUserId() {
+        return this.userId;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public EDate getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public void setCreatedAt(EDate createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public EDate getUpdatedAt() {
+        return this.updatedAt;
+    }
+
+    public void setUpdatedAt(EDate updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    @Override
     public String toString() {
         return "{" +
             " wishlistId='" + getWishlistId() + "'" +
             " userId='" + getUserId() + "'" +
             " name='" + getName() + "'" +
             " createdAt='" + getCreatedAt() + "'" +
-            " updateAt='" + getUpdateAt() + "'" +
-            " wishlistitemimpl='" + getWishlistitemimpl() + "'" +
+            " updatedAt='" + getUpdatedAt() + "'" +
             "}";
     }
-	
 }
