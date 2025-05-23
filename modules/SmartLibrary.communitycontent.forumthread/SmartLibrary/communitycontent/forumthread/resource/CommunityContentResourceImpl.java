@@ -8,12 +8,14 @@ import SmartLibrary.communitycontent.core.CommunityContentResourceDecorator;
 import SmartLibrary.communitycontent.core.CommunityContentImpl;
 import SmartLibrary.communitycontent.core.CommunityContentResourceComponent;
 import SmartLibrary.communitycontent.core.CommunityContent;
+import SmartLibrary.communitycontent.core.CommunityContentServiceImpl;
 
 public class CommunityContentResourceImpl extends CommunityContentResourceDecorator {
 	private CommunityContentServiceImpl communityContentServiceImpl;
 
-    public CommunityContentResourceImpl (CommunityContentResourceComponent record) {
+    public CommunityContentResourceImpl (CommunityContentResourceComponent record, CommunityContentServiceImpl communityContentServiceImpl) {
         super(record);
+		this.communityContentServiceImpl = communityContentServiceImpl;
     }
 
 	@Route(url="call/forumthread/save")

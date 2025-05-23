@@ -6,7 +6,7 @@
 	<feature name="DisplayImage"/>
 	<feature automatic="selected" manual="selected" name="CommunityContent"/>
 	<feature manual="selected" name="Article"/>
-	<feature name="ForumThread"/>
+	<feature manual="selected" name="ForumThread"/>
 	<feature name="SearchFilter"/>
 	<feature name="Search"/>
 	<feature name="SearchByTitle"/>
