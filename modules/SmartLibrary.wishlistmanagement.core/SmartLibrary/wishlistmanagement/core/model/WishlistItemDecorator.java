@@ -37,23 +37,13 @@ public abstract class WishlistItemDecorator extends WishlistItemComponent {
     }
 
     @Override
-    public UUID getWishlistId() {
-        return record.getWishlistId();
+    public String getItemName() {
+        return record.getItemName();
     }
 
     @Override
-    public void setWishlistId(UUID wishlistId) {
-        record.setWishlistId(wishlistId);
-    }
-
-    @Override
-    public UUID getItemId() {
-        return record.getItemId();
-    }
-
-    @Override
-    public void setItemId(UUID itemId) {
-        record.setItemId(itemId);
+    public void setItemName(String itemName) {
+        record.setItemName(itemName);
     }
 
     @Override

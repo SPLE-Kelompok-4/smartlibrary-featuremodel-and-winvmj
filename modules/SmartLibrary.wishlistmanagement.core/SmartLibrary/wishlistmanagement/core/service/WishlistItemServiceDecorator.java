@@ -10,8 +10,8 @@ public abstract class WishlistItemServiceDecorator extends WishlistItemServiceCo
         this.record = record;
     }
 
-	public WishlistItem createWishlistItem(Map<String, Object> requestBody){
-		return record.createWishlistItem(requestBody);
+	public HashMap<String, Object> saveWishlistItem(Map<String, Object> requestBody){
+		return record.saveWishlistItem(requestBody);
 	}
 
 	public HashMap<String, Object> getWishlistItem(Map<String, Object> requestBody){
@@ -20,10 +20,6 @@ public abstract class WishlistItemServiceDecorator extends WishlistItemServiceCo
 
 	public List<HashMap<String,Object>> getAllWishlistItem(Map<String, Object> requestBody){
 		return record.getAllWishlistItem(requestBody);
-	}
-
-    public List<HashMap<String,Object>> saveWishlistItem(VMJExchange vmjExchange){
-		return record.saveWishlistItem(vmjExchange);
 	}
 
     public HashMap<String, Object> updateWishlistItem(Map<String, Object> requestBody){
@@ -39,7 +35,7 @@ public abstract class WishlistItemServiceDecorator extends WishlistItemServiceCo
 		return record.deleteWishlistItem(requestBody);
 	}
 
-	public HashMap<String, Object> getWishlistItemById(int id){
+	public HashMap<String, Object> getWishlistItemById(UUID id){
         return record.getWishlistItemById(id);
     }
 

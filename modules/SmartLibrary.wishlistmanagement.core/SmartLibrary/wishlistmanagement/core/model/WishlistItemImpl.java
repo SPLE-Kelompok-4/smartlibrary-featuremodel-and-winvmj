@@ -19,10 +19,9 @@ import javax.persistence.OneToMany;
 @Table(name="wishlistitem_impl")
 public class WishlistItemImpl extends WishlistItemComponent {
 
-    public WishlistItemImpl(UUID wishlistId, UUID itemId) {
-        this.wishlistId = wishlistId;
-        this.itemId = itemId;
-        this.wishlistItemId = UUID.randomUUID();
+    public WishlistItemImpl(String itemName, UUID wishlistItemId) {
+        this.itemName = itemName;
+        this.wishlistItemId = wishlistItemId;
         this.addedAt = new EDate();
     }
 
@@ -38,23 +37,13 @@ public class WishlistItemImpl extends WishlistItemComponent {
     }
 
     @Override
-    public UUID getWishlistId() {
-        return this.wishlistId;
+    public String getItemName() {
+        return this.itemName;
     }
 
     @Override
-    public void setWishlistId(UUID wishlistId) {
-        this.wishlistId = wishlistId;
-    }
-
-    @Override
-    public UUID getItemId() {
-        return this.itemId;
-    }
-
-    @Override
-    public void setItemId(UUID itemId) {
-        this.itemId = itemId;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
     @Override
@@ -70,8 +59,7 @@ public class WishlistItemImpl extends WishlistItemComponent {
     public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> wishlistItemMap = new HashMap<String, Object>();
         wishlistItemMap.put("wishlistItemId", getWishlistItemId());
-        wishlistItemMap.put("wishlistId", getWishlistId());
-        wishlistItemMap.put("itemId", getItemId());
+        wishlistItemMap.put("itemName", getItemName());
         wishlistItemMap.put("addedAt", getAddedAt());
 
         return wishlistItemMap;

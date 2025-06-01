@@ -20,33 +20,18 @@ import SmartLibrary.wishlistmanagement.WishlistItemFactory;
 
 public class WishlistItemServiceImpl extends WishlistItemServiceComponent{
 
-    public List<HashMap<String,Object>> saveWishlistItem(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
-			return null;
-		}
-		Map<String, Object> requestBody = vmjExchange.getPayload();
-		WishlistItem wishlistitem = createWishlistItem(requestBody);
-		Repository.saveObject(wishlistitem);
-		return getAllWishlistItem(requestBody);
-	}
-
-	public List<HashMap<String, Object>> saveWishlistItem(Map<String, Object> requestBody) {
-		WishlistItem wishlistItem = createWishlistItem(requestBody);
-		Repository.saveObject(wishlistItem);
-		return getAllWishlistItem(requestBody);
-	}
-
-    public WishlistItem createWishlistItem(Map<String, Object> requestBody){
-		String wishlistId = (String) requestBody.get("WishlistId");
-		String itemId = (String) requestBody.get("itemId");
-		String addedAt = (String) requestBody.get("addedAt");
+    public HashMap<String,Object> saveWishlistItem(Map<String, Object> requestBody){
+		String itemName = (String) requestBody.get("itemName");
 		
+		UUID wishlistItemId = UUID.randomUUID();
+
 		WishlistItem wishlistItem = WishlistItemFactory.createWishlistItem(
 			"SmartLibrary.wishlistmanagement.core.WishlistItemImpl",
-			wishlistId, itemId, addedAt
+			itemName, wishlistItemId
 		);
+		Repository.saveObject(wishlistItem);
 
-		return wishlistItem;
+		return Repository.getObject(wishlistItemId).toHashMap();
 	}
 
     public HashMap<String, Object> updateWishlistItem(Map<String, Object> requestBody){
@@ -68,7 +53,7 @@ public class WishlistItemServiceImpl extends WishlistItemServiceComponent{
 		return wishlistItem.toHashMap();
 	}
 
-	public HashMap<String, Object> getWishlistItemById(int id){
+	public HashMap<String, Object> getWishlistItemById(UUID id){
 		WishlistItem wishlistItem = Repository.getObject(id);
 		return wishlistItem.toHashMap();
 	}

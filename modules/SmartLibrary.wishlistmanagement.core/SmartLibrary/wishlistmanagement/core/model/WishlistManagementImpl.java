@@ -18,9 +18,8 @@ import javax.persistence.OneToMany;
 @Table(name="wishlistmanagement_impl")
 public class WishlistManagementImpl extends WishlistManagementComponent {
 
-    public WishlistManagementImpl(UUID userId, String name) {
+    public WishlistManagementImpl(String name) {
         super();
-        this.userId = userId;
         this.name = name;
         this.wishlistId = UUID.randomUUID();
         this.createdAt = new EDate();
@@ -39,16 +38,6 @@ public class WishlistManagementImpl extends WishlistManagementComponent {
     @Override
     public void setWishlistId(UUID wishlistId) {
         this.wishlistId = wishlistId;
-    }
-
-    @Override
-    public UUID getUserId() {
-        return this.userId;
-    }
-
-    @Override
-    public void setUserId(UUID userId) {
-        this.userId = userId;
     }
 
     @Override
@@ -93,7 +82,6 @@ public class WishlistManagementImpl extends WishlistManagementComponent {
     public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> wishlistManagementMap = new HashMap<String, Object>();
         wishlistManagementMap.put("wishlistId", getWishlistId());
-        wishlistManagementMap.put("userId", getUserId());
         wishlistManagementMap.put("name", getName());
         wishlistManagementMap.put("createdAt", getCreatedAt());
         wishlistManagementMap.put("updatedAt", getUpdatedAt());

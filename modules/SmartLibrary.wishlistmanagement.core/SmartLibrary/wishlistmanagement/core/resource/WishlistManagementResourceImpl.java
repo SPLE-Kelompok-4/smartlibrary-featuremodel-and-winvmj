@@ -76,20 +76,4 @@ public class WishlistManagementResourceImpl extends WishlistManagementResourceCo
 		
 		return wishlistManagementServiceImpl.deleteWishlistManagement(requestBody);
 	}
-
-
-	
-	public void addWishlist(WishlistItem wishlistItem) {
-		// TODO: implement this method
-	}
-
-	
-	public void removeWishlist(UUID itemId) {
-		// TODO: implement this method
-	}
-
-	
-	public void getWishlists() {
-		// TODO: implement this method
-	}
 }

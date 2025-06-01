@@ -38,16 +38,4 @@ public abstract class WishlistManagementResourceDecorator extends WishlistManage
     public List<HashMap<String,Object>> deleteWishlistManagement(VMJExchange vmjExchange){
 		return record.deleteWishlistManagement(vmjExchange);
 	}
-
-	public void addWishlist(WishlistItem wishlistItem) {
-		 record.addWishlist(wishlistItem);
-	}
-
-	public void removeWishlist(UUID itemId) {
-		 record.removeWishlist(itemId);
-	}
-
-	public void getWishlists() {
-		 record.getWishlists();
-	}
 }
