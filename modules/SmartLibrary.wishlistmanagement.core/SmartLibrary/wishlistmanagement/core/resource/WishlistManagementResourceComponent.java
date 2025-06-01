@@ -16,10 +16,4 @@ public abstract class WishlistManagementResourceComponent implements WishlistMan
   	public abstract HashMap<String, Object> getWishlistManagement(VMJExchange vmjExchange);
   	public abstract List<HashMap<String,Object>> getAllWishlistManagement(VMJExchange vmjExchange);
   	public abstract List<HashMap<String,Object>> deleteWishlistManagement(VMJExchange vmjExchange);
-
-	public abstract void addWishlist(WishlistItem wishlistItem);
-
-	public abstract void removeWishlist(UUID itemId);
-
-	public abstract void getWishlists();
 }

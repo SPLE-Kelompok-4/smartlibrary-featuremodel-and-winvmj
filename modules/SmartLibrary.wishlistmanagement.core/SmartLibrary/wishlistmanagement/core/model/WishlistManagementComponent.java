@@ -18,14 +18,12 @@ public abstract class WishlistManagementComponent implements WishlistManagement 
     @Id
     protected UUID wishlistId;
 
-    protected UUID userId;
     protected String name;
     protected EDate createdAt;
     protected EDate updatedAt;
     protected String objectName = WishlistManagementComponent.class.getName();
 
-    public WishlistManagementComponent(UUID userId, String name) {
-        this.userId = userId;
+    public WishlistManagementComponent(String name) {
         this.name = name;
         this.wishlistId = UUID.randomUUID();
         this.createdAt = new EDate();
@@ -42,14 +40,6 @@ public abstract class WishlistManagementComponent implements WishlistManagement 
 
     public void setWishlistId(UUID wishlistId) {
         this.wishlistId = wishlistId;
-    }
-
-    public UUID getUserId() {
-        return this.userId;
-    }
-
-    public void setUserId(UUID userId) {
-        this.userId = userId;
     }
 
     public String getName() {
@@ -80,7 +70,6 @@ public abstract class WishlistManagementComponent implements WishlistManagement 
     public String toString() {
         return "{" +
             " wishlistId='" + getWishlistId() + "'" +
-            " userId='" + getUserId() + "'" +
             " name='" + getName() + "'" +
             " createdAt='" + getCreatedAt() + "'" +
             " updatedAt='" + getUpdatedAt() + "'" +

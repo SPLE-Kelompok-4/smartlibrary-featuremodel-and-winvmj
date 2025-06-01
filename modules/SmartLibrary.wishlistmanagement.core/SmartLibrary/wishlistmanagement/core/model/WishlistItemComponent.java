@@ -16,21 +16,18 @@ import javax.persistence.Table;
 public abstract class WishlistItemComponent implements WishlistItem {
     @Id
     protected UUID wishlistItemId;
-
-    protected UUID wishlistId;
-    protected UUID itemId;
+    protected String itemName;
     protected EDate addedAt;
     protected String objectName = WishlistItemComponent.class.getName();
 
-    public WishlistItemComponent(UUID wishlistId, UUID itemId) {
-        this.wishlistId = wishlistId;
-        this.itemId = itemId;
-        this.wishlistItemId = UUID.randomUUID();
-        this.addedAt = new EDate();
-    }
-
     public WishlistItemComponent() {
 
+    }
+
+    public WishlistItemComponent(UUID wishlistItemId, String itemName) {
+        this.itemName = itemName;
+        this.wishlistItemId = wishlistItemId;
+        this.addedAt = new EDate();
     }
 
     public UUID getWishlistItemId() {
@@ -41,20 +38,12 @@ public abstract class WishlistItemComponent implements WishlistItem {
         this.wishlistItemId = wishlistItemId;
     }
 
-    public UUID getWishlistId() {
-        return this.wishlistId;
+    public String getItemName() {
+        return this.itemName;
     }
 
-    public void setWishlistId(UUID wishlistId) {
-        this.wishlistId = wishlistId;
-    }
-
-    public UUID getItemId() {
-        return this.itemId;
-    }
-
-    public void setItemId(UUID itemId) {
-        this.itemId = itemId;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
     public EDate getAddedAt() {
@@ -69,9 +58,16 @@ public abstract class WishlistItemComponent implements WishlistItem {
     public String toString() {
         return "{" +
             " wishlistItemId='" + getWishlistItemId() + "'" +
-            " wishlistId='" + getWishlistId() + "'" +
-            " itemId='" + getItemId() + "'" +
+            " itemName='" + getItemName() + "'" +
             " addedAt='" + getAddedAt() + "'" +
             "}";
+    }
+     public HashMap<String, Object> toHashMap() {
+        HashMap<String, Object> wishlistItemMap = new HashMap<String, Object>();
+        wishlistItemMap.put("wishlistItemId", getWishlistItemId());
+        wishlistItemMap.put("itemName", getItemName());
+        wishlistItemMap.put("addedAt", getAddedAt());
+
+        return wishlistItemMap;
     }
 }

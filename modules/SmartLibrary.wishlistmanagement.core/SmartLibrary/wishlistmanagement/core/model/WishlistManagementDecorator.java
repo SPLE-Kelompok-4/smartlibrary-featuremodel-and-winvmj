@@ -49,16 +49,6 @@ public abstract class WishlistManagementDecorator extends WishlistManagementComp
     }
 
     @Override
-    public UUID getUserId() {
-        return record.getUserId();
-    }
-
-    @Override
-    public void setUserId(UUID userId) {
-        record.setUserId(userId);
-    }
-
-    @Override
     public String getName() {
         return record.getName();
     }

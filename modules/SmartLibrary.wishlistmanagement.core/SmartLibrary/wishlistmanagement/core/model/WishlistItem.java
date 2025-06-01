@@ -4,10 +4,10 @@ import vmj.routing.route.VMJExchange;
 import java.util.*;
 
 public interface WishlistItem {
-	public UUID getWishlistId();
-	public void setWishlistId(UUID wishlistId);
-	public UUID getItemId();
-	public void setItemId(UUID itemId);
+	public UUID getWishlistItemId(); 
+    public void setWishlistItemId(UUID wishlistItemId);
+	public String getItemName();
+	public void setItemName(String itemName);
 	public EDate getAddedAt();
 	public void setAddedAt(EDate addedAt);
 	HashMap<String, Object> toHashMap();

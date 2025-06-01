@@ -10,37 +10,33 @@ public abstract class WishlistItemServiceDecorator extends WishlistItemServiceCo
         this.record = record;
     }
 
-	public WishlistItem createWishlistItem(Map<String, Object> requestBody){
-		return record.createWishlistItem(requestBody);
+	public HashMap<String, Object> saveWishlistItem(Map<String, Object> requestBody){
+		return record.saveWishlistItem(requestBody);
 	}
 
-	public HashMap<String, Object> getWishlistItem(Map<String, Object> requestBody){
-		return record.getWishlistItem(requestBody);
-	}
-
-	public List<HashMap<String,Object>> getAllWishlistItem(Map<String, Object> requestBody){
-		return record.getAllWishlistItem(requestBody);
-	}
-
-    public List<HashMap<String,Object>> saveWishlistItem(VMJExchange vmjExchange){
-		return record.saveWishlistItem(vmjExchange);
-	}
-
-    public HashMap<String, Object> updateWishlistItem(Map<String, Object> requestBody){
+	public HashMap<String, Object> updateWishlistItem(Map<String, Object> requestBody){
 		return record.updateWishlistItem(requestBody);
 	}
 
-    @Override
-    public List<HashMap<String, Object>> transformListToHashMap(List<WishlistItem> items) {
-        return record.transformListToHashMap(items);
+	public HashMap<String, Object> getWishlistItem(String wishlistItemIdStr){
+		return record.getWishlistItem(wishlistItemIdStr);
+	}
+
+	public WishlistItem getWishlistItemById(UUID wishlistItemId){
+        return record.getWishlistItemById(wishlistItemId);
     }
 
-    public List<HashMap<String,Object>> deleteWishlistItem(Map<String, Object> requestBody){
+	public List<HashMap<String,Object>> getAllWishlistItem(){
+		return record.getAllWishlistItem();
+	}
+	
+	public List<HashMap<String,Object>> deleteWishlistItem(Map<String, Object> requestBody){
 		return record.deleteWishlistItem(requestBody);
 	}
 
-	public HashMap<String, Object> getWishlistItemById(int id){
-        return record.getWishlistItemById(id);
+    public List<HashMap<String, Object>> transformListToHashMap(List<WishlistItem> wishlistItemsList) {
+        return record.transformListToHashMap(wishlistItemsList);
     }
+
 
 }

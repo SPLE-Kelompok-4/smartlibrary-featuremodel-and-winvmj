@@ -40,7 +40,6 @@ public class WishlistManagementServiceImpl extends WishlistManagementServiceComp
 
     public WishlistManagement createWishlistManagement(Map<String, Object> requestBody){
 		String wishlistId = (String) requestBody.get("wishlistId");
-		String userId = (String) requestBody.get("userId");
 		String name = (String) requestBody.get("name");
 		String createdAt = (String) requestBody.get("createdAt");
 		String updateAt = (String) requestBody.get("updateAt");
@@ -49,7 +48,7 @@ public class WishlistManagementServiceImpl extends WishlistManagementServiceComp
 
 		WishlistManagement Wishlistmanagement = WishlistManagementFactory.createWishlistManagement(
 			"SmartLibrary.Wishlistmanagement.core.WishlistManagementImpl",
-			wishlistId, userId, name, createdAt, wishListItemImpl, updateAt
+			wishlistId, name, createdAt, wishListItemImpl, updateAt
 		);
 		return Wishlistmanagement;
 	}

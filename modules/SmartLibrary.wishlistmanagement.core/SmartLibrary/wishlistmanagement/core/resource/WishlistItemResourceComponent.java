@@ -7,11 +7,13 @@ import vmj.routing.route.VMJExchange;
 
 public abstract class WishlistItemResourceComponent implements WishlistItemResource{
 	
-	public WishlistItemResourceComponent() { }
+	protected RepositoryUtil<WishlistItem> wishlistItemRepository;
+	
+	public WishlistItemResourceComponent() {
+        this.wishlistItemRepository = new RepositoryUtil<WishlistItem>(SmartLibrary.wishlistmanagement.core.WishlistItemComponent.class);
+    }
  
-    public abstract List<HashMap<String,Object>> saveWishlistItem(VMJExchange vmjExchange);
-    public abstract HashMap<String, Object> createWishlistItem(VMJExchange vmjExchange);
-	public abstract HashMap<String, Object> createWishlistItem(VMJExchange vmjExchange, int id);    
+    public abstract HashMap<String, Object> saveWishlistItem(VMJExchange vmjExchange);   
 	public abstract HashMap<String, Object> updateWishlistItem(VMJExchange vmjExchange);
     public abstract HashMap<String, Object> getWishlistItem(VMJExchange vmjExchange);
     public abstract List<HashMap<String,Object>> getAllWishlistItem(VMJExchange vmjExchange);

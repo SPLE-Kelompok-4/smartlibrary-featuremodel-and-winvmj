@@ -19,63 +19,60 @@ import SmartLibrary.wishlistmanagement.WishlistItemFactory;
 //add other required packages
 
 public class WishlistItemServiceImpl extends WishlistItemServiceComponent{
+	private WishlistItemFactory wishlistItemFactory = new WishlistItemFactory();
 
-    public List<HashMap<String,Object>> saveWishlistItem(VMJExchange vmjExchange){
-		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
-			return null;
-		}
-		Map<String, Object> requestBody = vmjExchange.getPayload();
-		WishlistItem wishlistitem = createWishlistItem(requestBody);
-		Repository.saveObject(wishlistitem);
-		return getAllWishlistItem(requestBody);
-	}
-
-	public List<HashMap<String, Object>> saveWishlistItem(Map<String, Object> requestBody) {
-		WishlistItem wishlistItem = createWishlistItem(requestBody);
-		Repository.saveObject(wishlistItem);
-		return getAllWishlistItem(requestBody);
-	}
-
-    public WishlistItem createWishlistItem(Map<String, Object> requestBody){
-		String wishlistId = (String) requestBody.get("WishlistId");
-		String itemId = (String) requestBody.get("itemId");
-		String addedAt = (String) requestBody.get("addedAt");
+    public HashMap<String,Object> saveWishlistItem(Map<String, Object> requestBody){
+		String itemName = (String) requestBody.get("itemName");
 		
-		WishlistItem wishlistItem = WishlistItemFactory.createWishlistItem(
-			"SmartLibrary.wishlistmanagement.core.WishlistItemImpl",
-			wishlistId, itemId, addedAt
-		);
+		UUID wishlistItemId = UUID.randomUUID();
 
-		return wishlistItem;
+		WishlistItem wishlistItem = wishlistItemFactory.createWishlistItem(
+			"SmartLibrary.wishlistmanagement.core.WishlistItemImpl",
+			wishlistItemId, itemName
+		);
+		wishlistItemRepository.saveObject(wishlistItem);
+
+		return wishlistItem.toHashMap();
 	}
 
     public HashMap<String, Object> updateWishlistItem(Map<String, Object> requestBody){
 		String idStr = (String) requestBody.get("wishlistItemId");
-		int id = Integer.parseInt(idStr);
-		WishlistItem wishlistItem = Repository.getObject(id);
+		UUID id = UUID.fromString(idStr); 
+		WishlistItem wishlistItem = wishlistItemRepository.getObject(id);
 		
+		if (wishlistItem == null) {
+            throw new NoSuchElementException("WishlistItem with ID " + id + " not found for update.");
+        }
+        
+        if (requestBody.containsKey("itemName")) {
+            wishlistItem.setItemName((String) requestBody.get("itemName"));
+        }
 		
-		Repository.updateObject(wishlistItem);
+		wishlistItemRepository.updateObject(wishlistItem);
 		
 		return wishlistItem.toHashMap();
 		
 	}
 
-    public HashMap<String, Object> getWishlistItem(Map<String, Object> requestBody){
-		String idStr = (String) requestBody.get("wishlistItemId");
-		int id = Integer.parseInt(idStr);
-		WishlistItem wishlistItem = Repository.getObject(id);
-		return wishlistItem.toHashMap();
+    public HashMap<String, Object> getWishlistItem(String wishlistItemIdStr){
+		UUID id = UUID.fromString(wishlistItemIdStr);
+		WishlistItem wishlistItem = wishlistItemRepository.getObject(id);
+		if (wishlistItem == null) {
+            throw new NotFoundException("WishlistItem with ID " + id + " not found."); // Atau NoSuchElementException
+        }
+        return wishlistItem.toHashMap();
 	}
 
-	public HashMap<String, Object> getWishlistItemById(int id){
-		WishlistItem wishlistItem = Repository.getObject(id);
-		return wishlistItem.toHashMap();
+	public WishlistItem getWishlistItemById(UUID id){
+		WishlistItem wishlistItem = wishlistItemRepository.getObject(id);
+		if (wishlistItem == null) {
+            throw new NotFoundException("WishlistItem with ID " + id + " not found."); // Atau NoSuchElementException
+        }
+		return wishlistItem;
 	}
 
-    public List<HashMap<String,Object>> getAllWishlistItem(Map<String, Object> requestBody){
-		String table = (String) requestBody.get("table_name");
-		List<WishlistItem> List = Repository.getAllObject(table);
+    public List<HashMap<String,Object>> getAllWishlistItem(){
+		List<WishlistItem> List = wishlistItemRepository.getAllObject("wishlistitem_impl");
 		return transformListToHashMap(List);
 	}
 
@@ -90,9 +87,9 @@ public class WishlistItemServiceImpl extends WishlistItemServiceComponent{
 
     public List<HashMap<String,Object>> deleteWishlistItem(Map<String, Object> requestBody){
 		String idStr = ((String) requestBody.get("id"));
-		int id = Integer.parseInt(idStr);
-		Repository.deleteObject(id);
-		return getAllWishlistItem(requestBody);
+		UUID id = UUID.fromString(idStr);
+		wishlistItemRepository.deleteObject(id);
+		return getAllWishlistItem();
 	}
 
 }
