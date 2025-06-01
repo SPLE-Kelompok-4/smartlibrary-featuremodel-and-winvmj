@@ -10,7 +10,7 @@ import SmartLibrary.wishlistmanagement.WishlistItemFactory;
 
 public class WishlistItemResourceImpl extends WishlistItemResourceComponent{
 	
-	private WishlistItemServiceImpl wishListItemServiceImpl = new WishlistItemServiceImpl();
+	private WishlistItemService wishlistItemService = new WishlistItemServiceImpl();
 
 	// @Restriced(permission = "")
    	@Route(url="call/wishlistitem/save") 
@@ -21,8 +21,7 @@ public class WishlistItemResourceImpl extends WishlistItemResourceComponent{
         }
         if (vmjExchange.getHttpMethod().equals("POST")) {
             Map<String, Object> requestBody = vmjExchange.getPayload(); 
-            HashMap<String,Object> result = wishListItemServiceImpl.saveWishlistItem(requestBody);
-            return result;
+            return wishlistItemService.saveWishlistItem(requestBody);
         }
         throw new NotFoundException("Route tidak ditemukan");
     }
@@ -36,7 +35,7 @@ public class WishlistItemResourceImpl extends WishlistItemResourceComponent{
 		}
 		if (vmjExchange.getHttpMethod().equals("PUT")) {
             Map<String, Object> requestBody = vmjExchange.getPayload(); 
-            return wishListItemServiceImpl.updateWishlistItem(requestBody);
+            return wishlistItemService.updateWishlistItem(requestBody);
         }
 		throw new NotFoundException("Route tidak ditemukan");
 		
@@ -50,8 +49,8 @@ public class WishlistItemResourceImpl extends WishlistItemResourceComponent{
             return null;
         }
         if (vmjExchange.getHttpMethod().equals("GET")) { 
-            Map<String, Object> requestBody = vmjExchange.getPayload();
-            return wishListItemServiceImpl.getWishlistItem(requestBody);
+             String id = vmjExchange.getGETParam("wishlistItemId");
+            return wishlistItemService.getWishlistItem(id);
         }
 		throw new NotFoundException("Route tidak ditemukan");
 	}
@@ -63,8 +62,7 @@ public class WishlistItemResourceImpl extends WishlistItemResourceComponent{
             return null;
         }
         if (vmjExchange.getHttpMethod().equals("GET")) { 
-            Map<String, Object> requestBody = vmjExchange.getPayload(); 
-            return wishListItemServiceImpl.getAllWishlistItem(requestBody);
+            return wishlistItemService.getAllWishlistItem();
         }
 		throw new NotFoundException("Route tidak ditemukan");
 	}
@@ -77,7 +75,7 @@ public class WishlistItemResourceImpl extends WishlistItemResourceComponent{
         }
         if (vmjExchange.getHttpMethod().equals("DELETE")) { 
             Map<String, Object> requestBody = vmjExchange.getPayload(); 
-            return wishListItemServiceImpl.deleteWishlistItem(requestBody);
+            return wishlistItemService.deleteWishlistItem(requestBody);
         }
 		throw new NotFoundException("Route tidak ditemukan");
 	}

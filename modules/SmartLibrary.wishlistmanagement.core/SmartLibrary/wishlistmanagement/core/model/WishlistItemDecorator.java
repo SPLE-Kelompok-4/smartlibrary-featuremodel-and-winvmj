@@ -13,45 +13,32 @@ public abstract class WishlistItemDecorator extends WishlistItemComponent {
     @OneToOne(cascade=CascadeType.ALL)
     protected WishlistItemComponent record;
 
+    public WishlistItemDecorator(WishlistItemComponent record) {
+        this.record = record;
+    }
+
+    public WishlistItemDecorator(UUID wishlistItemId, WishlistItemComponent record) {
+        this.wishlistItemId = wishlistItemId;
+        this.record = record;
+    }
+
     public WishlistItemDecorator() {
         super();
-    }
-
-    public WishlistItemDecorator(WishlistItemComponent record) {
-        super();
         this.wishlistItemId = UUID.randomUUID();
-        this.record = record;
     }
 
-    public WishlistItemDecorator(UUID id, WishlistItemComponent record) {
-        super();
-        this.wishlistItemId = id;
-        this.record = record;
-    }
-
-    public WishlistItemDecorator(WishlistItemComponent record, String objectName) {
-        super();
-        this.wishlistItemId = UUID.randomUUID();
-        this.record = record;
-        this.objectName = objectName;
-    }
-
-    @Override
     public String getItemName() {
         return record.getItemName();
     }
 
-    @Override
     public void setItemName(String itemName) {
         record.setItemName(itemName);
     }
 
-    @Override
     public EDate getAddedAt() {
         return record.getAddedAt();
     }
 
-    @Override
     public void setAddedAt(EDate addedAt) {
         record.setAddedAt(addedAt);
     }
@@ -64,7 +51,6 @@ public abstract class WishlistItemDecorator extends WishlistItemComponent {
         record.setWishlistItemId(wishlistItemId);
     }
 
-    @Override
     public HashMap<String, Object> toHashMap() {
         return this.record.toHashMap();
     }
