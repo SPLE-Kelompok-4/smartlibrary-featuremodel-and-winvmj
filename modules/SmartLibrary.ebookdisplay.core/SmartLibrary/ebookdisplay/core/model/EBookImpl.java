@@ -19,33 +19,42 @@ import SmartLibrary.ebookdisplay.core.EEList;
 @Table(name="ebook_impl")
 public class EBookImpl extends EBookComponent {
 	
-	public EBookImpl(EDate releaseDate, String description, String eBookTitle, String eBookAuthor, UUID bookID, String ISBN, EEList categories, EDate createdAt) {
-		this.releaseDate = releaseDate;
-		this.description = description;
-		this.eBookTitle = eBookTitle;
-		this.eBookAuthor = eBookAuthor;
-		this.bookID = bookID;
-		this.ISBN = ISBN;
-		this.categories = categories;
-		// this.ebookaccessimpl = ebookaccessimpl;
-		this.createdAt = createdAt;
-	}
+    public EBookImpl(EDate releaseDate, String description, String eBookTitle, String eBookAuthor, UUID bookID, String ISBN, EEList categories) {
+        this.releaseDate = releaseDate;
+        this.description = description;
+        this.eBookTitle = eBookTitle;
+        this.eBookAuthor = eBookAuthor;
+        this.bookID = bookID;
+        this.ISBN = ISBN;
+        this.categories = categories;
+        // this.ebookaccessimpl = ebookaccessimpl;
+        this.createdAt = new EDate(System.currentTimeMillis());
+    }
 
-	// With Random UUID constructor
-	public EBookImpl(EDate releaseDate, String description, String eBookTitle, String eBookAuthor, String ISBN, EEList categories, EDate createdAt) {
-		this.bookID =  UUID.randomUUID();
-		this.releaseDate = releaseDate;
-		this.description = description;
-		this.eBookTitle = eBookTitle;
-		this.eBookAuthor = eBookAuthor;
-		this.ISBN = ISBN;
-		this.categories = categories;
-		// this.ebookaccessimpl = ebookaccessimpl;
-		this.createdAt = createdAt;
-	}
+    // With Random UUID constructor
+    public EBookImpl(EDate releaseDate, String description, String eBookTitle, String eBookAuthor, String ISBN, EEList categories) {
+        this.bookID =  UUID.randomUUID();
+        this.releaseDate = releaseDate;
+        this.description = description;
+        this.eBookTitle = eBookTitle;
+        this.eBookAuthor = eBookAuthor;
+        this.ISBN = ISBN;
+        this.categories = categories;
+        // this.ebookaccessimpl = ebookaccessimpl;
+        this.createdAt = new EDate(System.currentTimeMillis());
+    }
 
 	// Default constructor required by JPA
-	public EBookImpl() { }
+	public EBookImpl() {
+		this.bookID = UUID.randomUUID();
+		this.categories = new EEList(new ArrayList<>());
+		this.createdAt = new EDate(System.currentTimeMillis());
+		this.releaseDate = new EDate(System.currentTimeMillis());
+		this.description = "";
+		this.eBookTitle = "";
+		this.eBookAuthor = "";
+		this.ISBN = "";
+	}
 
 	public EDate getReleaseDate() {
 		return this.releaseDate;

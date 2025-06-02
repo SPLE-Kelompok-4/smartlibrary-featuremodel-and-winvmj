@@ -24,16 +24,16 @@ import prices.auth.vmj.annotations.Restricted;
 
 public class EBookServiceImpl extends EBookServiceComponent{
 
-    // public List<HashMap<String,Object>> saveEBook(VMJExchange vmjExchange) {
-    //     if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
-    //         return null;
-    //     }
+    public List<HashMap<String,Object>> saveEBook(VMJExchange vmjExchange) {
+        if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
+            return null;
+        }
         
-    //     Map<String, Object> requestBody = vmjExchange.getRequestBody();
-    //     EBook ebook = createEBook(requestBody);
-    //     Repository.saveObject(ebook);
-    //     return getAllEBook(requestBody);
-    // }
+        Map<String, Object> requestBody = vmjExchange.getPayload();
+        EBook ebook = createEBook(requestBody);
+        Repository.saveObject(ebook);
+        return getAllEBook(requestBody);
+    }
 
     public EBook createEBook(Map<String, Object> requestBody){
 		String description = (String) requestBody.get("description");
@@ -48,7 +48,6 @@ public class EBookServiceImpl extends EBookServiceComponent{
 										.toEpochMilli();
 		EDate releaseDate = new EDate(milliseconds);
 
-		UUID bookID = UUID.randomUUID();
 		List<String> categories = new ArrayList<>(); // TODO: Need to fix this later maybe
 		if (requestBody.get("categories") != null) {
 			categories = (List<String>) requestBody.get("categories");
@@ -56,24 +55,17 @@ public class EBookServiceImpl extends EBookServiceComponent{
 		// Convert List<String> to EEList before passing to factory
 		EEList categoriesEEList = new EEList(categories);
 
-		if (requestBody.get("categories") != null) {
-            categories = (List<String>) requestBody.get("categories");
-        }
 		// EBookAccessImpl ebookaccessimpl = null; // This should be retrieved or created
-		Date createdAt = new Date();
 		EBook ebook = EBookFactory.createEBook(
 			"SmartLibrary.ebookdisplay.core.EBookImpl",
 		releaseDate
 		, description
 		, eBookTitle
 		, eBookAuthor
-		, bookID
 		, ISBN
 		, categoriesEEList
-		// , ebookaccessimpl
-		, createdAt
 		);
-		Repository.saveObject(ebook);
+		// Repository.saveObject(ebook);
 		return ebook;
 	}
 

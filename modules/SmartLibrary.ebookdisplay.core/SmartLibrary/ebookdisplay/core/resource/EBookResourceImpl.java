@@ -19,7 +19,7 @@ public class EBookResourceImpl extends EBookResourceComponent{
 		if (vmjExchange.getHttpMethod().equals("OPTIONS")) {
 			return null;
 		}
-		return saveEBook(vmjExchange);
+		return ebookServiceImpl.saveEBook(vmjExchange);
 	}
 
 	// @Restriced(permission = "")
